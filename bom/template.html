@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outer Bounds — Complete Bill of Materials (Pro &amp; Indoor)</title>
+<style>
+  :root { color-scheme: light; --bg:#f6f6f4; --surface-1:#fcfcfb; --surface-2:#f0efec; --border:#e2e1dc; --grid:#e7e6e1;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7974; --accent:#2a78d6; --accent-soft:#e6f0fc;
+    --series-1:#2a78d6; --series-2:#eb6834; --good-text:#006300; --warn-text:#8a5a00; --crit-text:#b42c2c; --warning:#fab219; --critical:#d03b3b; --good:#0ca30c; }
+  @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { color-scheme: dark; --bg:#121211; --surface-1:#1a1a19; --surface-2:#232321; --border:#33332f; --grid:#2c2c29;
+    --text-primary:#fff; --text-secondary:#c3c2b7; --text-muted:#94938a; --accent:#3987e5; --accent-soft:#1d2a3b; --series-1:#3987e5; --series-2:#d95926;
+    --good-text:#4cc94c; --warn-text:#f3c35a; --crit-text:#f07878; } }
+  :root[data-theme="dark"] { color-scheme: dark; --bg:#121211; --surface-1:#1a1a19; --surface-2:#232321; --border:#33332f; --grid:#2c2c29;
+    --text-primary:#fff; --text-secondary:#c3c2b7; --text-muted:#94938a; --accent:#3987e5; --accent-soft:#1d2a3b; --series-1:#3987e5; --series-2:#d95926;
+    --good-text:#4cc94c; --warn-text:#f3c35a; --crit-text:#f07878; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text-primary); font:15.5px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; }
+  main { max-width: 1380px; margin: 0 auto; padding: 36px 40px 120px; }
+  h1 { font-size: 34px; line-height:1.15; margin: 0 0 8px; letter-spacing:-0.02em; }
+  h2 { font-size: 24px; margin: 56px 0 6px; letter-spacing:-0.01em; }
+  h3 { font-size: 17px; margin: 26px 0 8px; }
+  h4 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-secondary); margin: 0 0 8px; }
+  p { margin: 0 0 12px; max-width: 86ch; } ul { max-width: 90ch; padding-left: 20px; } li { margin: 3px 0; }
+  .lede { color: var(--text-secondary); font-size: 17px; max-width: 92ch; }
+  .kicker { color: var(--text-muted); font-size: 12.5px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+  .muted { color: var(--text-muted); } .small { font-size: 13.5px; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .grid { display:grid; gap:14px; } .g2 { grid-template-columns: repeat(2,minmax(0,1fr)); } .g3 { grid-template-columns: repeat(3,minmax(0,1fr)); } .g4 { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  @media (max-width: 1000px) { .g3,.g4 { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 720px) { main { padding: 20px 16px 80px; } .g2,.g3,.g4 { grid-template-columns: 1fr; } }
+  .stat .label { font-size: 13px; color: var(--text-secondary); } .stat .value { font-size: 30px; font-weight: 650; line-height:1.2; margin: 4px 0 2px; } .stat .note { font-size: 12.5px; color: var(--text-muted); }
+  .callout { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 13px 17px; border-radius: 0 8px 8px 0; margin: 16px 0; max-width: 100ch; }
+  .callout.warn { border-left-color: var(--warning); background: color-mix(in srgb, var(--warning) 12%, transparent); }
+  .callout strong:first-child { display:block; margin-bottom: 3px; }
+  .controls { display:flex; gap: 14px; flex-wrap: wrap; align-items:center; margin: 14px 0 10px; font-size: 14px; color: var(--text-secondary); }
+  .seg { display:inline-flex; border:1px solid var(--border); border-radius: 8px; overflow:hidden; background: var(--surface-1); }
+  .seg button { border:0; background: transparent; color: var(--text-secondary); padding: 6px 12px; font: inherit; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--text-primary); color: var(--surface-1); }
+  input[type=search] { font: inherit; padding: 6px 10px; border:1px solid var(--border); border-radius: 8px; background: var(--surface-1); color: var(--text-primary); min-width: 240px; }
+  .table-wrap { overflow:auto; border:1px solid var(--border); border-radius: 10px; background: var(--surface-1); margin: 10px 0 16px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+  th, td { text-align:left; padding: 8px 10px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-secondary); background: var(--surface-2); position: sticky; top: 0; z-index: 1; white-space: nowrap; }
+  td.num, th.num { text-align:right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.sub td { background: var(--surface-2); font-weight: 650; }
+  tr.total td { font-weight: 700; border-top: 2px solid var(--border); }
+  td:first-child { white-space: nowrap; }
+  td.mpn { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; white-space: nowrap; }
+  .pill { display:inline-block; font-size: 11.5px; padding: 1px 8px; border-radius: 999px; white-space: nowrap; font-weight: 600; }
+  .pill.now { background: color-mix(in srgb, var(--good) 15%, transparent); color: var(--good-text); }
+  .pill.quote { background: color-mix(in srgb, var(--warning) 20%, transparent); color: var(--warn-text); }
+  .pill.design { background: var(--accent-soft); color: var(--accent); }
+  .notes { color: var(--text-secondary); font-size: 12.5px; min-width: 260px; }
+  .chart-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 16px 16px 8px; }
+  .chart-title { font-weight: 650; } .chart-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+  .legend { display:flex; gap: 16px; font-size: 13px; color: var(--text-secondary); margin: 4px 0 6px; } .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .legend i { width: 10px; height: 10px; border-radius: 2px; display:inline-block; } .legend i.ln { height: 2px; width: 14px; border-radius: 1px; }
+  svg text { fill: var(--text-secondary); font-size: 12px; font-family: inherit; } svg .tick { stroke: var(--grid); stroke-width: 1; } svg .lp { fill: var(--text-primary); }
+  .tooltip { position: fixed; pointer-events:none; z-index: 50; background: var(--surface-1); border:1px solid var(--border); border-radius: 8px; padding: 8px 11px; font-size: 13px; box-shadow: 0 6px 24px rgba(0,0,0,.14); opacity:0; transition: opacity .08s; max-width: 300px; }
+  .tooltip .tv { font-weight: 700; font-size: 14px; } .tooltip .tl { color: var(--text-secondary); }
+  .tooltip .row { display:flex; align-items:center; gap: 8px; } .tooltip .key { width: 12px; height: 2px; display:inline-block; }
+  .files a { display:inline-block; margin: 2px 10px 2px 0; }
+  .theme-toggle { position: fixed; right: 16px; top: 14px; font-size: 12px; background: var(--surface-1); color: var(--text-secondary); border:1px solid var(--border); border-radius: 6px; padding: 5px 9px; cursor: pointer; }
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeToggle" type="button">Light / dark</button>
+<main>
+  <div class="kicker">Outer Bounds · complete bill of materials · prepared October 7, 2026</div>
+  <h1>Bill of materials: Outer Bounds Pro &amp; Outer Bounds Indoor</h1>
+  <p class="lede">This is the complete, final parts list for both products. There are no phases and no reduced versions. Both units share the same sensing core: three IMX900 global-shutter cameras, 24 strobed 940 nm LEDs, two certified 24 GHz radar heads and a Qualcomm QCS6490 compute module with Wi-Fi 6E. The Pro adds the swappable 81 Wh battery, a sunlight-readable display, an inclinometer and an IP55 blower. The Indoor adds Gigabit Ethernet and a 24 V supply. Every line has a manufacturer part number, a vendor and a price at four build volumes. Each line is either orderable today, quote-only, or a custom part that needs our design files.</p>
+
+  <div class="grid g4" style="margin-top:18px" id="tiles"></div>
+  <p class="small muted" style="margin-top:8px">"BOM" = all parts, boards, enclosure, box contents and assembly/test labour per unit. "Landed" adds 3% scrap, 10% US duty (Taiwan final assembly) and $12 freight. One-time tooling, NRE and certification (<span id="otTotal"></span>) are listed separately. Spread over a 10,000-unit product life, they add <span id="amort"></span> per unit.</p>
+
+  <h2>What the money goes to</h2>
+  <p class="muted">Pick a build volume. The bars show Pro and Indoor cost per unit by subsystem.</p>
+  <div class="controls"><span>Build volume</span><div class="seg" id="tierSeg"></div></div>
+  <div class="grid g2">
+    <div class="chart-card">
+      <div class="chart-title">Cost per unit by subsystem</div>
+      <div class="chart-sub" id="subChartSub"></div>
+      <div class="legend"><span><i style="background:var(--series-1)"></i>Pro</span><span><i style="background:var(--series-2)"></i>Indoor</span></div>
+      <div id="subChart"></div>
+      <details class="small"><summary class="muted">Show as table</summary><div class="table-wrap"><table id="subTable"></table></div></details>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Unit cost falls with volume</div>
+      <div class="chart-sub">Landed cost per unit (excl. one-time costs) at each build volume (volume axis is logarithmic).</div>
+      <div class="legend"><span><i class="ln" style="background:var(--series-1)"></i>Pro</span><span><i class="ln" style="background:var(--series-2)"></i>Indoor</span></div>
+      <div id="curveChart"></div>
+      <details class="small"><summary class="muted">Show as table</summary><div class="table-wrap"><table id="curveTable"></table></div></details>
+    </div>
+  </div>
+
+  <h2>Product-manager decisions</h2>
+  <p class="muted">Where the research turned up a price, supply or engineering problem, this is what I chose and why.</p>
+  <div class="grid g2">
+    <div class="card small"><h4>Compute: Qualcomm QCS6490 (Thundercomm C6490P), not RK3588</h4>
+      <p>The RK3588 module is about $185 at 1k but needs a separate Wi-Fi module (~$11). The QCS6490 module is $190 with Wi-Fi 6E and BT 5.2 already on board, carries FCC/CE, has a published lifecycle <b>to 2036</b> (Rockchip gives no longevity commitment), offers 5 four-lane camera ports and draws phone-class power. Lower power is what makes the 6-hour runtime and the sealed 40 °C box work. <b>Gap:</b> no board has a shipping IMX900 triggered-mono driver except Jetson. A paid driver port is budgeted ($40k NRE). <b>Backup:</b> Jetson Orin Nano 8GB ($399, drivers exist). <b>Alt:</b> Forlinx FET3588J-C.</p></div>
+    <div class="card small"><h4>Cameras are a third of the BOM, so there's a cost-down path</h4>
+      <p>Three Vision Components IMX900 mono modules: about $230 each in prototype quantities, €109.99 (≈$128) catalog at 1k. A one-time custom-module NRE with VC/e-con (~$30k) brings them to <b>~$95</b> at 1k. At 10k, our own sensor board with active lens alignment reaches <b>~$65</b>. The club camera stays an IMX900 rather than a cheaper OV9281: that saves only ~$53 and costs resolution plus a second driver and calibration model. <b>Open question:</b> IMX900 "quad shutter" can't be confirmed without Sony's NDA datasheet, so the design runs on plain triggered single exposures.</p></div>
+    <div class="card small"><h4>Swaps for price and stock</h4>
+      <ul style="margin:0">
+        <li>TI SN74LVC1G123 one-shot (0 stock, $0.83) → <b>Nexperia 74LVC1G123DC</b> ($0.22 @1k)</li>
+        <li>TI LM74700 ideal diode (0 stock, $1.23) → <b>Diodes AP74700</b> ($0.45)</li>
+        <li>TI TPS25750 PD controller (not recommended for new designs) → <b>TPS25751</b></li>
+        <li>OSRAM SFH 4727AS LED (not for new designs) → <b>Vishay VSMA1094250</b>, about 25% cheaper, with OSRAM SFH 4728AS on a dual footprint</li>
+        <li>OmniPreSense OPS243 radar ($224, no volume price) → <b>2× InnoSenT SMR-333</b> ($13.80 @1k, FCC module grant)</li>
+        <li>Nanuk hard case in every box ($100–150) → <b>molded EVA case</b> ($18 @1k). Nanuk is sold as a premium accessory</li>
+        <li>STM32G474 QFN (52-week lead) → <b>LQFP package</b> (in stock)</li>
+      </ul></div>
+    <div class="card small"><h4>Battery: custom 81 Wh smart pack</h4>
+      <p>Standard formats fail: NP-F has no UN38.3 or fuel gauge, V-mount is too big at $130–160, tool packs carry legal risk, LP-E6 is 16 Wh. The custom pack is 4× LG M58T 21700 cells with a TI BQ40Z50 fuel gauge, user-swappable for EU 2027 rules and under 100 Wh for flights: <b>$57 @1k, $35 @10k</b>. First builds use the certified Inspired Energy ND4054HD50 ($167). <b>Runtime:</b> 81 Wh gives ~5.5–6 h only if the system averages <b>≤12 W</b>. That budget is the firmware power team's target (QCS6490 helps). At 15 W it is ~4.7 h.</p></div>
+  </div>
+  <div class="callout warn"><strong>What this means for price</strong><span id="priceCallout"></span></div>
+
+  <h2>The complete BOM</h2>
+  <p class="muted">Each line shows price per unit at the chosen volume. Filter by product or search. <span class="pill now">Order now</span> click-to-buy today · <span class="pill quote">Quote</span> vendor quote / RFQ · <span class="pill design">Custom</span> needs our design files, then a fab or molder order.</p>
+  <div class="controls">
+    <span>Product</span><div class="seg" id="skuSeg"></div>
+    <span>Volume</span><div class="seg" id="tierSeg2"></div>
+    <input type="search" id="q" placeholder="Search part, MPN, vendor…" aria-label="Search BOM">
+  </div>
+  <div class="table-wrap" style="max-height: 78vh"><table id="bomTable"></table></div>
+
+  <h2>Order today: the first build</h2>
+  <p>The first build is <b id="buildQty"></b>, enough for bring-up, calibration, the eye-safety lab and beta testers. The carts below are generated from the BOM with spares (+10% on parts under $5, +1 on mid-priced parts). Each CSV uploads directly into the vendor's BOM or cart tool (Digi-Key "BOM Manager", Arrow "Upload BOM"). Lines still waiting on a quote or a custom part use a <b>stand-in that is orderable today</b>.</p>
+  <div class="table-wrap"><table id="cartTable"></table></div>
+  <h3>Stand-ins used until the production part exists</h3>
+  <div class="table-wrap"><table id="standinTable"></table></div>
+  <h3>Request quotes and order custom parts</h3>
+  <p class="small">These lines can't be clicked into a cart. Each needs either a quote request (the vendor is named) or our finished design files sent to a named fab, molder or assembler. Full list: <a href="rfq-and-custom-parts.csv">rfq-and-custom-parts.csv</a>. Send the camera-module RFQ (Vision Components, 30 pcs) and the battery-pack RFQ (3 Shenzhen pack makers) <b>this week</b>; they have the longest lead times.</p>
+  <div class="table-wrap" style="max-height:480px"><table id="rfqTable"></table></div>
+
+  <h2>One-time costs (tooling, NRE, test, certification)</h2>
+  <div class="table-wrap"><table id="otTable"></table></div>
+
+  <h2>Lab, development &amp; validation equipment</h2>
+  <p>This equipment is bought once, not per unit, and is needed to build, calibrate and validate the product: a reference GCQuad, hitting bay, oscilloscope, current probes, optics bench, dev kits, 3D printers and a training workstation. <b>Recommended set ≈ $57,200; lean set ≈ $29,100.</b> All 73 lines, with part numbers and links, are in <a href="../bom-research/G-lab-equipment.md">G-lab-equipment.md</a>.</p>
+  <div class="grid g3">
+    <div class="card stat"><div class="label">Ground truth</div><div class="value">$11,999</div><div class="note">Foresight GCQuad Certified Pre-Owned (PlayBetter), with club markers</div></div>
+    <div class="card stat"><div class="label">Electronics lab</div><div class="value">$13,902</div><div class="note">Siglent SDS2354X HD scope, coax shunts + Pearson probe, Saleae, spectrum analyzer + EMI kit (lean: $5,099)</div></div>
+    <div class="card stat"><div class="label">Dev kits</div><div class="value">$3,880</div><div class="note">Radxa Dragon Q6A / RUBIK Pi 3 (QCS6490), Jetson Orin Nano, e-con IMX900 kits, TI/EPC driver EVMs, radar EVKs</div></div>
+  </div>
+
+  <h2>Risks to clear before tooling</h2>
+  <div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>Risk</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>IMX900 triggered-mono driver on QCS6490 doesn't exist yet</b></td><td>Bring up on Jetson + VC drivers day one. In parallel, contract the QCS6490 port (Leopard already lists QCS6490 for its IMX900; ask Thundercomm and VC). Gate: 3 triggered mono streams on QCS6490, or switch the carrier to Jetson (+~$210/unit).</td></tr>
+      <tr><td>2</td><td><b>LED brightness at 3–5 µs is unproven</b> (vendors rate at 100 µs); IMX900 minimum exposure is ~7–10 µs</td><td>Bench-measure with the first LED board. The carrier keeps a 4th LED-board connector (32 LEDs) as headroom.</td></tr>
+      <tr><td>3</td><td><b>Long lead / zero stock:</b> BQ25730 (Jan 2027), Delta IP55 blower (40 wk), Panasonic capacitors (37 wk), LM5155 (Dec), TLV3201/TLV9064 (Nov)</td><td>Place the first-build carts now. Alternates are named in each line's notes.</td></tr>
+      <tr><td>4</td><td><b>Runtime vs power budget</b></td><td>Set ≤12 W average as a firmware requirement, measured on the first carrier. Fallback: 5-cell 90 Wh pack (BQ40Z80).</td></tr>
+      <tr><td>5</td><td><b>Patent design-arounds affect parts</b></td><td>Radar stays a separate sensor (own MCU, never fused). Cameras run one constant capture mode (no mode switch on address). FTO counsel confirms before tooling.</td></tr>
+      <tr><td>6</td><td><b>Estimated prices</b> (custom module, pack, enclosure, boards, labour)</td><td>Lines marked [est.] in the CSV. Replace with RFQ answers; the generator recalculates every total.</td></tr>
+    </tbody></table></div>
+
+  <h2>Files</h2>
+  <p class="files small">
+    <a href="outer-bounds-bom.csv">outer-bounds-bom.csv</a> (master BOM, both products, all volumes) ·
+    <a href="rfq-and-custom-parts.csv">rfq-and-custom-parts.csv</a> ·
+    <a href="one-time-costs.csv">one-time-costs.csv</a> ·
+    <span id="cartLinks"></span> ·
+    <a href="build_bom.py">build_bom.py</a> (edit prices here, re-run to regenerate everything) ·
+    Research behind every line: <a href="../bom-research/">bom-research/A–G</a>
+  </p>
+</main>
+<div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
+<script id="bomData" type="application/json">__DATA__</script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('bomData').textContent);
+  const TIERS = [['proto', 'First build (≈5–10)'], ['v100', '100 units'], ['v1k', '1,000 units'], ['v10k', '10,000 units']];
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const $ = (s) => document.querySelector(s);
+  const fmt = (v, d) => '$' + Number(v).toLocaleString('en-US', { minimumFractionDigits: d ?? 0, maximumFractionDigits: d ?? 0 });
+  const fmt2 = v => v >= 100 ? fmt(v, 0) : fmt(v, 2);
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (t, a, p) => { const n = document.createElementNS(NS, t); for (const k in a) n.setAttribute(k, a[k]); if (p) p.appendChild(n); return n; };
+  const tip = $('#tooltip');
+  function showTip(e, v, rows) { tip.replaceChildren(); const a = document.createElement('div'); a.className = 'tv'; a.textContent = v; tip.appendChild(a);
+    rows.forEach(r => { const d = document.createElement('div'); d.className = r.key ? 'row tl' : 'tl'; if (r.key) { const k = document.createElement('span'); k.className = 'key'; k.style.background = r.key; d.appendChild(k); }
+      d.appendChild(document.createTextNode(r.t)); tip.appendChild(d); });
+    tip.style.left = Math.min(e.clientX + 14, innerWidth - 310) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; tip.style.opacity = 1; }
+  const hide = () => tip.style.opacity = 0;
+  const td = (tr, text, cls) => { const c = tr.insertCell(); c.textContent = text; if (cls) c.className = cls; return c; };
+  const th = (tr, text, cls) => { const c = document.createElement('th'); c.textContent = text; if (cls) c.className = cls; tr.appendChild(c); };
+
+  let tier = 2, sku = 'both', q = '';
+  const T = D.totals;
+
+  // tiles
+  function tiles() {
+    const t = $('#tiles'); t.replaceChildren();
+    [['Pro BOM @1k', T.pro.total[2], 'Landed ' + fmt(T.pro.landed[2]) + ' · @10k ' + fmt(T.pro.total[3])],
+     ['Indoor BOM @1k', T.indoor.total[2], 'Landed ' + fmt(T.indoor.landed[2]) + ' · @10k ' + fmt(T.indoor.total[3])],
+     ['First build parts (5 Pro + 5 Indoor)', T.pro.total[0] * D.build.pro + T.indoor.total[0] * D.build.indoor, 'Prototype pricing incl. boards, shells, labour'],
+     ['One-time costs', D.one_time_total, 'Tooling, NRE, test stations, certification']].forEach(([l, v, n]) => {
+      const c = document.createElement('div'); c.className = 'card stat';
+      const a = document.createElement('div'); a.className = 'label'; a.textContent = l;
+      const b = document.createElement('div'); b.className = 'value'; b.textContent = fmt(v);
+      const d = document.createElement('div'); d.className = 'note'; d.textContent = n; c.append(a, b, d); t.appendChild(c); });
+    $('#otTotal').textContent = fmt(D.one_time_total); $('#amort').textContent = fmt(D.amort_per_unit, 2);
+    const proPct = Math.round(T.pro.landed[2] / 2999 * 100), inPct = Math.round(T.indoor.landed[2] / 1999 * 100);
+    const inRetail = Math.round((1 - T.indoor.landed[2] / 1399) * 100), proRetail = Math.round((1 - T.pro.landed[2] / 2099) * 100);
+    $('#priceCallout').textContent = `At 1,000 units the Pro lands at ${fmt(T.pro.landed[2])}, which is ${proPct}% of its $2,999 price. That gives ~${100 - proPct}% gross margin direct and ~${proRetail}% on a $2,099 dealer price, which is healthy. ` +
+      `The Indoor lands at ${fmt(T.indoor.landed[2])}, which is ${inPct}% of $1,999. Direct sales work, but at a $1,399 dealer price the margin is only ~${inRetail}%. ` +
+      `Recommendation: sell the Indoor direct-only until the 10k cost-down (${fmt(T.indoor.landed[3])} landed), or list it at $2,199. Both units carry the full sensing core (3 IMX900 + QCS6490 + strobe + radar), so the Indoor can't be made cheaper without cutting what you asked for. ` +
+      `The earlier plan's ~$490 BOM estimate assumed two cheaper IMX296 cameras and an RK3588 without Wi-Fi. This sourced BOM uses three IMX900s and includes the box, case and labour.`;
+  }
+
+  function seg(host, opts, get, set) {
+    const h = $(host); h.replaceChildren();
+    opts.forEach(([val, label]) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = label;
+      b.setAttribute('aria-pressed', String(get() === val)); b.addEventListener('click', () => { set(val); render(); }); h.appendChild(b); });
+  }
+
+  function subChart() {
+    const host = $('#subChart'); host.replaceChildren();
+    const subs = Object.keys(T.pro.by_sub);
+    $('#subChartSub').textContent = 'Per unit at ' + TIERS[tier][1].toLowerCase() + '. Pro ' + fmt(T.pro.total[tier]) + ' · Indoor ' + fmt(T.indoor.total[tier]);
+    const W = Math.max(host.clientWidth, 460), left = 210, right = 58, band = 34, bh = 11, top = 4;
+    const H = top + subs.length * band + 24;
+    const svg = el('svg', { width: W, height: H, role: 'img', 'aria-label': 'Grouped bar chart of cost by subsystem' }, host);
+    const max = Math.max(...subs.map(s => Math.max(T.pro.by_sub[s][tier], (T.indoor.by_sub[s] || [0,0,0,0])[tier])));
+    const nice = [50, 100, 200, 250, 500, 1000, 1500].find(n => n >= max) || Math.ceil(max / 500) * 500;
+    const x = v => left + v / nice * (W - left - right);
+    for (let i = 0; i <= 4; i++) { const v = nice * i / 4; el('line', { x1: x(v), x2: x(v), y1: top, y2: top + subs.length * band, class: 'tick' }, svg);
+      el('text', { x: x(v), y: H - 6, 'text-anchor': 'middle' }, svg).textContent = '$' + v.toLocaleString(); }
+    subs.forEach((s, i) => {
+      const y0 = top + i * band + 5;
+      el('text', { x: left - 8, y: y0 + bh + 4, 'text-anchor': 'end' }, svg).textContent = s;
+      [['pro', '--series-1', 0], ['indoor', '--series-2', 1]].forEach(([k, col, j]) => {
+        const v = (T[k].by_sub[s] || [0, 0, 0, 0])[tier]; const y = y0 + j * (bh + 2); const w = Math.max(x(v) - x(0), 0);
+        const r = Math.min(4, w / 2);
+        el('path', { d: `M${x(0)},${y} H${x(0) + w - r} Q${x(0) + w},${y} ${x(0) + w},${y + r} V${y + bh - r} Q${x(0) + w},${y + bh} ${x(0) + w - r},${y + bh} H${x(0)} Z`, fill: css(col) }, svg);
+      });
+      const g = el('rect', { x: 0, y: y0 - 4, width: W, height: band - 2, fill: 'transparent', tabindex: 0 }, svg);
+      const lines = [{ t: 'Pro ' + fmt2(T.pro.by_sub[s][tier]), key: css('--series-1') }, { t: 'Indoor ' + fmt2((T.indoor.by_sub[s] || [0,0,0,0])[tier]), key: css('--series-2') }];
+      g.addEventListener('pointermove', e => showTip(e, s, lines)); g.addEventListener('pointerleave', hide);
+      el('text', { x: x(T.pro.by_sub[s][tier]) + 5, y: y0 + bh - 1, class: 'lp', 'font-size': 11 }, svg).textContent = fmt(T.pro.by_sub[s][tier]);
+    });
+    const tb = $('#subTable'); tb.replaceChildren(); const hr = tb.createTHead().insertRow(); th(hr, 'Subsystem'); th(hr, 'Pro', 'num'); th(hr, 'Indoor', 'num');
+    const body = tb.createTBody(); subs.forEach(s => { const r = body.insertRow(); td(r, s); td(r, fmt2(T.pro.by_sub[s][tier]), 'num'); td(r, fmt2((T.indoor.by_sub[s] || [0,0,0,0])[tier]), 'num'); });
+  }
+
+  function curve() {
+    const host = $('#curveChart'); host.replaceChildren();
+    const W = Math.max(host.clientWidth, 420), H = 300, left = 56, right = 70, top = 14, bottom = 34;
+    const svg = el('svg', { width: W, height: H, role: 'img', 'aria-label': 'Line chart of landed unit cost versus build volume' }, host);
+    const xs = [5, 100, 1000, 10000], lx = v => left + (Math.log10(v) - Math.log10(5)) / (4 - Math.log10(5)) * (W - left - right);
+    const ymax = 3500, y = v => top + (1 - v / ymax) * (H - top - bottom);
+    [0, 1000, 2000, 3000].forEach(v => { el('line', { x1: left, x2: W - right, y1: y(v), y2: y(v), class: 'tick' }, svg); el('text', { x: left - 8, y: y(v) + 4, 'text-anchor': 'end' }, svg).textContent = '$' + v / 1000 + 'k'; });
+    ['First build', '100', '1k', '10k'].forEach((t, i) => el('text', { x: lx(xs[i]), y: H - 10, 'text-anchor': 'middle' }, svg).textContent = t);
+    [['pro', '--series-1'], ['indoor', '--series-2']].forEach(([k, c]) => {
+      const pts = T[k].landed.map((v, i) => [lx(xs[i]), y(v)]);
+      el('polyline', { points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: css(c), 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+      pts.forEach(p => el('circle', { cx: p[0], cy: p[1], r: 4, fill: css(c), stroke: css('--surface-1'), 'stroke-width': 2 }, svg));
+      const last = pts[3]; el('text', { x: last[0] + 8, y: last[1] + (k === 'pro' ? -4 : 12), class: 'lp' }, svg).textContent = fmt(T[k].landed[3]);
+    });
+    const cross = el('line', { y1: top, y2: H - bottom, stroke: css('--text-muted'), 'stroke-width': 1, opacity: 0 }, svg);
+    const hit = el('rect', { x: left, y: top, width: W - left - right, height: H - top - bottom, fill: 'transparent' }, svg);
+    hit.addEventListener('pointermove', e => { const r = svg.getBoundingClientRect(); const px = e.clientX - r.left;
+      let i = 0, best = 1e9; xs.forEach((v, j) => { const d = Math.abs(lx(v) - px); if (d < best) { best = d; i = j; } });
+      cross.setAttribute('x1', lx(xs[i])); cross.setAttribute('x2', lx(xs[i])); cross.setAttribute('opacity', 1);
+      showTip(e, TIERS[i][1], [{ t: 'Pro ' + fmt(T.pro.landed[i]) + ' landed', key: css('--series-1') }, { t: 'Indoor ' + fmt(T.indoor.landed[i]) + ' landed', key: css('--series-2') }]); });
+    hit.addEventListener('pointerleave', () => { hide(); cross.setAttribute('opacity', 0); });
+    const tb = $('#curveTable'); tb.replaceChildren(); const hr = tb.createTHead().insertRow(); th(hr, 'Volume'); th(hr, 'Pro BOM', 'num'); th(hr, 'Pro landed', 'num'); th(hr, 'Indoor BOM', 'num'); th(hr, 'Indoor landed', 'num');
+    const body = tb.createTBody(); TIERS.forEach((t, i) => { const r = body.insertRow(); td(r, t[1]); td(r, fmt(T.pro.total[i]), 'num'); td(r, fmt(T.pro.landed[i]), 'num'); td(r, fmt(T.indoor.total[i]), 'num'); td(r, fmt(T.indoor.landed[i]), 'num'); });
+  }
+
+  function bomTable() {
+    const tb = $('#bomTable'); tb.replaceChildren();
+    const hr = tb.createTHead().insertRow();
+    ['ID', 'Item', 'Manufacturer', 'MPN', 'Vendor', 'Qty Pro', 'Qty Indoor', 'Unit $', 'Pro ext.', 'Indoor ext.', 'Status', 'Stock / lead', 'Notes'].forEach((h, i) => th(hr, h, [5, 6, 7, 8, 9].includes(i) ? 'num' : ''));
+    const body = tb.createTBody(); const ql = q.toLowerCase(); let sp = 0, si = 0, cur = null;
+    D.lines.forEach(l => {
+      if (sku === 'pro' && !l.qp) return; if (sku === 'indoor' && !l.qi) return;
+      if (ql && ![l.item, l.mpn, l.mfr, l.vendor, l.id, l.sub, l.notes].join(' ').toLowerCase().includes(ql)) return;
+      if (l.sub !== cur) { cur = l.sub; const r = body.insertRow(); r.className = 'sub'; const c = r.insertCell(); c.colSpan = 13; c.textContent = l.sub; }
+      const p = l.price[tier], ep = l.qp * p, ei = l.qi * p; sp += ep; si += ei;
+      const r = body.insertRow(); td(r, l.id);
+      const ci = r.insertCell(); if (l.url) { const a = document.createElement('a'); a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = l.item; ci.appendChild(a); } else ci.textContent = l.item;
+      td(r, l.mfr); td(r, l.mpn, 'mpn'); td(r, l.vendor); td(r, String(l.qp), 'num'); td(r, String(l.qi), 'num'); td(r, fmt2(p), 'num'); td(r, l.qp ? fmt2(ep) : '—', 'num'); td(r, l.qi ? fmt2(ei) : '—', 'num');
+      const cs = r.insertCell(); const pl = document.createElement('span'); pl.className = 'pill ' + l.status; pl.textContent = { now: 'Order now', quote: 'Quote', design: 'Custom' }[l.status]; cs.appendChild(pl);
+      td(r, l.stock, 'small'); td(r, l.notes, 'notes');
+    });
+    const tr = body.insertRow(); tr.className = 'total'; const c = tr.insertCell(); c.colSpan = 8; c.textContent = 'Total per unit at ' + TIERS[tier][1].toLowerCase() + (ql ? ' (filtered)' : '');
+    td(tr, fmt2(sp), 'num'); td(tr, fmt2(si), 'num'); const e = tr.insertCell(); e.colSpan = 3;
+  }
+
+  function staticTables() {
+    $('#buildQty').textContent = D.build.pro + ' Pro + ' + D.build.indoor + ' Indoor units';
+    const ct = $('#cartTable'); ct.replaceChildren(); let h = ct.createTHead().insertRow(); ['Vendor', 'Cart file (upload)', 'Lines', 'Estimated subtotal'].forEach((x, i) => th(h, x, i > 1 ? 'num' : ''));
+    let b = ct.createTBody(), sum = 0; const links = $('#cartLinks'); links.replaceChildren();
+    Object.entries(D.carts).sort((a, b) => b[1].subtotal - a[1].subtotal).forEach(([v, c]) => { const r = b.insertRow(); td(r, v); const cc = r.insertCell(); const a = document.createElement('a'); a.href = c.file; a.textContent = c.file; cc.appendChild(a);
+      td(r, String(c.lines), 'num'); td(r, fmt(c.subtotal), 'num'); sum += c.subtotal; const l2 = a.cloneNode(true); links.appendChild(l2); links.appendChild(document.createTextNode(' ')); });
+    const rq = D.lines.filter(l => l.status !== 'now').reduce((s, l) => s + (l.qp * D.build.pro + l.qi * D.build.indoor) * l.price[0], 0);
+    let r = b.insertRow(); r.className = 'total'; td(r, 'Click-to-order carts'); td(r, ''); td(r, ''); td(r, fmt(sum), 'num');
+    r = b.insertRow(); td(r, 'Plus quotes & custom parts for the same build (cameras, boards, shells, benches, packs, labour)'); td(r, ''); td(r, ''); td(r, fmt(rq), 'num');
+
+    const st = $('#standinTable'); st.replaceChildren(); h = st.createTHead().insertRow(); ['Replaces', 'Stand-in (orderable now)', 'MPN', 'Vendor', 'Unit $'].forEach((x, i) => th(h, x, i === 4 ? 'num' : ''));
+    b = st.createTBody(); D.standins.forEach(s => { const r = b.insertRow(); td(r, s.rep); const c = r.insertCell(); const a = document.createElement('a'); a.href = s.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = s.desc; c.appendChild(a); td(r, s.mpn, 'mpn'); td(r, s.vendor); td(r, fmt2(s.unit), 'num'); });
+
+    const rt = $('#rfqTable'); rt.replaceChildren(); h = rt.createTHead().insertRow(); ['ID', 'Type', 'Item', 'Who makes it', 'Spec / MPN', 'First-build qty', 'Target @1k'].forEach((x, i) => th(h, x, i > 4 ? 'num' : ''));
+    b = rt.createTBody(); D.lines.filter(l => l.status !== 'now').forEach(l => { const r = b.insertRow(); td(r, l.id); const c = r.insertCell(); const pl = document.createElement('span'); pl.className = 'pill ' + l.status; pl.textContent = l.status === 'quote' ? 'Quote' : 'Custom'; c.appendChild(pl);
+      td(r, l.item); td(r, l.mfr); td(r, l.mpn, 'mpn'); td(r, String(l.qp * D.build.pro + l.qi * D.build.indoor), 'num'); td(r, fmt2(l.price[2]), 'num'); });
+
+    const ot = $('#otTable'); ot.replaceChildren(); h = ot.createTHead().insertRow(); ['Category', 'Item', 'Range', 'Planning $', 'Note'].forEach((x, i) => th(h, x, i === 2 || i === 3 ? 'num' : ''));
+    b = ot.createTBody(); let tot = 0; D.one_time.forEach(o => { const r = b.insertRow(); td(r, o.cat); td(r, o.item); td(r, fmt(o.lo) + '–' + fmt(o.hi), 'num'); td(r, o.plan ? fmt(o.plan) : 'optional', 'num'); td(r, o.note, 'notes'); tot += o.plan; });
+    const tr = b.insertRow(); tr.className = 'total'; td(tr, 'Total'); td(tr, ''); td(tr, ''); td(tr, fmt(tot), 'num'); td(tr, '≈ ' + fmt(D.amort_per_unit, 2) + ' per unit over a 10k-unit life');
+  }
+
+  function render() {
+    seg('#tierSeg', TIERS.map((t, i) => [i, t[1]]), () => tier, v => tier = v);
+    seg('#tierSeg2', TIERS.map((t, i) => [i, t[1]]), () => tier, v => tier = v);
+    seg('#skuSeg', [['both', 'Both'], ['pro', 'Pro'], ['indoor', 'Indoor']], () => sku, v => sku = v);
+    subChart(); bomTable();
+  }
+  $('#q').addEventListener('input', e => { q = e.target.value; bomTable(); });
+  tiles(); staticTables(); render(); curve();
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { subChart(); curve(); }, 120); });
+  $('#themeToggle').addEventListener('click', () => { const r = document.documentElement; const d = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme = d ? 'light' : 'dark'; subChart(); curve(); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { subChart(); curve(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+Manufacturer Part Number,Manufacturer,Quantity,Customer Reference,Description,Est unit $,Est extended $,URL
+0150200241,Molex,11,CAM-06,"Camera FPC 22→22 pin 0.5 mm, 200 mm (club camera)",5.21,57.31,https://www.digikey.com/en/products/result?keywords=0150200241
+FH12-22S-0.5SH(55),Hirose,33,CAM-07,FPC connector 22-pos 0.5 mm right-angle (carrier side),2.57,84.81,https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-22S-0-5SH/583540
+EFB2455A3S-20MHF1,Ezurio,21,CPU-02,"Wi-Fi/BT dual-band antenna, FPC, 200 mm MHF1 cable",5.22,109.62,https://www.digikey.com/en/products/result?keywords=EFB2455A3S-20MHF1
+U.FL-R-SMT-1(10),Hirose,22,CPU-03,U.FL/MHF1 RF receptacle (carrier side),1.67,36.74,https://www.digikey.com/en/products/result?keywords=U.FL-R-SMT-1(10)
+STM32G474CET6,STMicroelectronics,11,CPU-04,"Timing master MCU (camera triggers + strobe timing, HRTIM 184 ps, hardware fault inputs)",7.95,87.45,https://www.digikey.com/en/products/detail/stmicroelectronics/STM32G474CET6/10326773
+JXD1-0001NL,Pulse Electronics,6,CPU-06,RJ45 MagJack 1 GbE (Indoor),7.59,45.54,https://www.digikey.com/en/products/detail/pulse-electronics/JXD1-0001NL/5361447
+VSMA1094250,Vishay,264,LED-01,"940 nm IR LED, ±28°, 5 A pulse rated (3 boards × 8 in series)",2.34,617.76,https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMA1094250/15786352
+EPC2036,EPC,33,LED-02,GaN FET 100 V 65 mΩ (one per LED string),2.1,69.3,https://www.digikey.com/en/products/detail/epc/EPC2036/5224975
+UCC27611DRVR,Texas Instruments,33,LED-03,Low-side GaN gate driver,1.64,54.12,https://www.digikey.com/en/products/result?keywords=UCC27611DRVR
+"74LVC1G123DC,125",Nexperia,77,LED-04,"Monostable (pulse-width cap 8 µs, 300 µs hold-off, heartbeat watchdog)",0.48,36.96,https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC1G123DC-125/5221579
+TLV3201AIDCKR,Texas Instruments,33,LED-05,Over-current comparator (ends pulse at ~6.5 A),1.81,59.73,https://www.digikey.com/en/products/result?keywords=TLV3201AIDCKR
+WSL2010R1000FEA,Vishay Dale,33,LED-06,Current-sense resistor 0.1 Ω 2010,0.88,29.04,https://www.digikey.com/en/products/detail/vishay-dale/WSL2010R1000FEA/712538
+EEH-ZA1H101P,Panasonic,33,LED-07,Local reservoir 100 µF 50 V hybrid polymer,2.05,67.65,https://www.digikey.com/en/products/result?keywords=EEH-ZA1H101P
+C1210C225K1RACTU,KEMET,132,LED-08,Loop capacitor 2.2 µF 100 V X7R 1210,0.687,90.68,https://www.digikey.com/en/products/detail/kemet/C1210C225K1RACTU/1950689
+NCU15XH103F60RC,Murata,33,LED-09,NTC 10 k 0402 (LED board temperature),0.12,3.96,https://www.digikey.com/en/products/result?keywords=NCU15XH103F60RC
+BM08B-GHS-TBT,JST,66,LED-10,"JST GH 8-pos header (3 on LED boards, 3 on carrier)",0.5,33.0,https://www.digikey.com/en/products/result?keywords=BM08B-GHS-TBT
+LM5155DSSR,Texas Instruments,12,LED-12,Strobe bus boost controller (10 W input-limited = eye-safety cap),2.21,26.52,https://www.digikey.com/en/products/result?keywords=LM5155DSSR
+CSD18543Q3A,Texas Instruments,12,LED-13,Boost FET 60 V logic-level,1.39,16.68,https://www.digikey.com/en/products/detail/texas-instruments/CSD18543Q3A/6588881
+PMEG10030ELPX,Nexperia,12,LED-14,Boost Schottky 100 V 3 A,0.79,9.48,https://www.digikey.com/en/products/detail/nexperia-usa-inc/PMEG10030ELPX/5436251
+SRP7028A-100M,Bourns,12,LED-15,Boost inductor 10 µH 6 A sat,1.1,13.2,https://www.digikey.com/en/products/result?keywords=SRP7028A-100M
+EEE-FK1H471AM,Panasonic,22,LED-16,Bulk strobe capacitor 470 µF 50 V aluminium,2.91,64.02,https://www.digikey.com/en/products/result?keywords=EEE-FK1H471AM
+80.00000346 (SMR-333),InnoSenT,21,RAD-01,"24 GHz CW I/Q radar module, FCC/ISED/TELEC module grant (rear head = club, down-range head = ball)",19.1,401.1,https://www.digikey.com/en/products/detail/innosent-gmbh/80-00000346/10419768
+TLV9064IPWR,Texas Instruments,22,RAD-02,"Quad op-amp, IF amplifier / band-pass",1.73,38.06,https://www.digikey.com/en/products/result?keywords=TLV9064IPWR
+ADS131M02IPWR,Texas Instruments,22,RAD-03,2-ch simultaneous 24-bit ADC 64 kS/s (I + Q),4.51,99.22,https://www.digikey.com/en/products/result?keywords=ADS131M02IPWR
+MSPM0G3507SRHBR,Texas Instruments,12,RAD-04,"Radar MCU (capture + Doppler FFT, streams speeds to SoC)",2.59,31.08,https://www.digikey.com/en/products/result?keywords=MSPM0G3507SRHBR
+TPS7A2033PDBVR,Texas Instruments,22,RAD-05,Low-noise 3.3 V LDO (radar head),0.35,7.7,https://www.digikey.com/en/products/result?keywords=TPS7A2033PDBVR
+A06SR06SR30K152A,JST,22,RAD-06,"JST SH 6-pos cable, 152 mm",1.83,40.26,https://www.digikey.com/en/products/result?keywords=A06SR06SR30K152A
+SM06B-SRSS-TB(LF)(SN),JST,44,RAD-07,JST SH 6-pos right-angle header,0.68,29.92,https://www.digikey.com/en/products/detail/jst-sales-america-inc/SM06B-SRSS-TB/926712
+USB4720-03-A,GCT,12,PWR-01,"USB-C receptacle IP67, 5 A",2.43,29.16,https://www.digikey.com/en/products/result?keywords=USB4720-03-A
+TPS25751DREFR,Texas Instruments,12,PWR-02,USB-C PD sink controller (65 W),3.39,40.68,https://www.digikey.com/en/products/detail/texas-instruments/TPS25751DREFR/23028775
+BQ25730RSNR,Texas Instruments,6,PWR-03,"Buck-boost charger, 1–5S, runs with no battery, hot-swap",5.08,30.48,https://www.digikey.com/en/products/detail/texas-instruments/BQ25730RSNR/13896423
+CSD17578Q3A,Texas Instruments,33,PWR-04,30 V N-MOSFET (4 charger FETs Pro / 2 ideal-diode FETs Indoor),1.05,34.65,https://www.digikey.com/en/products/detail/texas-instruments/CSD17578Q3A/5015743
+AP74700QW6-7,Diodes Inc.,12,PWR-06,Ideal-diode controller (USB-C ‖ barrel ORing),0.82,9.84,https://www.digikey.com/en/products/result?keywords=AP74700QW6-7
+PJ-063AH,Same Sky,7,PWR-07,DC barrel jack 8 A (24 V input),1.52,10.64,https://www.digikey.com/en/products/result?keywords=PJ-063AH
+TPS56637RPAR,Texas Instruments,22,PWR-08,"6 A sync buck, 4.5–28 V in (3.8 V SOM rail; 5 V system rail)",2.71,59.62,https://www.digikey.com/en/products/detail/texas-instruments/TPS56637RPAR/10715537
+TPS62933DRLR,Texas Instruments,12,PWR-09,3 A buck (3.3 V rail),1.6,19.2,https://www.digikey.com/en/products/result?keywords=TPS62933DRLR
+5787441-1,TE Connectivity,6,PWR-11,"Battery bay connector (host side), 5-pos 7 A",8.18,49.08,https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/5787441-1/2135744
+GST60A24-P1J,Mean Well,6,PWR-15,"24 V / 60 W wall adapter, 5.5×2.1 mm (in Indoor box)",19.4,116.4,https://www.digikey.com/en/products/detail/mean-well-usa-inc/GST60A24-P1J/7703715
+FH12-40S-0.5SH(55),Hirose,7,UI-02,Display FPC connector 40-pos 0.5 mm,3.55,24.85,https://www.digikey.com/en/products/result?keywords=FH12-40S-0.5SH(55)
+SCL3300-D01-1,Murata,6,SEN-01,Inclinometer ±0.1° leveling (Pro),40.12,240.72,https://www.digikey.com/en/products/detail/murata-electronics/SCL3300-D01-1/9950616
+BMI323,Bosch Sensortec,12,SEN-02,6-axis IMU (Indoor leveling; Pro shot-shock detection),3.91,46.92,https://www.digikey.com/en/products/detail/bosch-sensortec/BMI323/16719593
+BMP585,Bosch Sensortec,12,SEN-03,Barometric pressure (air density),4.54,54.48,https://www.digikey.com/en/products/detail/bosch-sensortec/BMP585/19522589
+SHT45-AD1F-R2,Sensirion,11,SEN-04,Temperature/humidity with PTFE membrane (air density),6.51,71.61,https://www.digikey.com/en/products/result?keywords=SHT45-AD1F-R2
+MF40100V1-1000U-A99,Sunon,7,THM-02,"Fan 40 mm 5 V MagLev, 70,000 h @40 °C (Indoor)",4.87,34.09,https://www.digikey.com/en/products/detail/sunon-fans/MF40100V1-1000U-A99/6198732
+TG-A6200-40-40-1.0,t-Global,12,THM-04,Thermal pad 6.2 W/m·K,2.73,32.76,https://www.digikey.com/en/products/result?keywords=t-Global%20TG-A6200
+KSC241JLFS,C&K,22,UI-05,Tact switch IP67 (power / mode / handedness on Pro; power on Indoor),0.38,8.36,https://www.digikey.com/en/products/detail/wee/KSC241JLFS/26327478
+150141M173100,Würth Elektronik,17,UI-06,RGB status LED,0.5,8.5,https://www.digikey.com/en/products/result?keywords=150141M173100
+CMT-8540S-SMT-TR,Same Sky,12,UI-07,SMT buzzer (shot-ready / error tones),4.13,49.56,https://www.digikey.com/en/products/result?keywords=CMT-8540S-SMT-TR
+VENT-PS1YBK-N8001,Amphenol LTW,12,MEC-06,Pressure-equalising vent IP67,3.47,41.64,https://www.digikey.com/en/products/detail/amphenol-ltw/VENT-PS1YBK-N8001/7898285
+SJ5302,3M,44,MEC-08,Rubber feet,0.13,5.72,https://www.digikey.com/en/products/detail/3m/SJ5302/2345107
+0150200241,Molex,21,CAM-05-SI,Premo-Flex 22-pos 0.5 mm 203 mm FFC - stand-in for VC 100 mm FPC [replaces CAM-05],5.21,109.41,https://www.digikey.com/en/products/result?keywords=0150200241
+A08GR08GR28K152A,JST,33,LED-11-SI,GH 8-pos pre-crimped cable 152 mm (stand-in LED harness) [replaces LED-11],2.1,69.3,https://www.digikey.com/en/products/result?keywords=A08GR08GR28K152A
+OD4010-05HB55,Orion Fans,6,THM-01-SI,40 mm 5 V IP55 fan (in-stock stand-in for Delta blower) [replaces THM-01],16.5,99.0,https://www.digikey.com/en/products/result?keywords=OD4010-05HB55

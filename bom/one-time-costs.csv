@@ -1,0 +1,18 @@
+Category,Item,Low $,High $,Planning $,Note
+Tooling,"Enclosure injection tools, P20 steel, 8 parts incl. revisions (Pro & Indoor share)",60000,95000,80000,Aluminium bridge set $30–45k if you want 300–1k units first
+Tooling,TPE bumper mold,6000,10000,8000,
+Tooling,IR window screens & jigs,500,1000,1000,
+Tooling,Gasket dies ×3,1500,3000,2000,
+Tooling,Optical bench CNC fixtures,1000,3000,2000,Extrusion die +$1–3k at 10k
+Tooling,Heat-pipe/fin-stack tooling,1000,3000,2000,
+Tooling,EVA case mold + foam die,3500,6500,4000,
+Tooling,Retail box plates,500,1000,1000,
+Tooling,Harness setup (all harnesses),500,5000,3000,
+NRE,"Battery pack NRE: pack tooling, BMS config, UN38.3 + IEC 62133-2",15000,45000,30000,Retest if the cell changes
+NRE,Custom IMX900 camera module NRE (VC / e-con OEM) incl. 940/40 filter integration,15000,50000,30000,Drops camera cost from ~$165 to ~$95 each
+NRE,IMX900 triggered-mono Linux driver for QCS6490 (Leopard / Thundercomm / VC paid port),25000,50000,40000,Only gap in the stack; no shipping driver today
+NRE,"Custom LED secondary optic (60°×45°), optional at ≥2k units",15000,30000,0,Excluded: optional; cuts LED count ~24→15
+NRE,Carrier PCB stencils / fab tooling,100,800,500,
+Test,Carrier board in-circuit/functional test fixture,8000,25000,15000,
+Test,Stereo calibration station + live-shot test station (×1 + spare),100000,300000,150000,Ball launcher + laser light gates
+Certification,"FCC/ISED (Part 15B + radar module reuse), safety CB 62368-1, IEC 62471, battery, CE/UKCA incl. EN 18031, RCM, Japan, Korea",70000,170000,110000,Radar module grant reuse saves ~$10–20k

@@ -1,0 +1,2192 @@
+{
+ "lines": [
+  {
+   "id": "CAM-01",
+   "sub": "Cameras & optics",
+   "item": "IMX900 3.2 MP global-shutter MONO MIPI camera module (stereo top, stereo bottom, club)",
+   "mfr": "Vision Components",
+   "mpn": "VK000601",
+   "vendor": "Vision Components (sales@vision-components.com) / Ampheo",
+   "url": "https://www.mipi-modules.com/en/vc-mipi-flyer-02-06-26-en/",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    230,
+    165,
+    95,
+    65
+   ],
+   "stock": "In production; lead time on quote",
+   "status": "quote",
+   "notes": "\u20ac109.99 @1k catalog (\u2248$128). PM decision: 1k column = VC/e-con OEM custom module (NRE in one-time list) \u2248$95; 10k column = our own IMX900 board w/ active lens alignment \u2248$65. Alt now: Leopard LI-IMX900-MIPI-078H $399 (has QCS6490 driver), Vadzo Bolt-900MGS $199 @250+."
+  },
+  {
+   "id": "CAM-02",
+   "sub": "Cameras & optics",
+   "item": "S-mount (M12) lens holder for VC module, no IR-cut",
+   "mfr": "Vision Components",
+   "mpn": "VK000057",
+   "vendor": "Vision Components",
+   "url": "https://www.mipi-modules.com/fileadmin/external/documentation/hardware/VC_MIPI_Camera_Module/index.html",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    12,
+    8,
+    0,
+    0
+   ],
+   "stock": "Quote",
+   "status": "quote",
+   "notes": "Folded into the custom module from 1k up."
+  },
+  {
+   "id": "CAM-03",
+   "sub": "Cameras & optics",
+   "item": "M12 lens 6.1 mm f/1.8, IR-corrected, 5 MP, 1/1.8\" image circle",
+   "mfr": "Commonlands",
+   "mpn": "CIL361-F1.8-M12ANIR",
+   "vendor": "Commonlands",
+   "url": "https://commonlands.com/products/ir-corrected-6mm-m12-lens-cil361",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    39,
+    28,
+    9,
+    5
+   ],
+   "stock": "15 in stock (buy 30+ now)",
+   "status": "now",
+   "notes": "1k/10k = same optical prescription from Evetar/Jinyuan volume line [est.]. Alt in stock: CIL061-F1.9-M12BNIR $39 (171 pcs)."
+  },
+  {
+   "id": "CAM-04",
+   "sub": "Cameras & optics",
+   "item": "940 nm bandpass filter, 40 nm FWHM, OD4, 7\u00d77\u00d70.3 mm (in lens-holder IR-cut seat)",
+   "mfr": "MidOpt (custom BN940 cut)",
+   "mpn": "BN940-7x7-custom",
+   "vendor": "MidOpt (RFQ)",
+   "url": "https://midopt.com/filters/bn940/",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    30,
+    8,
+    2.5,
+    1.2
+   ],
+   "stock": "4\u20136 wk on quote",
+   "status": "quote",
+   "notes": "Order-today stand-in for first builds: Commonlands CBP940-070S030 $9 (930 in stock, ~80 nm FWHM, OD3). Centre ~948 nm for off-axis shift."
+  },
+  {
+   "id": "CAM-05",
+   "sub": "Cameras & optics",
+   "item": "Camera FPC 22\u219222 pin 0.5 mm, 100 mm (stereo pair)",
+   "mfr": "Vision Components",
+   "mpn": "EK004418",
+   "vendor": "Vision Components",
+   "url": "https://www.mipi-modules.com/fileadmin/external/documentation/hardware/VC_MIPI_Camera_Module/index.html",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    12,
+    8,
+    4,
+    2
+   ],
+   "stock": "Quote",
+   "status": "quote",
+   "notes": "Generic alt: Molex Premo-Flex 0150200241 (203 mm) $5.21, 1,951 in stock."
+  },
+  {
+   "id": "CAM-06",
+   "sub": "Cameras & optics",
+   "item": "Camera FPC 22\u219222 pin 0.5 mm, 200 mm (club camera)",
+   "mfr": "Molex",
+   "mpn": "0150200241",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=0150200241",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    5.21,
+    4.1,
+    3.2,
+    2.5
+   ],
+   "stock": "1,951 in stock",
+   "status": "now",
+   "notes": "Premo-Flex 22-pos 0.5 mm 203 mm, same-side contacts. Check pin-1 orientation vs VC pinout (trigger pin 17, flash pin 18)."
+  },
+  {
+   "id": "CAM-07",
+   "sub": "Cameras & optics",
+   "item": "FPC connector 22-pos 0.5 mm right-angle (carrier side)",
+   "mfr": "Hirose",
+   "mpn": "FH12-22S-0.5SH(55)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12-22S-0-5SH/583540",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    2.57,
+    1.6,
+    1.1,
+    0.85
+   ],
+   "stock": "18,035 in stock",
+   "status": "now",
+   "notes": "Alt: TE 2-2492104-2 $0.96."
+  },
+  {
+   "id": "CPU-01",
+   "sub": "Compute & connectivity",
+   "item": "Compute SOM: Qualcomm QCS6490, 8 GB + 128 GB UFS, Wi-Fi 6E 2\u00d72 + BT 5.2 on-module, 5\u00d7 4-lane MIPI CSI",
+   "mfr": "Thundercomm",
+   "mpn": "C6490P-U8A-3690000",
+   "vendor": "Arrow",
+   "url": "https://www.arrow.com/en/products/c6490p-u8a-3690000-qcs6490/thundercomm",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    286.52,
+    228.09,
+    189.6,
+    165.0
+   ],
+   "stock": "0 stock, 16 wk",
+   "status": "now",
+   "notes": "PM decision over RK3588: same 1k cost once Wi-Fi is counted, lifecycle to 2036, phone-class power (helps 6 h runtime & 40 \u00b0C sealed box), 12 TOPS NPU, integrated FCC/CE Wi-Fi. LGA solder-down. 10k = $149.18 @30k published, $165 [est.] @10k. Alt: Forlinx FET3588J-C+224GSE32GI (RK3588J) $489 @1 + u-blox MAYA-W266 Wi-Fi."
+  },
+  {
+   "id": "CPU-02",
+   "sub": "Compute & connectivity",
+   "item": "Wi-Fi/BT dual-band antenna, FPC, 200 mm MHF1 cable",
+   "mfr": "Ezurio",
+   "mpn": "EFB2455A3S-20MHF1",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=EFB2455A3S-20MHF1",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    5.22,
+    4.5,
+    3.8,
+    3.3
+   ],
+   "stock": "200 in stock, 12 wk",
+   "status": "now",
+   "notes": "2\u00d72 MIMO. Must be on Thundercomm's approved-antenna list to reuse the module grant."
+  },
+  {
+   "id": "CPU-03",
+   "sub": "Compute & connectivity",
+   "item": "U.FL/MHF1 RF receptacle (carrier side)",
+   "mfr": "Hirose",
+   "mpn": "U.FL-R-SMT-1(10)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=U.FL-R-SMT-1(10)",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    1.67,
+    1.2,
+    1.02,
+    0.89
+   ],
+   "stock": "374k in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "CPU-04",
+   "sub": "Compute & connectivity",
+   "item": "Timing master MCU (camera triggers + strobe timing, HRTIM 184 ps, hardware fault inputs)",
+   "mfr": "STMicroelectronics",
+   "mpn": "STM32G474CET6",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/stmicroelectronics/STM32G474CET6/10326773",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    7.95,
+    6.2,
+    5.7,
+    5.4
+   ],
+   "stock": "In stock (LQFP)",
+   "status": "now",
+   "notes": "Do not specify the QFN (CEU6): 52 wk. Alt: RP2350A $0.99 (PIO, no hardware fault inputs)."
+  },
+  {
+   "id": "CPU-05",
+   "sub": "Compute & connectivity",
+   "item": "USB 3.0 \u2192 Gigabit Ethernet controller (Indoor)",
+   "mfr": "Realtek",
+   "mpn": "RTL8153B-VB-CG",
+   "vendor": "LCSC",
+   "url": "https://www.lcsc.com/search?q=RTL8153B-VB-CG",
+   "qp": 0,
+   "qi": 1,
+   "price": [
+    1.8,
+    1.3,
+    1.1,
+    0.95
+   ],
+   "stock": "Stocked at LCSC [est. price]",
+   "status": "now",
+   "notes": "QCS6490 SOM has no exposed RGMII PHY path; USB-GbE is mainline Linux (r8152). Needs 25 MHz crystal (in carrier misc)."
+  },
+  {
+   "id": "CPU-06",
+   "sub": "Compute & connectivity",
+   "item": "RJ45 MagJack 1 GbE (Indoor)",
+   "mfr": "Pulse Electronics",
+   "mpn": "JXD1-0001NL",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/pulse-electronics/JXD1-0001NL/5361447",
+   "qp": 0,
+   "qi": 1,
+   "price": [
+    7.59,
+    5.48,
+    4.66,
+    4.3
+   ],
+   "stock": "620 in stock, 8 wk",
+   "status": "now",
+   "notes": "Alt: W\u00fcrth 7499111121A. PoE+ option: swap to JK0-0177NL + Silvertel AG53012 (+$14 @1k), see options."
+  },
+  {
+   "id": "LED-01",
+   "sub": "IR strobe illumination",
+   "item": "940 nm IR LED, \u00b128\u00b0, 5 A pulse rated (3 boards \u00d7 8 in series)",
+   "mfr": "Vishay",
+   "mpn": "VSMA1094250",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/vishay-semiconductor-opto-division/VSMA1094250/15786352",
+   "qp": 24,
+   "qi": 24,
+   "price": [
+    2.34,
+    1.468,
+    1.379,
+    1.2
+   ],
+   "stock": "4,764 in stock, 9 wk",
+   "status": "now",
+   "notes": "Second source on a dual footprint: ams OSRAM SFH 4728AS A01 ($1.81 @1k). 10k = contract price [est.]."
+  },
+  {
+   "id": "LED-02",
+   "sub": "IR strobe illumination",
+   "item": "GaN FET 100 V 65 m\u03a9 (one per LED string)",
+   "mfr": "EPC",
+   "mpn": "EPC2036",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/epc/EPC2036/5224975",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    2.1,
+    0.905,
+    0.593,
+    0.532
+   ],
+   "stock": "29,108 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-03",
+   "sub": "IR strobe illumination",
+   "item": "Low-side GaN gate driver",
+   "mfr": "Texas Instruments",
+   "mpn": "UCC27611DRVR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=UCC27611DRVR",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    1.64,
+    0.913,
+    0.814,
+    0.788
+   ],
+   "stock": "2,369 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-04",
+   "sub": "IR strobe illumination",
+   "item": "Monostable (pulse-width cap 8 \u00b5s, 300 \u00b5s hold-off, heartbeat watchdog)",
+   "mfr": "Nexperia",
+   "mpn": "74LVC1G123DC,125",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC1G123DC-125/5221579",
+   "qp": 7,
+   "qi": 7,
+   "price": [
+    0.48,
+    0.3,
+    0.22,
+    0.18
+   ],
+   "stock": "In stock",
+   "status": "now",
+   "notes": "PM swap: TI SN74LVC1G123DCUR was 0 stock / $0.83 @1k. Eye-safety-critical part."
+  },
+  {
+   "id": "LED-05",
+   "sub": "IR strobe illumination",
+   "item": "Over-current comparator (ends pulse at ~6.5 A)",
+   "mfr": "Texas Instruments",
+   "mpn": "TLV3201AIDCKR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=TLV3201AIDCKR",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    1.81,
+    1.014,
+    0.906,
+    0.878
+   ],
+   "stock": "0 stock until Nov, 20 wk",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-06",
+   "sub": "IR strobe illumination",
+   "item": "Current-sense resistor 0.1 \u03a9 2010",
+   "mfr": "Vishay Dale",
+   "mpn": "WSL2010R1000FEA",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/vishay-dale/WSL2010R1000FEA/712538",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    0.88,
+    0.352,
+    0.315,
+    0.262
+   ],
+   "stock": "5,248 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-07",
+   "sub": "IR strobe illumination",
+   "item": "Local reservoir 100 \u00b5F 50 V hybrid polymer",
+   "mfr": "Panasonic",
+   "mpn": "EEH-ZA1H101P",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=EEH-ZA1H101P",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    2.05,
+    0.951,
+    0.655,
+    0.624
+   ],
+   "stock": "0 stock, 37 wk",
+   "status": "now",
+   "notes": "Long lead: qualify EEH-ZU1H221V (220 \u00b5F) now."
+  },
+  {
+   "id": "LED-08",
+   "sub": "IR strobe illumination",
+   "item": "Loop capacitor 2.2 \u00b5F 100 V X7R 1210",
+   "mfr": "KEMET",
+   "mpn": "C1210C225K1RACTU",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/kemet/C1210C225K1RACTU/1950689",
+   "qp": 12,
+   "qi": 12,
+   "price": [
+    0.687,
+    0.399,
+    0.326,
+    0.3
+   ],
+   "stock": "197k in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-09",
+   "sub": "IR strobe illumination",
+   "item": "NTC 10 k 0402 (LED board temperature)",
+   "mfr": "Murata",
+   "mpn": "NCU15XH103F60RC",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=NCU15XH103F60RC",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    0.12,
+    0.077,
+    0.064,
+    0.052
+   ],
+   "stock": "211k in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-10",
+   "sub": "IR strobe illumination",
+   "item": "JST GH 8-pos header (3 on LED boards, 3 on carrier)",
+   "mfr": "JST",
+   "mpn": "BM08B-GHS-TBT",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=BM08B-GHS-TBT",
+   "qp": 6,
+   "qi": 6,
+   "price": [
+    0.5,
+    0.325,
+    0.276,
+    0.246
+   ],
+   "stock": "54,619 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-11",
+   "sub": "IR strobe illumination",
+   "item": "LED-board cable assembly (GHR-08V-S + SSHL crimps)",
+   "mfr": "JST / harness house",
+   "mpn": "GHR-08V-S cable assy",
+   "vendor": "Harness CM (RFQ)",
+   "url": "https://www.digikey.com/en/products/result?keywords=GHR-08V-S",
+   "qp": 3,
+   "qi": 3,
+   "price": [
+    4.0,
+    1.5,
+    0.9,
+    0.7
+   ],
+   "stock": "[est.]",
+   "status": "quote",
+   "notes": "Pre-crimped JST cables work for first builds."
+  },
+  {
+   "id": "LED-12",
+   "sub": "IR strobe illumination",
+   "item": "Strobe bus boost controller (10 W input-limited = eye-safety cap)",
+   "mfr": "Texas Instruments",
+   "mpn": "LM5155DSSR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=LM5155DSSR",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    2.21,
+    1.335,
+    1.219,
+    1.096
+   ],
+   "stock": "0 stock until 21 Dec, 20 wk",
+   "status": "now",
+   "notes": "Alt: LT3757."
+  },
+  {
+   "id": "LED-13",
+   "sub": "IR strobe illumination",
+   "item": "Boost FET 60 V logic-level",
+   "mfr": "Texas Instruments",
+   "mpn": "CSD18543Q3A",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/texas-instruments/CSD18543Q3A/6588881",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    1.39,
+    0.575,
+    0.448,
+    0.322
+   ],
+   "stock": "1,006 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-14",
+   "sub": "IR strobe illumination",
+   "item": "Boost Schottky 100 V 3 A",
+   "mfr": "Nexperia",
+   "mpn": "PMEG10030ELPX",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/PMEG10030ELPX/5436251",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    0.79,
+    0.3,
+    0.184,
+    0.184
+   ],
+   "stock": "112k in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-15",
+   "sub": "IR strobe illumination",
+   "item": "Boost inductor 10 \u00b5H 6 A sat",
+   "mfr": "Bourns",
+   "mpn": "SRP7028A-100M",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=SRP7028A-100M",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    1.1,
+    0.742,
+    0.61,
+    0.502
+   ],
+   "stock": "17,967 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "LED-16",
+   "sub": "IR strobe illumination",
+   "item": "Bulk strobe capacitor 470 \u00b5F 50 V aluminium",
+   "mfr": "Panasonic",
+   "mpn": "EEE-FK1H471AM",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=EEE-FK1H471AM",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    2.91,
+    1.305,
+    1.046,
+    1.0
+   ],
+   "stock": "1,203 in stock, 37 wk",
+   "status": "now",
+   "notes": "17 mm tall: check enclosure height."
+  },
+  {
+   "id": "LED-17",
+   "sub": "IR strobe illumination",
+   "item": "Strobe misc (AND gates, RC, TVS, bleed FET, feedback DAC, resistors)",
+   "mfr": "various",
+   "mpn": "lot",
+   "vendor": "Digi-Key / LCSC",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    5.5,
+    2.4,
+    1.3,
+    0.95
+   ],
+   "stock": "[est.]",
+   "status": "now",
+   "notes": "Itemised in the schematic BOM."
+  },
+  {
+   "id": "RAD-01",
+   "sub": "Radar (helper sensor)",
+   "item": "24 GHz CW I/Q radar module, FCC/ISED/TELEC module grant (rear head = club, down-range head = ball)",
+   "mfr": "InnoSenT",
+   "mpn": "80.00000346 (SMR-333)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/innosent-gmbh/80-00000346/10419768",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    19.1,
+    15.1,
+    13.8,
+    11.5
+   ],
+   "stock": "2,125 in stock, 16 wk",
+   "status": "now",
+   "notes": "FCC UXS-SMR3X3, 24.150\u201324.250 GHz. Backup: InnoSenT IPS-354 (80.00000356) $49.20 @100. Data never fused with cameras (patent design-around)."
+  },
+  {
+   "id": "RAD-02",
+   "sub": "Radar (helper sensor)",
+   "item": "Quad op-amp, IF amplifier / band-pass",
+   "mfr": "Texas Instruments",
+   "mpn": "TLV9064IPWR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=TLV9064IPWR",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    1.73,
+    1.03,
+    0.93,
+    0.8
+   ],
+   "stock": "0 stock until 5 Nov",
+   "status": "now",
+   "notes": "Alt in stock: ADI AD8619."
+  },
+  {
+   "id": "RAD-03",
+   "sub": "Radar (helper sensor)",
+   "item": "2-ch simultaneous 24-bit ADC 64 kS/s (I + Q)",
+   "mfr": "Texas Instruments",
+   "mpn": "ADS131M02IPWR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=ADS131M02IPWR",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    4.51,
+    2.84,
+    2.53,
+    2.43
+   ],
+   "stock": "3,708 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "RAD-04",
+   "sub": "Radar (helper sensor)",
+   "item": "Radar MCU (capture + Doppler FFT, streams speeds to SoC)",
+   "mfr": "Texas Instruments",
+   "mpn": "MSPM0G3507SRHBR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=MSPM0G3507SRHBR",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    2.59,
+    1.57,
+    1.43,
+    1.34
+   ],
+   "stock": "7,477 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "RAD-05",
+   "sub": "Radar (helper sensor)",
+   "item": "Low-noise 3.3 V LDO (radar head)",
+   "mfr": "Texas Instruments",
+   "mpn": "TPS7A2033PDBVR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=TPS7A2033PDBVR",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    0.35,
+    0.19,
+    0.16,
+    0.15
+   ],
+   "stock": "0 stock until late Nov",
+   "status": "now",
+   "notes": "Any 3.3 V LDO <10 \u00b5Vrms."
+  },
+  {
+   "id": "RAD-06",
+   "sub": "Radar (helper sensor)",
+   "item": "JST SH 6-pos cable, 152 mm",
+   "mfr": "JST",
+   "mpn": "A06SR06SR30K152A",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=A06SR06SR30K152A",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    1.83,
+    1.32,
+    1.12,
+    0.9
+   ],
+   "stock": "4,996 in stock",
+   "status": "now",
+   "notes": "Reversing cable: check pinout."
+  },
+  {
+   "id": "RAD-07",
+   "sub": "Radar (helper sensor)",
+   "item": "JST SH 6-pos right-angle header",
+   "mfr": "JST",
+   "mpn": "SM06B-SRSS-TB(LF)(SN)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/jst-sales-america-inc/SM06B-SRSS-TB/926712",
+   "qp": 4,
+   "qi": 4,
+   "price": [
+    0.68,
+    0.45,
+    0.35,
+    0.25
+   ],
+   "stock": "In stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "RAD-08",
+   "sub": "Radar (helper sensor)",
+   "item": "Radar head PCB 4-layer FR-4 (\u00d72) + passives",
+   "mfr": "JLCPCB / PCBWay",
+   "mpn": "custom",
+   "vendor": "JLCPCB",
+   "url": "https://jlcpcb.com/",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    11.0,
+    2.8,
+    1.7,
+    1.15
+   ],
+   "stock": "[est.]",
+   "status": "design",
+   "notes": "RF stays inside the module, so plain FR-4."
+  },
+  {
+   "id": "PWR-01",
+   "sub": "Power & battery",
+   "item": "USB-C receptacle IP67, 5 A",
+   "mfr": "GCT",
+   "mpn": "USB4720-03-A",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=USB4720-03-A",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    2.43,
+    1.76,
+    1.46,
+    1.31
+   ],
+   "stock": "2,082 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "PWR-02",
+   "sub": "Power & battery",
+   "item": "USB-C PD sink controller (65 W)",
+   "mfr": "Texas Instruments",
+   "mpn": "TPS25751DREFR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS25751DREFR/23028775",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    3.39,
+    2.1,
+    1.8,
+    1.8
+   ],
+   "stock": "10,469 in stock",
+   "status": "now",
+   "notes": "TPS25750 is NRND. Alt: STUSB4500QTR."
+  },
+  {
+   "id": "PWR-03",
+   "sub": "Power & battery",
+   "item": "Buck-boost charger, 1\u20135S, runs with no battery, hot-swap",
+   "mfr": "Texas Instruments",
+   "mpn": "BQ25730RSNR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/texas-instruments/BQ25730RSNR/13896423",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    5.08,
+    3.23,
+    2.8,
+    2.8
+   ],
+   "stock": "0 stock until 25 Jan 2027",
+   "status": "now",
+   "notes": "Order now for pilot. BQ25731 cannot run battery-less."
+  },
+  {
+   "id": "PWR-04",
+   "sub": "Power & battery",
+   "item": "30 V N-MOSFET (4 charger FETs Pro / 2 ideal-diode FETs Indoor)",
+   "mfr": "Texas Instruments",
+   "mpn": "CSD17578Q3A",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/texas-instruments/CSD17578Q3A/5015743",
+   "qp": 4,
+   "qi": 2,
+   "price": [
+    1.05,
+    0.43,
+    0.25,
+    0.22
+   ],
+   "stock": "2,216 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "PWR-05",
+   "sub": "Power & battery",
+   "item": "Charger lot: battery switch FET (30 V), 2.2 \u00b5H inductor, sense resistors, caps",
+   "mfr": "various",
+   "mpn": "lot",
+   "vendor": "Digi-Key",
+   "url": "",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    4.0,
+    2.5,
+    1.8,
+    1.4
+   ],
+   "stock": "[est.]",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "PWR-06",
+   "sub": "Power & battery",
+   "item": "Ideal-diode controller (USB-C \u2016 barrel ORing)",
+   "mfr": "Diodes Inc.",
+   "mpn": "AP74700QW6-7",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=AP74700QW6-7",
+   "qp": 0,
+   "qi": 2,
+   "price": [
+    0.82,
+    0.55,
+    0.45,
+    0.38
+   ],
+   "stock": "In stock",
+   "status": "now",
+   "notes": "PM swap: TI LM74700 was $1.23 @1k and 0 stock."
+  },
+  {
+   "id": "PWR-07",
+   "sub": "Power & battery",
+   "item": "DC barrel jack 8 A (24 V input)",
+   "mfr": "Same Sky",
+   "mpn": "PJ-063AH",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=PJ-063AH",
+   "qp": 0,
+   "qi": 1,
+   "price": [
+    1.52,
+    1.1,
+    0.92,
+    0.9
+   ],
+   "stock": "18,356 in stock",
+   "status": "now",
+   "notes": "Add TVS (in rail lot)."
+  },
+  {
+   "id": "PWR-08",
+   "sub": "Power & battery",
+   "item": "6 A sync buck, 4.5\u201328 V in (3.8 V SOM rail; 5 V system rail)",
+   "mfr": "Texas Instruments",
+   "mpn": "TPS56637RPAR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS56637RPAR/10715537",
+   "qp": 2,
+   "qi": 2,
+   "price": [
+    2.71,
+    1.66,
+    1.41,
+    1.38
+   ],
+   "stock": "14,658 in stock",
+   "status": "now",
+   "notes": "QCS6490 SOM VIN = 3.4\u20134.5 V (typ 3.8 V)."
+  },
+  {
+   "id": "PWR-09",
+   "sub": "Power & battery",
+   "item": "3 A buck (3.3 V rail)",
+   "mfr": "Texas Instruments",
+   "mpn": "TPS62933DRLR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=TPS62933DRLR",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    1.6,
+    0.95,
+    0.85,
+    0.77
+   ],
+   "stock": "63,313 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "PWR-10",
+   "sub": "Power & battery",
+   "item": "Rail lot: inductors, bulk caps, input TVS, eFuse/fuse",
+   "mfr": "various",
+   "mpn": "lot",
+   "vendor": "Digi-Key",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    4.5,
+    2.7,
+    1.9,
+    1.5
+   ],
+   "stock": "[est.]",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "PWR-11",
+   "sub": "Power & battery",
+   "item": "Battery bay connector (host side), 5-pos 7 A",
+   "mfr": "TE Connectivity",
+   "mpn": "5787441-1",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/5787441-1/2135744",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    8.18,
+    5.83,
+    4.71,
+    3.5
+   ],
+   "stock": "2,035 in stock",
+   "status": "now",
+   "notes": "10k = ACES/FCI equivalent [est.]."
+  },
+  {
+   "id": "PWR-12",
+   "sub": "Power & battery",
+   "item": "Smart battery pack, user-swappable 4S1P 21700 \u224881 Wh (LG M58T \u00d74, TI BQ40Z50-R2 gauge, BQ771807 OVP, TE 787439-1 plug, UN38.3/IEC 62133-2)",
+   "mfr": "Shenzhen pack OEM (our spec)",
+   "mpn": "OB-BAT-4S81",
+   "vendor": "Pack assembler (RFQ to 3 vendors)",
+   "url": "",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    167.22,
+    95,
+    57,
+    35
+   ],
+   "stock": "6\u201310 wk after tooling",
+   "status": "quote",
+   "notes": "Proto column = Inspired Energy ND4054HD50 off-the-shelf smart pack ($167.22, certified) as stand-in. Alt cells: Molicel P50B, Samsung 50S (72 Wh)."
+  },
+  {
+   "id": "PWR-13",
+   "sub": "Power & battery",
+   "item": "Battery door latch & spring contacts hardware",
+   "mfr": "molded / stamped",
+   "mpn": "custom",
+   "vendor": "Molder",
+   "url": "",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    1.0,
+    0.8,
+    0.4,
+    0.25
+   ],
+   "stock": "[est.]",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "PWR-14",
+   "sub": "Power & battery",
+   "item": "65 W USB-C PD GaN charger (in Pro box), UL/CE/FCC/PSE",
+   "mfr": "Private-label GaN OEM",
+   "mpn": "OB-CHG-65W",
+   "vendor": "Shenzhen OEM (RFQ)",
+   "url": "https://www.globalsources.com/manufacturers/usb-c-65w-charger.html",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    39.99,
+    15.0,
+    13.0,
+    12.0
+   ],
+   "stock": "15\u201330 days",
+   "status": "quote",
+   "notes": "Proto = retail Anker/UGREEN 65 W GaN. Verify UL file numbers; EU may need a no-charger box."
+  },
+  {
+   "id": "PWR-15",
+   "sub": "Power & battery",
+   "item": "24 V / 60 W wall adapter, 5.5\u00d72.1 mm (in Indoor box)",
+   "mfr": "Mean Well",
+   "mpn": "GST60A24-P1J",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/mean-well-usa-inc/GST60A24-P1J/7703715",
+   "qp": 0,
+   "qi": 1,
+   "price": [
+    19.4,
+    17.1,
+    15.0,
+    13.5
+   ],
+   "stock": "707 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "UI-01",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "2.4\" transflective IPS 240\u00d7320, sunlight readable, SPI (ST7789)",
+   "mfr": "VIEWE",
+   "mpn": "UEED024QV-RH40-A003",
+   "vendor": "VIEWE",
+   "url": "https://viewedisplay.com/product/2-4-inch-240320-transflective-sunlight-readable-and-super-low-power-tft-lcd-module-with-mcu-8-16bit-spi-interface/",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    14.59,
+    12.0,
+    9.0,
+    7.0
+   ],
+   "stock": "Quote for volume",
+   "status": "now",
+   "notes": "Fallback: Newhaven NHD-2.8-240320AF-CSXP-F $18.45. Get a longevity letter."
+  },
+  {
+   "id": "UI-02",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Display FPC connector 40-pos 0.5 mm",
+   "mfr": "Hirose",
+   "mpn": "FH12-40S-0.5SH(55)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=FH12-40S-0.5SH(55)",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    3.55,
+    2.57,
+    2.26,
+    1.98
+   ],
+   "stock": "19,148 in stock",
+   "status": "now",
+   "notes": "Confirm VIEWE pin count."
+  },
+  {
+   "id": "UI-03",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Display cover lens, AR glass, optically bonded",
+   "mfr": "Cover-glass vendor (Saida/Felix)",
+   "mpn": "custom",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    15,
+    8,
+    5,
+    3.5
+   ],
+   "stock": "[est.]",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "UI-04",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Display backlight FET + passives",
+   "mfr": "various",
+   "mpn": "lot",
+   "vendor": "Digi-Key",
+   "url": "",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    0.5,
+    0.3,
+    0.2,
+    0.15
+   ],
+   "stock": "[est.]",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "SEN-01",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Inclinometer \u00b10.1\u00b0 leveling (Pro)",
+   "mfr": "Murata",
+   "mpn": "SCL3300-D01-1",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/murata-electronics/SCL3300-D01-1/9950616",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    40.12,
+    31.73,
+    30.47,
+    22.0
+   ],
+   "stock": "1,546 in stock",
+   "status": "now",
+   "notes": "Cost-down to test at DVT: BMI323 + temperature calibration (saves ~$27)."
+  },
+  {
+   "id": "SEN-02",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "6-axis IMU (Indoor leveling; Pro shot-shock detection)",
+   "mfr": "Bosch Sensortec",
+   "mpn": "BMI323",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/bosch-sensortec/BMI323/16719593",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    3.91,
+    2.92,
+    2.6,
+    2.43
+   ],
+   "stock": "31,432 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "SEN-03",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Barometric pressure (air density)",
+   "mfr": "Bosch Sensortec",
+   "mpn": "BMP585",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/bosch-sensortec/BMP585/19522589",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    4.54,
+    3.41,
+    3.05,
+    2.88
+   ],
+   "stock": "11,371 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "SEN-04",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Temperature/humidity with PTFE membrane (air density)",
+   "mfr": "Sensirion",
+   "mpn": "SHT45-AD1F-R2",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=SHT45-AD1F-R2",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    6.51,
+    4.95,
+    4.53,
+    4.29
+   ],
+   "stock": "16,397 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "THM-01",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Blower 40 mm 5 V IP55, 30,000 h @40 \u00b0C (Pro)",
+   "mfr": "Delta",
+   "mpn": "BFB0405HHA-TZP4",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=BFB0405HHA-TZP4",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    15.31,
+    14.12,
+    13.78,
+    10.91
+   ],
+   "stock": "Not stocked, 40 wk",
+   "status": "quote",
+   "notes": "Order now. Alt: Orion OD4010-05HB55 $14.52 @500."
+  },
+  {
+   "id": "THM-02",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Fan 40 mm 5 V MagLev, 70,000 h @40 \u00b0C (Indoor)",
+   "mfr": "Sunon",
+   "mpn": "MF40100V1-1000U-A99",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/sunon-fans/MF40100V1-1000U-A99/6198732",
+   "qp": 0,
+   "qi": 1,
+   "price": [
+    4.87,
+    3.16,
+    2.74,
+    2.74
+   ],
+   "stock": "14,187 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "THM-03",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "SOM heat-pipe + fin stack (sealed bay \u2192 separate duct)",
+   "mfr": "Custom thermal vendor (Auras/CCI)",
+   "mpn": "custom",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    25,
+    15,
+    9,
+    6
+   ],
+   "stock": "[est.]",
+   "status": "design",
+   "notes": "First builds: machined copper spreader + off-the-shelf 40 mm heatsink."
+  },
+  {
+   "id": "THM-04",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Thermal pad 6.2 W/m\u00b7K",
+   "mfr": "t-Global",
+   "mpn": "TG-A6200-40-40-1.0",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=t-Global%20TG-A6200",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    2.73,
+    1.5,
+    0.6,
+    0.35
+   ],
+   "stock": "In stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "UI-05",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "Tact switch IP67 (power / mode / handedness on Pro; power on Indoor)",
+   "mfr": "C&K",
+   "mpn": "KSC241JLFS",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/wee/KSC241JLFS/26327478",
+   "qp": 3,
+   "qi": 1,
+   "price": [
+    0.38,
+    0.38,
+    0.28,
+    0.27
+   ],
+   "stock": "6,000 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "UI-06",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "RGB status LED",
+   "mfr": "W\u00fcrth Elektronik",
+   "mpn": "150141M173100",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=150141M173100",
+   "qp": 1,
+   "qi": 2,
+   "price": [
+    0.5,
+    0.43,
+    0.34,
+    0.34
+   ],
+   "stock": "30,274 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "UI-07",
+   "sub": "Display, sensors, thermal & UI",
+   "item": "SMT buzzer (shot-ready / error tones)",
+   "mfr": "Same Sky",
+   "mpn": "CMT-8540S-SMT-TR",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=CMT-8540S-SMT-TR",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    4.13,
+    2.44,
+    1.92,
+    1.72
+   ],
+   "stock": "20,504 in stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "PCB-01",
+   "sub": "Circuit boards & assembly",
+   "item": "Main carrier PCB, 10-layer 1+N+1 HDI, 120\u00d790 mm, ENIG, impedance-controlled",
+   "mfr": "PCBWay / JLCPCB (proto); same-country fab with assembly (volume)",
+   "mpn": "OB-MAIN rev A",
+   "vendor": "JLCPCB",
+   "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    70,
+    38,
+    20,
+    13
+   ],
+   "stock": "7\u201312 days proto",
+   "status": "design",
+   "notes": "Same board both SKUs; Indoor depopulates charger/battery/display/inclinometer, populates barrel jack/Ethernet."
+  },
+  {
+   "id": "PCB-02",
+   "sub": "Circuit boards & assembly",
+   "item": "Carrier assembly labour (double-sided, ~400 placements, X-ray for LGA SOM)",
+   "mfr": "JLCPCB (proto) / Taiwan-Vietnam CM",
+   "mpn": "assembly",
+   "vendor": "JLCPCB",
+   "url": "https://jlcpcb.com/help/article/pcb-assembly-price",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    51,
+    7,
+    5,
+    4
+   ],
+   "stock": "+3\u20135 days",
+   "status": "design",
+   "notes": "SOM is LGA solder-down: X-ray inspect every board."
+  },
+  {
+   "id": "PCB-03",
+   "sub": "Circuit boards & assembly",
+   "item": "Carrier misc components (passives, ESD, crystals incl. 25 MHz, connectors for fan/buttons/debug, level shifters, eMMC-free)",
+   "mfr": "various",
+   "mpn": "lot",
+   "vendor": "Digi-Key / LCSC",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    40,
+    18,
+    12,
+    9
+   ],
+   "stock": "[est.]",
+   "status": "now",
+   "notes": "Fully itemised once the schematic exists."
+  },
+  {
+   "id": "PCB-04",
+   "sub": "Circuit boards & assembly",
+   "item": "LED strobe boards \u00d73, 4-layer FR-4 w/ thermal vias, ~40\u00d730 mm, assembled",
+   "mfr": "JLCPCB / PCBWay",
+   "mpn": "OB-LED rev A",
+   "vendor": "JLCPCB",
+   "url": "https://jlcpcb.com/",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    30,
+    4.2,
+    2.1,
+    1.35
+   ],
+   "stock": "1\u20132 wk",
+   "status": "design",
+   "notes": "Price is per set of three."
+  },
+  {
+   "id": "MEC-01",
+   "sub": "Enclosure & mechanical",
+   "item": "Optical bench, 6061-T651, 200\u00d780\u00d715 mm, dowelled, black anodize, 1/4\"-20 tripod thread tapped",
+   "mfr": "Xometry / Protolabs (proto); China CNC / extrusion (volume)",
+   "mpn": "OB-BENCH rev A",
+   "vendor": "Xometry",
+   "url": "https://www.xometry.com/",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    110,
+    40,
+    20,
+    12
+   ],
+   "stock": "3\u201310 days",
+   "status": "design",
+   "notes": "3-point kinematic mount to shell."
+  },
+  {
+   "id": "MEC-02",
+   "sub": "Enclosure & mechanical",
+   "item": "Enclosure shell set PC/ABS V-0 (front, rear, battery door/blank, bezel/blank, feet, baffle, button caps)",
+   "mfr": "JLC3DP MJF (proto) / injection molder (volume)",
+   "mpn": "OB-ENC rev A",
+   "vendor": "JLC3DP",
+   "url": "https://jlc3dp.com/",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    180,
+    135,
+    13.5,
+    8.8
+   ],
+   "stock": "1\u20132 wk proto; 4\u20138 wk tooling",
+   "status": "design",
+   "notes": "Indoor \u2248$5\u201310 cheaper (blank plates). Tooling in one-time list."
+  },
+  {
+   "id": "MEC-03",
+   "sub": "Enclosure & mechanical",
+   "item": "TPE stretch-on bumper 60\u201370A",
+   "mfr": "TPE molder (TPU print for proto)",
+   "mpn": "OB-BUMP rev A",
+   "vendor": "Molder",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    30,
+    22,
+    2.5,
+    1.6
+   ],
+   "stock": "4\u20136 wk",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "MEC-04",
+   "sub": "Enclosure & mechanical",
+   "item": "IR window: strengthened glass, IR-pass ink, AR coat, IR-opaque isolation band",
+   "mfr": "Saida Glass / Felix",
+   "mpn": "OB-WIN rev A",
+   "vendor": "Saida Glass (RFQ)",
+   "url": "https://saidaglass.en.made-in-china.com/",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    25,
+    8,
+    5,
+    3.5
+   ],
+   "stock": "3\u20135 wk",
+   "status": "design",
+   "notes": "Proto: laser-cut Plexiglas 3143 IR acrylic from ePlastics. Window is NOT the bandpass filter (CAM-04 is)."
+  },
+  {
+   "id": "MEC-05",
+   "sub": "Enclosure & mechanical",
+   "item": "Die-cut gaskets (silicone foam)",
+   "mfr": "Die-cutter",
+   "mpn": "OB-GSK rev A",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    15,
+    2.5,
+    1.2,
+    0.6
+   ],
+   "stock": "2\u20134 wk",
+   "status": "design",
+   "notes": "Indoor uses 2 of 3."
+  },
+  {
+   "id": "MEC-06",
+   "sub": "Enclosure & mechanical",
+   "item": "Pressure-equalising vent IP67",
+   "mfr": "Amphenol LTW",
+   "mpn": "VENT-PS1YBK-N8001",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/amphenol-ltw/VENT-PS1YBK-N8001/7898285",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    3.47,
+    2.22,
+    1.77,
+    1.4
+   ],
+   "stock": "In stock",
+   "status": "now",
+   "notes": "Production: Gore stick-on vent."
+  },
+  {
+   "id": "MEC-07",
+   "sub": "Enclosure & mechanical",
+   "item": "Fasteners, dowel pins, hinge pins, detents (kit)",
+   "mfr": "McMaster-Carr / fastener house",
+   "mpn": "kit",
+   "vendor": "McMaster-Carr",
+   "url": "https://www.mcmaster.com/",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    4,
+    1.5,
+    0.6,
+    0.35
+   ],
+   "stock": "Stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "MEC-08",
+   "sub": "Enclosure & mechanical",
+   "item": "Rubber feet",
+   "mfr": "3M",
+   "mpn": "SJ5302",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/detail/3m/SJ5302/2345107",
+   "qp": 4,
+   "qi": 4,
+   "price": [
+    0.13,
+    0.12,
+    0.105,
+    0.09
+   ],
+   "stock": "Stock",
+   "status": "now",
+   "notes": ""
+  },
+  {
+   "id": "MEC-09",
+   "sub": "Enclosure & mechanical",
+   "item": "Rating / serial / regulatory labels",
+   "mfr": "Label printer",
+   "mpn": "OB-LBL",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    1,
+    0.5,
+    0.15,
+    0.08
+   ],
+   "stock": "2 wk",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "MEC-10",
+   "sub": "Enclosure & mechanical",
+   "item": "Battery bay harness (Pro)",
+   "mfr": "Harness CM",
+   "mpn": "OB-HAR-BAT",
+   "vendor": "MiniProto (proto)",
+   "url": "https://www.miniproto.com/products/custom-jst-ph-to-jst-pa-wire-harness-assembly",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    46,
+    12,
+    4,
+    2.5
+   ],
+   "stock": "2\u20134 wk",
+   "status": "quote",
+   "notes": ""
+  },
+  {
+   "id": "BOX-01",
+   "sub": "In the box",
+   "item": "Carry case (Pro): Nanuk 920 + custom foam (proto/100) \u2192 molded EVA case (1k+)",
+   "mfr": "Nanuk / EVA case OEM",
+   "mpn": "Nanuk 920 / OB-CASE",
+   "vendor": "Nanuk",
+   "url": "https://nanuk.com/products/nanuk-920",
+   "qp": 1,
+   "qi": 0,
+   "price": [
+    215,
+    150,
+    18,
+    11
+   ],
+   "stock": "Stock / 5\u20137 wk",
+   "status": "now",
+   "notes": "PM call: Nanuk stays a $149 premium accessory; EVA case ships in the box."
+  },
+  {
+   "id": "BOX-02",
+   "sub": "In the box",
+   "item": "Rigid retail box with insert",
+   "mfr": "Rigid-box packager",
+   "mpn": "OB-BOX",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    40,
+    14,
+    11,
+    5.5
+   ],
+   "stock": "3\u20135 wk",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "BOX-03",
+   "sub": "In the box",
+   "item": "Alignment stick, 2-piece with marks",
+   "mfr": "OEM",
+   "mpn": "OB-STICK",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    15,
+    6,
+    2.5,
+    1.5
+   ],
+   "stock": "3\u20134 wk",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "BOX-04",
+   "sub": "In the box",
+   "item": "Quick-start card + regulatory leaflet",
+   "mfr": "Printer",
+   "mpn": "OB-QSG",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    2,
+    0.8,
+    0.25,
+    0.1
+   ],
+   "stock": "1\u20132 wk",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "BOX-05",
+   "sub": "In the box",
+   "item": "Shipping carton",
+   "mfr": "Corrugated supplier",
+   "mpn": "OB-SHIP",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    5,
+    2.5,
+    1.2,
+    0.8
+   ],
+   "stock": "1\u20132 wk",
+   "status": "design",
+   "notes": ""
+  },
+  {
+   "id": "BOX-06",
+   "sub": "In the box",
+   "item": "USB-C to USB-C cable 1 m, 100 W (Pro: charging; Indoor: service)",
+   "mfr": "OEM",
+   "mpn": "OB-CBL-C",
+   "vendor": "RFQ",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    9,
+    2.5,
+    1.4,
+    1.0
+   ],
+   "stock": "[est.]",
+   "status": "quote",
+   "notes": ""
+  },
+  {
+   "id": "LAB-01",
+   "sub": "Final assembly, test & calibration",
+   "item": "Final assembly, end-of-line test, stereo/radar/IMU calibration, live-shot test, pack-out (1.0\u20131.5 labour-h)",
+   "mfr": "In-house \u2192 Taiwan/Vietnam CM",
+   "mpn": "labour",
+   "vendor": "\u2014",
+   "url": "",
+   "qp": 1,
+   "qi": 1,
+   "price": [
+    240,
+    100,
+    35,
+    18
+   ],
+   "stock": "\u2014",
+   "status": "design",
+   "notes": "Calibration stations are in the one-time list."
+  }
+ ],
+ "totals": {
+  "pro": {
+   "by_sub": {
+    "Cameras & optics": [
+     969.92,
+     651.9,
+     334.0,
+     222.65
+    ],
+    "Compute & connectivity": [
+     308.25,
+     245.69,
+     204.94,
+     178.78
+    ],
+    "IR strobe illumination": [
+     125.37,
+     69.17,
+     58.8,
+     51.7
+    ],
+    "Radar (helper sensor)": [
+     71.35,
+     47.13,
+     41.61,
+     35.05
+    ],
+    "Power & battery": [
+     247.01,
+     134.91,
+     89.54,
+     63.97
+    ],
+    "Display, sensors, thermal & UI": [
+     137.53,
+     100.51,
+     83.59,
+     64.36
+    ],
+    "Circuit boards & assembly": [
+     191.0,
+     67.2,
+     39.1,
+     27.35
+    ],
+    "Enclosure & mechanical": [
+     414.99,
+     224.2,
+     49.14,
+     31.19
+    ],
+    "In the box": [
+     286.0,
+     175.8,
+     34.35,
+     19.9
+    ],
+    "Final assembly, test & calibration": [
+     240.0,
+     100.0,
+     35.0,
+     18.0
+    ]
+   },
+   "total": [
+    2991.42,
+    1816.51,
+    970.07,
+    712.95
+   ],
+   "landed": [
+    3401.28,
+    2070.11,
+    1111.09,
+    819.77
+   ]
+  },
+  "indoor": {
+   "by_sub": {
+    "Cameras & optics": [
+     969.92,
+     651.9,
+     334.0,
+     222.65
+    ],
+    "Compute & connectivity": [
+     317.64,
+     252.47,
+     210.7,
+     184.03
+    ],
+    "IR strobe illumination": [
+     125.37,
+     69.17,
+     58.8,
+     51.7
+    ],
+    "Radar (helper sensor)": [
+     71.35,
+     47.13,
+     41.61,
+     35.05
+    ],
+    "Power & battery": [
+     42.0,
+     30.99,
+     26.15,
+     23.74
+    ],
+    "Display, sensors, thermal & UI": [
+     53.07,
+     34.62,
+     25.4,
+     21.36
+    ],
+    "Circuit boards & assembly": [
+     191.0,
+     67.2,
+     39.1,
+     27.35
+    ],
+    "Enclosure & mechanical": [
+     368.99,
+     212.2,
+     45.14,
+     28.69
+    ],
+    "In the box": [
+     71.0,
+     25.8,
+     16.35,
+     8.9
+    ],
+    "Final assembly, test & calibration": [
+     240.0,
+     100.0,
+     35.0,
+     18.0
+    ]
+   },
+   "total": [
+    2450.34,
+    1491.48,
+    832.25,
+    621.47
+   ],
+   "landed": [
+    2788.24,
+    1701.85,
+    954.94,
+    716.13
+   ]
+  }
+ },
+ "one_time": [
+  {
+   "cat": "Tooling",
+   "item": "Enclosure injection tools, P20 steel, 8 parts incl. revisions (Pro & Indoor share)",
+   "lo": 60000,
+   "hi": 95000,
+   "plan": 80000,
+   "note": "Aluminium bridge set $30\u201345k if you want 300\u20131k units first"
+  },
+  {
+   "cat": "Tooling",
+   "item": "TPE bumper mold",
+   "lo": 6000,
+   "hi": 10000,
+   "plan": 8000,
+   "note": ""
+  },
+  {
+   "cat": "Tooling",
+   "item": "IR window screens & jigs",
+   "lo": 500,
+   "hi": 1000,
+   "plan": 1000,
+   "note": ""
+  },
+  {
+   "cat": "Tooling",
+   "item": "Gasket dies \u00d73",
+   "lo": 1500,
+   "hi": 3000,
+   "plan": 2000,
+   "note": ""
+  },
+  {
+   "cat": "Tooling",
+   "item": "Optical bench CNC fixtures",
+   "lo": 1000,
+   "hi": 3000,
+   "plan": 2000,
+   "note": "Extrusion die +$1\u20133k at 10k"
+  },
+  {
+   "cat": "Tooling",
+   "item": "Heat-pipe/fin-stack tooling",
+   "lo": 1000,
+   "hi": 3000,
+   "plan": 2000,
+   "note": ""
+  },
+  {
+   "cat": "Tooling",
+   "item": "EVA case mold + foam die",
+   "lo": 3500,
+   "hi": 6500,
+   "plan": 4000,
+   "note": ""
+  },
+  {
+   "cat": "Tooling",
+   "item": "Retail box plates",
+   "lo": 500,
+   "hi": 1000,
+   "plan": 1000,
+   "note": ""
+  },
+  {
+   "cat": "Tooling",
+   "item": "Harness setup (all harnesses)",
+   "lo": 500,
+   "hi": 5000,
+   "plan": 3000,
+   "note": ""
+  },
+  {
+   "cat": "NRE",
+   "item": "Battery pack NRE: pack tooling, BMS config, UN38.3 + IEC 62133-2",
+   "lo": 15000,
+   "hi": 45000,
+   "plan": 30000,
+   "note": "Retest if the cell changes"
+  },
+  {
+   "cat": "NRE",
+   "item": "Custom IMX900 camera module NRE (VC / e-con OEM) incl. 940/40 filter integration",
+   "lo": 15000,
+   "hi": 50000,
+   "plan": 30000,
+   "note": "Drops camera cost from ~$165 to ~$95 each"
+  },
+  {
+   "cat": "NRE",
+   "item": "IMX900 triggered-mono Linux driver for QCS6490 (Leopard / Thundercomm / VC paid port)",
+   "lo": 25000,
+   "hi": 50000,
+   "plan": 40000,
+   "note": "Only gap in the stack; no shipping driver today"
+  },
+  {
+   "cat": "NRE",
+   "item": "Custom LED secondary optic (60\u00b0\u00d745\u00b0), optional at \u22652k units",
+   "lo": 15000,
+   "hi": 30000,
+   "plan": 0,
+   "note": "Excluded: optional; cuts LED count ~24\u219215"
+  },
+  {
+   "cat": "NRE",
+   "item": "Carrier PCB stencils / fab tooling",
+   "lo": 100,
+   "hi": 800,
+   "plan": 500,
+   "note": ""
+  },
+  {
+   "cat": "Test",
+   "item": "Carrier board in-circuit/functional test fixture",
+   "lo": 8000,
+   "hi": 25000,
+   "plan": 15000,
+   "note": ""
+  },
+  {
+   "cat": "Test",
+   "item": "Stereo calibration station + live-shot test station (\u00d71 + spare)",
+   "lo": 100000,
+   "hi": 300000,
+   "plan": 150000,
+   "note": "Ball launcher + laser light gates"
+  },
+  {
+   "cat": "Certification",
+   "item": "FCC/ISED (Part 15B + radar module reuse), safety CB 62368-1, IEC 62471, battery, CE/UKCA incl. EN 18031, RCM, Japan, Korea",
+   "lo": 70000,
+   "hi": 170000,
+   "plan": 110000,
+   "note": "Radar module grant reuse saves ~$10\u201320k"
+  }
+ ],
+ "carts": {
+  "Commonlands": {
+   "file": "cart-commonlands.csv",
+   "lines": 2,
+   "subtotal": 1488.0
+  },
+  "Digi-Key": {
+   "file": "cart-digi-key.csv",
+   "lines": 53,
+   "subtotal": 3557.58
+  },
+  "Arrow": {
+   "file": "cart-arrow.csv",
+   "lines": 1,
+   "subtotal": 2865.2
+  },
+  "LCSC": {
+   "file": "cart-lcsc.csv",
+   "lines": 1,
+   "subtotal": 12.6
+  },
+  "VIEWE": {
+   "file": "cart-viewe.csv",
+   "lines": 1,
+   "subtotal": 87.54
+  },
+  "Nanuk": {
+   "file": "cart-nanuk.csv",
+   "lines": 1,
+   "subtotal": 1075
+  },
+  "Inspired Energy": {
+   "file": "cart-inspired-energy.csv",
+   "lines": 1,
+   "subtotal": 836.1
+  },
+  "ePlastics": {
+   "file": "cart-eplastics.csv",
+   "lines": 1,
+   "subtotal": 220.0
+  }
+ },
+ "build": {
+  "pro": 5,
+  "indoor": 5
+ },
+ "amort_per_unit": 47.85,
+ "one_time_total": 478500,
+ "standins": [
+  {
+   "rep": "CAM-04",
+   "mpn": "CBP940-070S030",
+   "mfr": "Commonlands",
+   "desc": "940 nm bandpass 7\u00d77\u00d70.3 mm (80 nm FWHM) - first-build stand-in",
+   "vendor": "Commonlands",
+   "url": "https://commonlands.com/products/940nm-bandpass-filter",
+   "qp": 3,
+   "qi": 3,
+   "unit": 9.0
+  },
+  {
+   "rep": "CAM-05",
+   "mpn": "0150200241",
+   "mfr": "Molex",
+   "desc": "Premo-Flex 22-pos 0.5 mm 203 mm FFC - stand-in for VC 100 mm FPC",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=0150200241",
+   "qp": 2,
+   "qi": 2,
+   "unit": 5.21
+  },
+  {
+   "rep": "PWR-12",
+   "mpn": "ND4054HD50",
+   "mfr": "Inspired Energy",
+   "desc": "Certified 4S smart Li-ion pack (stand-in for custom pack)",
+   "vendor": "Inspired Energy",
+   "url": "https://inspired-energy.com/products/details/3/117-nd4054hd50",
+   "qp": 1,
+   "qi": 0,
+   "unit": 167.22
+  },
+  {
+   "rep": "MEC-04",
+   "mpn": "3143 IR acrylic sheet 3 mm",
+   "mfr": "R\u00f6hm (Plexiglas)",
+   "desc": "IR-transmitting acrylic sheet for laser-cut windows",
+   "vendor": "ePlastics",
+   "url": "https://www.eplastics.com/plexiglass/acrylic-sheets/ir-transmitting",
+   "qp": 1,
+   "qi": 1,
+   "unit": 20.0
+  },
+  {
+   "rep": "LED-11",
+   "mpn": "A08GR08GR28K152A",
+   "mfr": "JST",
+   "desc": "GH 8-pos pre-crimped cable 152 mm (stand-in LED harness)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=A08GR08GR28K152A",
+   "qp": 3,
+   "qi": 3,
+   "unit": 2.1
+  },
+  {
+   "rep": "THM-01",
+   "mpn": "OD4010-05HB55",
+   "mfr": "Orion Fans",
+   "desc": "40 mm 5 V IP55 fan (in-stock stand-in for Delta blower)",
+   "vendor": "Digi-Key",
+   "url": "https://www.digikey.com/en/products/result?keywords=OD4010-05HB55",
+   "qp": 1,
+   "qi": 0,
+   "unit": 16.5
+  }
+ ]
+}

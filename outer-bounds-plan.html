@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outer Bounds — Launch Monitor Research &amp; Business Plan</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f6f6f4;
+    --surface-1: #fcfcfb;
+    --surface-2: #f0efec;
+    --border: #e2e1dc;
+    --grid: #e7e6e1;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #7a7974;
+    --accent: #2a78d6;
+    --accent-soft: #e6f0fc;
+    --series-1: #2a78d6;  /* blue  - camera */
+    --series-2: #eb6834;  /* orange - radar */
+    --series-3: #1baf7a;  /* aqua  - hybrid */
+    --good: #0ca30c;
+    --warning: #fab219;
+    --critical: #d03b3b;
+    --good-text: #006300;
+    --critical-text: #b42c2c;
+    --warn-text: #8a5a00;
+    --gap-band: rgba(42,120,214,0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --bg: #121211;
+      --surface-1: #1a1a19;
+      --surface-2: #232321;
+      --border: #33332f;
+      --grid: #2c2c29;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #94938a;
+      --accent: #3987e5;
+      --accent-soft: #1d2a3b;
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+      --good-text: #4cc94c;
+      --critical-text: #f07878;
+      --warn-text: #f3c35a;
+      --gap-band: rgba(57,135,229,0.12);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #121211; --surface-1: #1a1a19; --surface-2: #232321; --border: #33332f; --grid: #2c2c29;
+    --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #94938a;
+    --accent: #3987e5; --accent-soft: #1d2a3b;
+    --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70;
+    --good-text: #4cc94c; --critical-text: #f07878; --warn-text: #f3c35a; --gap-band: rgba(57,135,229,0.12);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text-primary);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  .layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); max-width: 1440px; margin: 0 auto; }
+  nav.toc {
+    position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 28px 18px 28px 24px;
+    border-right: 1px solid var(--border); font-size: 14px;
+  }
+  nav.toc .brand { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  nav.toc .sub { color: var(--text-muted); font-size: 12px; margin-bottom: 18px; }
+  nav.toc ol { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+  nav.toc li { counter-increment: toc; }
+  nav.toc a { display: block; padding: 5px 8px; border-radius: 6px; color: var(--text-secondary); text-decoration: none; }
+  nav.toc a::before { content: counter(toc) ". "; color: var(--text-muted); }
+  nav.toc a:hover, nav.toc a.active { background: var(--surface-2); color: var(--text-primary); }
+  .theme-toggle { margin-top: 18px; font-size: 12px; background: var(--surface-1); color: var(--text-secondary);
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+
+  main { padding: 40px 56px 120px; min-width: 0; }
+  section { margin: 0 0 72px; scroll-margin-top: 24px; }
+  h1 { font-size: 38px; line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
+  h2 { font-size: 27px; line-height: 1.25; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h3 { font-size: 19px; margin: 32px 0 10px; }
+  h4 { font-size: 15px; margin: 22px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
+  p { margin: 0 0 14px; max-width: 78ch; }
+  .lede { font-size: 18px; color: var(--text-secondary); max-width: 80ch; }
+  .kicker { color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .section-intro { color: var(--text-secondary); margin-bottom: 22px; max-width: 80ch; }
+  a { color: var(--accent); }
+  ul, ol { padding-left: 22px; max-width: 80ch; }
+  li { margin: 4px 0; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+  .muted { color: var(--text-muted); }
+  .small { font-size: 13.5px; }
+
+  .card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .grid { display: grid; gap: 16px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+  @media (max-width: 1100px) { .g3, .g4 { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } nav.toc { display: none; } main { padding: 24px 20px 80px; } .g2, .g3, .g4 { grid-template-columns: 1fr; } }
+
+  .decision .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 6px; }
+  .decision .answer { font-size: 19px; font-weight: 650; line-height: 1.3; margin-bottom: 8px; }
+  .decision p { font-size: 14.5px; color: var(--text-secondary); margin: 0; }
+
+  .stat .label { font-size: 13px; color: var(--text-secondary); }
+  .stat .value { font-size: 30px; font-weight: 650; line-height: 1.2; margin: 4px 0 2px; }
+  .stat .note { font-size: 12.5px; color: var(--text-muted); }
+
+  .callout { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0; max-width: 90ch; }
+  .callout.warn { border-left-color: var(--warning); background: color-mix(in srgb, var(--warning) 12%, transparent); }
+  .callout.risk { border-left-color: var(--critical); background: color-mix(in srgb, var(--critical) 9%, transparent); }
+  .callout strong:first-child { display: block; margin-bottom: 4px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-1); margin: 12px 0 18px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); background: var(--surface-2); position: sticky; top: 0; white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { min-width: 150px; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr.ours td { background: var(--accent-soft); font-weight: 600; }
+  .y { color: var(--good-text); font-weight: 600; }
+  .n { color: var(--critical-text); font-weight: 600; }
+  .p { color: var(--warn-text); font-weight: 600; }
+  .tag { display: inline-block; font-size: 11.5px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); white-space: nowrap; }
+  .tier-head { font-weight: 650; }
+
+  /* charts */
+  .chart-card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 18px 18px 10px; margin: 16px 0 8px; position: relative; }
+  .chart-title { font-weight: 650; font-size: 15.5px; }
+  .chart-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--text-secondary); margin: 4px 0 8px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .legend i.sq { border-radius: 2px; }
+  .legend i.ring { background: transparent !important; border: 2px solid var(--text-primary); }
+  svg text { fill: var(--text-secondary); font-size: 12px; font-family: inherit; }
+  svg .tick-line { stroke: var(--grid); stroke-width: 1; }
+  svg .lbl-primary { fill: var(--text-primary); }
+  .tooltip { position: fixed; pointer-events: none; z-index: 50; background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 11px; font-size: 13px; box-shadow: 0 6px 24px rgba(0,0,0,0.14); max-width: 300px; opacity: 0; transition: opacity .08s; }
+  .tooltip .tv { font-weight: 700; color: var(--text-primary); font-size: 14px; }
+  .tooltip .tl { color: var(--text-secondary); }
+  details.table-view { margin: 4px 0 6px; font-size: 13px; }
+  details.table-view summary { cursor: pointer; color: var(--text-secondary); padding: 4px 0; }
+
+  /* scorecard */
+  .score { display: inline-block; min-width: 64px; text-align: center; padding: 2px 8px; border-radius: 6px; font-size: 12.5px; font-weight: 600; }
+  .score.y { background: color-mix(in srgb, var(--good) 14%, transparent); }
+  .score.p { background: color-mix(in srgb, var(--warning) 18%, transparent); }
+  .score.n { background: color-mix(in srgb, var(--critical) 12%, transparent); }
+
+  /* timeline */
+  .gantt { position: relative; margin: 14px 0; }
+  .gantt-row { display: grid; grid-template-columns: 230px 1fr; align-items: center; min-height: 34px; border-bottom: 1px solid var(--grid); }
+  .gantt-row .name { font-size: 13.5px; padding-right: 10px; }
+  .gantt-row .name small { display: block; color: var(--text-muted); font-size: 11.5px; }
+  .gantt-track { position: relative; height: 34px; }
+  .gantt-bar { position: absolute; top: 9px; height: 16px; border-radius: 4px; background: var(--series-1); }
+  .gantt-bar.slip { background: repeating-linear-gradient(45deg, color-mix(in srgb, var(--series-1) 45%, transparent) 0 4px, transparent 4px 8px); border: 1px solid color-mix(in srgb, var(--series-1) 60%, transparent); }
+  .gantt-bar.milestone { width: 12px !important; height: 12px; top: 11px; border-radius: 2px; transform: rotate(45deg); background: var(--series-2); }
+  .gantt-axis { display: grid; grid-template-columns: 230px 1fr; font-size: 11.5px; color: var(--text-muted); }
+  .gantt-axis .ticks { position: relative; height: 22px; }
+  .gantt-axis .ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .gantt-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--grid); }
+  .gantt-today { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--critical); opacity: .6; }
+
+  .diagram { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+  .diagram svg text { font-size: 12.5px; }
+  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px; }
+  .pill-list span { background: var(--surface-2); border-radius: 999px; padding: 4px 11px; font-size: 13px; }
+  .footer-note { font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="Contents">
+  <div class="brand">Outer Bounds</div>
+  <div class="sub">Launch monitor research &amp; plan · Oct 7, 2026</div>
+  <ol>
+    <li><a href="#summary">The answer, in one page</a></li>
+    <li><a href="#market">The market</a></li>
+    <li><a href="#landscape">Every competitor</a></li>
+    <li><a href="#tiers">How to win at each price</a></li>
+    <li><a href="#gap">The gap we fill</a></li>
+    <li><a href="#tech">Radar vs camera vs hybrid</a></li>
+    <li><a href="#product">The product we build</a></li>
+    <li><a href="#club">Markerless club data</a></li>
+    <li><a href="#software">Software &amp; open ecosystem</a></li>
+    <li><a href="#pricing">Pricing &amp; unit economics</a></li>
+    <li><a href="#gtm">Go-to-market</a></li>
+    <li><a href="#mfg">Manufacturing &amp; supply chain</a></li>
+    <li><a href="#ip">Patents &amp; certification</a></li>
+    <li><a href="#team">Team &amp; funding</a></li>
+    <li><a href="#roadmap">Roadmap &amp; gates</a></li>
+    <li><a href="#risks">Risks</a></li>
+    <li><a href="#next">First 90 days</a></li>
+    <li><a href="#appendix">Sources &amp; caveats</a></li>
+  </ol>
+  <button class="theme-toggle" id="themeToggle" type="button">Toggle light / dark</button>
+</nav>
+
+<main>
+
+<!-- ============================================================ 1 -->
+<section id="summary">
+  <div class="kicker">Research synthesis &amp; business plan · prepared October 7, 2026</div>
+  <h1>Outer Bounds: a TrackMan-class launch monitor with no stickers and no subscription</h1>
+  <p class="lede">Nine parallel research reports covered budget, mid and premium competitors, camera and radar engineering, open-source and academic work, patents and certification, the market, and manufacturing. This page turns them into one recommendation for what to build, what to charge and how to get there.</p>
+
+  <div class="grid g3" style="margin-top:22px">
+    <div class="card decision">
+      <div class="label">Technology</div>
+      <div class="answer">Cameras do the measuring. A small radar helps.</div>
+      <p>Indoors a driver turns only 1.4–2.4 times before it hits a screen 8–12 ft away. That is too little for radar to read spin off an unmarked ball, and radar never sees the club face. High-speed global-shutter cameras with microsecond infrared flashes measure spin, face, loft and impact on any ball. A ~$25–60 radar can add a pre-impact wake/trigger and an independent speed readout, kept separate from camera tracking to stay clear of TrackMan and Rapsodo patents (v1 can ship camera-only).</p>
+    </div>
+    <div class="card decision">
+      <div class="label">Form factor</div>
+      <div class="answer">Portable unit beside the ball, set slightly forward and angled back</div>
+      <p>It works in 10–12 ft rooms and on the range, is good at short game, and needs no ball-flight space behind the golfer. Setting it forward of the ball and yawing the cameras back 15–30° lets them see the club face rather than its toe. Two cameras are stacked vertically and a third is offset to the side to see the club.</p>
+    </div>
+    <div class="card decision">
+      <div class="label">Price</div>
+      <div class="answer">Pro $2,999 (founders $2,499) · Indoor $1,999 later</div>
+      <p>Three-year cost with GSPro is $3,749. The same period costs $5,547 for a Bushnell Launch Pro with Gold and GSPro, $5,750 for a Garmin R50 and $9,546 for a Foresight GC3. The price sits above Square Omni ($1,599, needs stickers) and below the $5k R50 and Full Swing KIT.</p>
+    </div>
+    <div class="card decision">
+      <div class="label">Business model</div>
+      <div class="answer">No subscription, ever. Every metric unlocked. Open API.</div>
+      <p>GSPro, OpenGolfSim and an open shot protocol from day one, with a published local API. Revenue comes from hardware margin (about 62–72% gross margin direct at $2,999), plus bundles, accessories, a one-time Coach/Fitter license and B2B range kits.</p>
+    </div>
+    <div class="card decision">
+      <div class="label">The moat (and biggest risk)</div>
+      <div class="answer">Measured, markerless face angle, dynamic loft and impact location from a portable unit</div>
+      <p>No portable unit at any price under ~$13k does this today. GC3, Bushnell, R50, Uneekor and Square all use stickers. It is the hardest engineering problem in the plan, so it is gated: honest labelling of measured vs derived values, plus go/no-go accuracy checks against a GCQuad.</p>
+    </div>
+    <div class="card decision">
+      <div class="label">Timeline &amp; capital</div>
+      <div class="answer">Ship holiday 2028 (stretch) / spring 2029 (realistic). About $12–17M to launch.</div>
+      <p>A $4–6M seed round carries us to the first engineering build with accuracy proven. A $10–15M Series A at design validation pays for production inventory and launch. Final assembly goes in Taiwan or Vietnam, not China: US duty is about 10–14% there against about 39% for China.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Why this is the best value position</strong>
+    Below ~$1,600 you get speed and launch measurements and modelled everything else. Club data is calculated, behind a paywall or needs stickers, and spin needs special balls. From $2,999 to $7,000 incumbents sell sticker-based club data and recover margin through $199–$599/year subscriptions. Foresight raised Gold to $599 on Sept 18, 2026. We charge Bushnell Launch Pro money once, deliver more club data than a $7k GC3 without stickers, and let the owner use any simulator. The 3-year cost comparison is the main pitch.
+  </div>
+</section>
+
+<!-- ============================================================ 2 -->
+<section id="market">
+  <div class="kicker">Section 2</div>
+  <h2>The market: real, growing, and badly measured</h2>
+  <p class="section-intro">Syndicated reports disagree by 5×. Company financials are more reliable, and they show a larger market than the reports claim. Golf off the course is the growth engine.</p>
+  <div class="grid g4">
+    <div class="card stat"><div class="label">US golfers, 2025 (record)</div><div class="value">48.1M</div><div class="note">29.1M on-course + 19.0M off-course only (NGF)</div></div>
+    <div class="card stat"><div class="label">US simulator players, 2024</div><div class="value">8.1M</div><div class="note">+126% in 5 years; 51% are "non-golfers" (NGF)</div></div>
+    <div class="card stat"><div class="label">TrackMan revenue, 2025</div><div class="value">~$330M</div><div class="note">DKK 2,211M, +21%; ~60% gross, ~32% EBITDA margin</div></div>
+    <div class="card stat"><div class="label">Full Swing sale, Jul 2026</div><div class="value">$530M</div><div class="note">Versant (Golf Channel); bought for $160M in 2021</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h4 style="margin-top:0">Size &amp; growth</h4>
+      <ul class="small">
+        <li><b>Launch monitors:</b> reports put it at $190M–$1.0B (2025), growing ~8.5–9.8%/yr. TrackMan's revenue alone exceeds most of those totals, so treat the reports as a growth signal, not a TAM.</li>
+        <li><b>Simulators (hardware + software + installs):</b> consensus ~$2.0–2.4B global in 2025, ~40–45% North America. Residential is the fastest-growing segment, at ~11–12% CAGR.</li>
+        <li><b>Bottom-up golf-tech revenue:</b> above $1.2B. TrackMan ~$330M, Golfzon ~$340M, Creatz/Uneekor $71M (24% operating margin, IPO in Oct 2026), Rapsodo ~$35–75M, TruGolf $19M (loss-making).</li>
+        <li><b>Facilities (NGF):</b> 6.5% of US golf facilities have simulators, 13% plan to add them, and over 20% already own a portable launch monitor. Average payback is 7 months.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Our serviceable market (estimate)</h4>
+      <ul class="small">
+        <li>Global consumer and prosumer units in the $1k–$3.5k band: <b>~40–70k/yr</b>. Units under $1k: ~150–250k/yr, which is a large pool of people who will trade up.</li>
+        <li>Our realistic target: the $1.5k–$5k band plus trade-ups, <b>~50–90k units/yr</b>. A 3–5% share is <b>1,500–4,500 units/yr</b>.</li>
+        <li>At a blended ~$1,474 contribution per unit, about 2,000 units/yr covers $3M of fixed costs and about 4,100 covers $6M.</li>
+        <li class="muted">Unit volumes are our estimates. No brand publishes them. Creatz targeted 10k exported units in 2024, and SkyTrak says 115k units sold over its lifetime.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 -->
+<section id="landscape">
+  <div class="kicker">Section 3</div>
+  <h2>Every competitor, on one map</h2>
+  <p class="section-intro">About 30 products from $199 to $26k, coloured by sensing technology. The shaded band is where a portable, markerless, full-club-data, subscription-free unit should sit. Nothing sits there today.</p>
+
+  <div class="chart-card" id="priceChartCard">
+    <div class="chart-title">Street price by product, October 2026 (log scale)</div>
+    <div class="chart-sub">Hover a dot for technology, club data and fees. Ceiling-mounted units are marked "overhead".</div>
+    <div class="legend">
+      <span><i style="background:var(--series-1)"></i>Camera (photometric)</span>
+      <span><i style="background:var(--series-2)"></i>Radar</span>
+      <span><i style="background:var(--series-3)"></i>Radar + camera hybrid</span>
+      <span><i class="ring"></i>Outer Bounds (target)</span>
+    </div>
+    <div id="priceChart"></div>
+    <details class="table-view"><summary>Show as table</summary><div class="table-wrap"><table id="priceTable"></table></div></details>
+  </div>
+
+  <h3>Full comparison table</h3>
+  <p class="small muted">Prices are US street prices, Oct 2026. "Markers" covers club stickers or special or marked balls. "Recurring" is what you must pay the device maker for full data and third-party simulators. Simulator licences such as GSPro ($250/yr) are extra for everyone.</p>
+  <div class="table-wrap" style="max-height:620px">
+  <table>
+    <thead><tr><th>Product</th><th class="num">Street</th><th>Sensing</th><th>Placement</th><th>Spin (any ball?)</th><th>Club data</th><th>Markers</th><th>Recurring</th><th>GSPro</th></tr></thead>
+    <tbody>
+      <tr><td colspan="9" class="tier-head">Budget (&lt; $1,000)</td></tr>
+      <tr><td>Shot Scope LM1</td><td class="num">$200</td><td>Doppler radar</td><td>Behind</td><td class="n">None</td><td>Club speed</td><td>—</td><td>None</td><td class="n">No</td></tr>
+      <tr><td>PRGR HS-130A</td><td class="num">$200</td><td>24 GHz radar</td><td>Behind</td><td class="n">None</td><td>Club speed</td><td>—</td><td>None</td><td class="n">No</td></tr>
+      <tr><td>Garmin Approach R10</td><td class="num">$500</td><td>Doppler radar (3 RX)</td><td>Behind, 6–8 ft</td><td class="p">Calculated indoors</td><td>Path, face, AoA all calculated</td><td>RCT balls advised</td><td>$99.99/yr optional</td><td class="y">Yes</td></tr>
+      <tr><td>Rapsodo MLM2PRO</td><td class="num">$550–700</td><td>Radar + 2 cameras</td><td>Behind, 14 ft+ room</td><td class="n">Only with RPT balls</td><td>Path, AoA (no face)</td><td>RPT balls $70/dz</td><td class="n">$199.99/yr required</td><td class="p">Premium only</td></tr>
+      <tr><td>Rapsodo MLM2XPRO (Oct 15)</td><td class="num">$900</td><td>Radar + 2 cameras</td><td>Behind</td><td class="n">Only with RPT balls</td><td>Path, AoA</td><td>RPT balls</td><td class="n">$199.99 / $399.99/yr</td><td class="p">Membership</td></tr>
+      <tr><td>Swing Caddie SC4 Pro</td><td class="num">$500–600</td><td>24 GHz radar</td><td>Behind, 5 ft</td><td class="p">Calculated</td><td>Speed only</td><td>—</td><td>None</td><td class="n">No</td></tr>
+      <tr><td>Blue Tees Rainmaker</td><td class="num">$599</td><td>Phased-array radar</td><td>Behind</td><td class="p">Calculated (reads low)</td><td>Path, AoA (calculated)</td><td>—</td><td>$79/yr after year 1</td><td class="y">Yes</td></tr>
+      <tr><td>Square Golf Home</td><td class="num">$699</td><td>2 cameras</td><td>Side</td><td class="p">Marked balls</td><td>Path, face, loft, AoA</td><td>Marked balls + marker</td><td>None</td><td class="y">Yes</td></tr>
+      <tr><td colspan="9" class="tier-head">Mid ($1,000–$7,000)</td></tr>
+      <tr><td>FlightScope Mevo Gen2</td><td class="num">$1,299</td><td>24 GHz radar + camera</td><td>Behind, 16 ft+</td><td class="p">Indoors needs dots/RCT</td><td>AoA base; path/face/loft +$699–1,000; impact +$350–499</td><td>Metal dots indoors</td><td>None (one-time unlocks)</td><td class="y">Yes</td></tr>
+      <tr><td>Square Golf Omni</td><td class="num">$1,599</td><td>4 IR cameras (vertical)</td><td>Side</td><td class="y">Yes</td><td>Path, AoA, impact measured; face &amp; loft <i>estimated</i></td><td class="n">2 stickers per club</td><td>None</td><td class="y">Yes, free</td></tr>
+      <tr><td>SkyTrak ST MAX</td><td class="num">$1,695 promo</td><td>Camera + dual Doppler</td><td>Side</td><td class="y">Yes</td><td>Speed, path, face (calc); no AoA</td><td>None</td><td class="n">$99.99–599.99/yr</td><td class="n">Not official</td></tr>
+      <tr><td>Foresight GC2 (new, ships Oct 9)</td><td class="num">$1,699</td><td>2 cameras</td><td>Side</td><td class="y">Yes</td><td>None (ball only)</td><td>—</td><td class="n">Foresight+</td><td class="p">Gold $599/yr</td></tr>
+      <tr><td>Uneekor EYE MINI LITE</td><td class="num">$1,999</td><td>2 IR cameras</td><td>Side (indoor, PC)</td><td class="y">Yes</td><td>Speed, path, AoA, smash</td><td class="n">Toe sticker</td><td class="n">Pro $199/yr for 3rd-party</td><td class="p">With Pro</td></tr>
+      <tr><td>Bushnell Launch Pro</td><td class="num">$2,999</td><td>3 cameras (= GC3)</td><td>Side, ~2 ft</td><td class="y">Yes</td><td>Speed, smash, path, AoA. No face</td><td class="n">Dot sticker</td><td class="n">Silver $199 (club data) / Gold $599 (GSPro)</td><td class="p">Gold</td></tr>
+      <tr><td>Uneekor EYE MINI</td><td class="num">$2,999</td><td>2 IR cameras</td><td>Side</td><td class="y">Yes</td><td>4 metrics, no face</td><td class="n">Toe sticker</td><td class="n">Pro $199/yr</td><td class="p">With Pro</td></tr>
+      <tr><td>TruGolf LaunchBox (new)</td><td class="num">$2,999</td><td>Camera + IR</td><td>Unpublished</td><td class="y">Claimed</td><td>Claims sticker-free club data (unverified)</td><td>None claimed</td><td>None (E6 incl.)</td><td class="n">No (E6 only)</td></tr>
+      <tr><td>Full Swing KIT</td><td class="num">$3,999–4,999</td><td>24 GHz ML radar</td><td>Behind, 16–20 ft</td><td class="p">Radar; RCT advised</td><td>Path, face, F2P, AoA. No loft/impact</td><td>None</td><td>$99.99/yr optional</td><td class="y">Yes</td></tr>
+      <tr><td>Garmin Approach R50</td><td class="num">$4,999</td><td>3 cameras + 10" screen</td><td>Side, 1.5 ft</td><td class="y">Yes</td><td>Speed, path, face, F2P, AoA. No loft/impact</td><td class="n">Face sticker</td><td>$99.99/yr optional</td><td class="y">Yes</td></tr>
+      <tr><td>Uneekor EYE XR</td><td class="num">$5,999</td><td>2 IR cameras</td><td>Overhead</td><td class="y">Yes</td><td>4 metrics; face <i>derived</i></td><td class="y">None</td><td class="n">Tiers</td><td class="p">With Pro</td></tr>
+      <tr><td>ProTee VX</td><td class="num">$6,500</td><td>2 cameras + AI</td><td>Overhead, indoor</td><td class="y">Yes</td><td>Full incl. loft, lie, impact</td><td class="y">None</td><td class="y">None</td><td class="y">Yes</td></tr>
+      <tr><td>Foresight GC3</td><td class="num">$6,999</td><td>3 cameras</td><td>Side</td><td class="y">Yes</td><td>4 metrics</td><td class="n">Dot sticker</td><td class="n">Foresight+</td><td class="p">Gold</td></tr>
+      <tr><td colspan="9" class="tier-head">Premium (&gt; $7,000)</td></tr>
+      <tr><td>Uneekor EYE XO2</td><td class="num">$10,999</td><td>3 IR cameras</td><td>Overhead</td><td class="y">Yes</td><td>9 incl. impact</td><td class="n">Bar + dot stickers</td><td class="n">Tiers</td><td class="p">With Pro</td></tr>
+      <tr><td>TrackMan iO</td><td class="num">$13,995+</td><td>4,600 fps camera + 24 GHz radar</td><td>Overhead, indoor</td><td class="y">Yes (camera)</td><td>Club speed only at $13,995; full markerless set ~$21–24k</td><td class="y">None</td><td class="n">$700–1,100/yr</td><td class="n">Closed</td></tr>
+      <tr><td>FlightScope X3C</td><td class="num">$13,495</td><td>3D radar + camera ("Fusion")</td><td>Behind</td><td class="p">Indoors needs Al stickers</td><td>Full incl. impact (300 lux)</td><td>Ball stickers indoors</td><td>E6 add-ons</td><td class="n">Integrators only</td></tr>
+      <tr><td>Foresight GCQuad</td><td class="num">$15,999</td><td>4 cameras (2 stacked pairs)</td><td>Side</td><td class="y">Yes</td><td>Full (face, loft, lie, impact)</td><td class="n">4-dot stickers</td><td class="n">Foresight+</td><td class="p">Gold</td></tr>
+      <tr><td>Foresight Falcon</td><td class="num">$16,999</td><td>4 cameras</td><td>Overhead</td><td class="y">Yes</td><td>Full, in two 11×11 in corners</td><td class="n">4-dot stickers</td><td class="n">Foresight+</td><td class="p">Gold</td></tr>
+      <tr><td>Foresight QuadMAX</td><td class="num">$19,999</td><td>4 cameras</td><td>Side</td><td class="y">Yes</td><td>Full</td><td class="n">4-dot stickers</td><td class="n">Foresight+</td><td class="p">Gold</td></tr>
+      <tr><td>TrackMan 4</td><td class="num">$21,995–25,995</td><td>10.5 + 24 GHz radar + camera</td><td>Behind</td><td class="p">Outdoor yes; RCT indoors</td><td>Full markerless (&gt;90% pickup)</td><td>RCT indoors</td><td class="n">~$1,100/yr</td><td class="n">Closed</td></tr>
+      <tr class="ours"><td>Outer Bounds Pro (target)</td><td class="num">$2,999</td><td>3 global-shutter cameras + 940 nm flashes + 24 GHz radar</td><td>Side, forward-oblique</td><td class="y">Yes, any ball</td><td>Full: path, face, F2P, dynamic loft, spin loft, AoA, impact, low point</td><td class="y">None</td><td class="y">None</td><td class="y">Yes + open API</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>What changed in 2025–2026 (the market is moving fast)</h3>
+  <div class="grid g2">
+    <div class="card small">
+      <ul style="margin:0">
+        <li><b>Foresight+ (Sept 18, 2026):</b> perpetual software ended. Silver costs $199/yr, Gold $599/yr (up from $499) and Course Pass $295–595/yr. GSPro requires Gold. Forum reaction has been largely negative.</li>
+        <li><b>Rapsodo MLM2XPRO (Oct 15, 2026):</b> $899.99. New $399.99/yr "Studios" tier, trial cut from 45 to 21 days. Spin still needs RPT balls.</li>
+        <li><b>Foresight GC2 (Oct 2026):</b> $1,699 with ball data only. Foresight is now fighting at the low end.</li>
+        <li><b>Square Golf Omni (2026):</b> $1,599 with no subscription. Repeatedly sold out, and its ship dates slipped publicly from April to "early fall". It is the closest product to our spec.</li>
+      </ul>
+    </div>
+    <div class="card small">
+      <ul style="margin:0">
+        <li><b>FlightScope Mevo Gen2:</b> $1,299 with no subscription; sold out globally in Feb 2026. Mevo+ is discontinued.</li>
+        <li><b>SkyTrak ST MAX:</b> list price $2,995, now $1,695 on promotion. Official GSPro support has ended for new buyers.</li>
+        <li><b>New entrants:</b> TruGolf LaunchBox ($2,999, claims no stickers, E6 only). NeoPace G10 Pro (3 cameras + radar, $899 Kickstarter / $1,499 retail). Rapsodo CLMPRO (overhead, ~$5–6k, coming).</li>
+        <li><b>Capital:</b> Versant bought Full Swing for $530M. Creatz/Uneekor is listing on KOSDAQ. Callaway sold 60% of Topgolf. This category has exits.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 -->
+<section id="tiers">
+  <div class="kicker">Section 4</div>
+  <h2>How to win at each price level, and why they all succeed</h2>
+  <p class="section-intro">Many of these products look alike, so why do prices range from $500 to $25,000? Each tier serves a different buyer, and each wins with a different mix of trust, distribution, ecosystem and convenience. Accuracy alone does not set the price.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Tier</th><th>Who buys</th><th>How the winners win</th><th>How they make money</th><th>The opening</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>$199–$699</b><br><span class="muted small">"My first launch monitor"</span><br><span class="tag">R10, MLM2PRO, SC4, Square Home</span></td>
+        <td>Range practicers, beginners, people curious about simulators. Most units sold of any tier: R10 is the #1 owned device at 15.5% in the r/Golfsimulator survey.</td>
+        <td>Brand and retail reach (Garmin at Best Buy, Amazon, Scheels). Radar is cheap and works outdoors. "Good enough" carry numbers.</td>
+        <td>Thin hardware margin plus subscriptions or ecosystem: Rapsodo $199.99/yr, Garmin Golf $99.99/yr. Consumable balls (RPT $70/dz).</td>
+        <td>Spin is calculated or needs special balls, club data is calculated, putting is poor, and radar needs 14–21 ft of room. These buyers become our trade-in pipeline.</td>
+      </tr>
+      <tr>
+        <td><b>$1,299–$1,999</b><br><span class="muted small">"Serious hobbyist"</span><br><span class="tag">Mevo Gen2, Omni, ST MAX, GC2, MINI LITE</span></td>
+        <td>Garage and basement simulator builders who know the forums and compare total cost.</td>
+        <td><b>Disruption by removing fees.</b> Mevo Gen2 and Omni won 2025–26 mindshare with no subscription and free GSPro. Measured ball spin is now a commodity at about $1,600.</td>
+        <td>Hardware margin (Korean or Asian cost base), one-time unlocks (Mevo Pro Package ~$1,000), course credits.</td>
+        <td>Stickers, estimated face and loft, small club zones, weak apps and support (Square 1.44/5), bright-sun spin variance.</td>
+      </tr>
+      <tr>
+        <td><b>$2,499–$2,999</b><br><span class="muted small">"Accuracy per dollar"</span><br><span class="tag">Bushnell Launch Pro, EYE MINI</span></td>
+        <td>Buyers who want "Foresight-grade" ball data without paying for a GCQuad.</td>
+        <td>Reputation for accuracy: the Launch Pro is "the most accurate launch monitor I own" per reviewers. Foresight brand halo. Strong independent test results.</td>
+        <td><b>Razor and blades:</b> GC3 hardware at less than half the price, recovered through $199–$599/yr. 3-year cost is about $5.5k.</td>
+        <td><b>Our main target.</b> Four sticker-based club metrics, no face angle, rising fees and a US-only check-in lock. Undercut it on 3-year cost while offering more data.</td>
+      </tr>
+      <tr>
+        <td><b>$3,999–$7,000</b><br><span class="muted small">"Premium portable / entry overhead"</span><br><span class="tag">R50, KIT, GC3, ProTee VX, EYE XR</span></td>
+        <td>Higher-income home builders who value convenience, brand or a clean ceiling install.</td>
+        <td>All-in-one convenience (R50 runs the simulator on a 10" screen). Brand halo (Full Swing / Tiger / TGL). Markerless only from the ceiling (ProTee VX).</td>
+        <td>Hardware margin at premium prices, plus optional memberships.</td>
+        <td>Still stickers (R50, GC3) or 16–20 ft of room (KIT). No dynamic loft or impact below $6.5k. Overhead units are indoor-only.</td>
+      </tr>
+      <tr>
+        <td><b>$10,000+</b><br><span class="muted small">"Pro, fitter, venue"</span><br><span class="tag">TrackMan 4/iO, GCQuad, QuadMAX, X3C</span></td>
+        <td>Tour players, coaches, fitters, OEM club testing, simulator venues (Five Iron runs 500+ TrackMans).</td>
+        <td><b>Trust as the standard.</b> "TrackMan numbers" is the language of the sport. Mostly B2B: ranges, venues, tours, fitting.</td>
+        <td>~60% gross margin hardware plus software memberships ($700–1,100/yr) and venue licensing. TrackMan earns 32% EBITDA.</td>
+        <td>Price and closed ecosystems. Coaches and fitters on a budget are an adjacent B2B market for a credible $3k unit.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">
+    <strong>The pattern</strong>
+    Ball data is now a commodity, with measured spin on any ball from $1,599. Price premiums are now paid for <b>club data</b>, <b>brand trust</b> and <b>convenience</b>. Incumbents protect margin with subscriptions. The value play is to deliver the expensive part (club-face data) without the costs owners hate (stickers, fees, closed software) and earn trust through published, independent accuracy testing.
+  </div>
+</section>
+
+<!-- ============================================================ 5 -->
+<section id="gap">
+  <div class="kicker">Section 5</div>
+  <h2>The gap we fill</h2>
+  <p class="section-intro">The table lists each requirement from your brief and the closest existing products. No single product meets all of them.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Requirement</th><th>Square Omni<br>$1,599</th><th>Mevo Gen2 + Pro<br>$2,299</th><th>Bushnell LP<br>$2,999</th><th>Garmin R50<br>$4,999</th><th>ProTee VX<br>$6,500</th><th>TrackMan iO<br>$14–24k</th><th>Outer Bounds<br>$2,999</th></tr></thead>
+    <tbody>
+      <tr><td>Measured spin, any ball, indoors</td><td class="y">Yes</td><td class="n">Dots / RCT</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><td>Face angle without stickers</td><td class="n">Sticker, estimated</td><td class="y">Yes (radar)</td><td class="n">None</td><td class="n">Sticker</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes (measured)</td></tr>
+      <tr><td>Dynamic loft &amp; impact location</td><td class="p">Stickers / estimated</td><td class="p">+$499 for impact</td><td class="n">No</td><td class="n">No</td><td class="y">Yes</td><td class="y">Top tier</td><td class="y">Yes</td></tr>
+      <tr><td>Indoor and outdoor</td><td class="p">Sun hurts spin</td><td class="y">Yes</td><td class="p">Sun degrades</td><td class="y">Yes</td><td class="n">Indoor only</td><td class="n">Indoor only</td><td class="y">Yes (gated 940 nm)</td></tr>
+      <tr><td>Fits a 10–12 ft deep room</td><td class="y">Yes</td><td class="n">16 ft+</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+      <tr><td>Portable / battery</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="p">9 lb, 4 h</td><td class="n">Ceiling</td><td class="n">Ceiling</td><td class="y">Yes</td></tr>
+      <tr><td>No subscription for full data + 3rd-party sims</td><td class="y">Yes</td><td class="y">Yes (one-time unlocks)</td><td class="n">$599/yr</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">$700–1,100/yr</td><td class="y">Yes</td></tr>
+      <tr><td>Open, documented API</td><td class="p">GSPro only</td><td class="n">No public API</td><td class="n">No</td><td class="p">GSPro</td><td class="p">GSPro</td><td class="n">Closed</td><td class="y">Yes</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">Secondary gaps nobody solves well: a generous club-data hitting zone (Square's is 5×5 in), outdoor sunlight robustness for camera units, low point and lie below $6.5k, and support quality. We can win on all four.</p>
+</section>
+
+<!-- ============================================================ 6 -->
+<section id="tech">
+  <div class="kicker">Section 6</div>
+  <h2>Radar vs camera vs hybrid: the best value for money</h2>
+  <p class="section-intro">The decision follows from physics. It is not a matter of preference.</p>
+
+  <div class="grid g3">
+    <div class="card">
+      <h4 style="margin-top:0">Why radar alone fails our brief</h4>
+      <p class="small">Indoors the ball is visible for only ~35–110 ms before the screen. A 2,600 rpm drive turns <b>1.4–2.4 times</b> in that window, so the frequency resolution (19–30 Hz) is about the same as the spin itself (43 Hz). TrackMan's own patent says an unmarked ball's spin signal "is often too weak to be useful" indoors. That is why Mevo needs metal dots, R10 calculates spin, and TrackMan's indoor iO measures spin with a camera. Radar also never sees which way the face points, so face angle and loft are back-calculated and impact location is impossible.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Why cameras win, if exposures are gated</h4>
+      <p class="small">At 940 nm with a <b>5 µs exposure timed to the flash</b>, full sunlight adds only ~4% to the signal. With the cheap trick of one 1 ms open shutter and several flashes (SkyTrak, PiTrac), sunlight is <b>~8× the signal</b> and the image fails. That is why those units struggle or fail outdoors. 940 nm has under half the solar energy of 850 nm. Microsecond flashes also freeze a 200 mph ball to under 0.5 mm of blur, which is sharp enough to read dimples for spin.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Why add a small radar anyway</h4>
+      <p class="small">For ~$25–60 in parts, a 24 GHz radar with 1 transmitter and 3–4 receivers gives: (1) a trigger from the approaching club tens of ms before impact, so the cameras capture the club too; (2) an independent ball and club speed check that catches camera calibration drift; (3) outdoors, 30–60 m of <i>measured</i> flight, so carry is anchored to data rather than a model alone. TrackMan, FlightScope and Rapsodo have all converged on radar plus camera. <b>Patent catch:</b> combining radar data with camera tracks is patented by TrackMan (to 2037–41) and Rapsodo (to 2039). Our radar therefore stays a separate sensor in v1 (wake + speed readout). Outdoor flight tracking and any real fusion wait for the FTO opinion, and v1 can ship camera-only.</p>
+    </div>
+  </div>
+
+  <h3>Scorecard against your requirements</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Requirement</th><th>Radar only (R10 / Mevo / KIT style)</th><th>Camera only (GC3 / Omni style)</th><th>Camera-first + radar helper (ours)</th></tr></thead>
+    <tbody>
+      <tr><td>Ball speed, launch angles</td><td><span class="score y">Strong</span></td><td><span class="score y">Strong</span></td><td><span class="score y">Strong, cross-checked</span></td></tr>
+      <tr><td>Measured spin + axis, unmarked ball, indoors</td><td><span class="score n">No</span> needs dots / RCT</td><td><span class="score y">Yes</span></td><td><span class="score y">Yes</span></td></tr>
+      <tr><td>Face angle, dynamic loft, impact location (no stickers)</td><td><span class="score p">Derived</span> impact impossible</td><td><span class="score p">Hard</span> (everyone uses stickers today)</td><td><span class="score p">Hard but solvable</span> radar timing + 3-camera pose</td></tr>
+      <tr><td>Small room (10–12 ft)</td><td><span class="score n">No</span> 14–21 ft</td><td><span class="score y">Yes</span></td><td><span class="score y">Yes</span></td></tr>
+      <tr><td>Outdoor sunlight</td><td><span class="score y">Excellent</span></td><td><span class="score p">Depends on gating</span></td><td><span class="score y">Gated + radar backup</span></td></tr>
+      <tr><td>Measured outdoor carry</td><td><span class="score y">Yes</span></td><td><span class="score p">Modelled</span></td><td><span class="score y">30–60 m measured + model</span></td></tr>
+      <tr><td>Short game &amp; putting</td><td><span class="score n">Weak</span> R10 putting 0.99/10</td><td><span class="score y">Strong</span> Square 8.2/10</td><td><span class="score y">Strong</span></td></tr>
+      <tr><td>Left-handed golfers</td><td><span class="score y">No move</span></td><td><span class="score p">Move unit</span></td><td><span class="score p">Move unit</span> (category norm; flip with one tap)</td></tr>
+      <tr><td>Parts cost (sensing + compute)</td><td><span class="score y">$60–150</span></td><td><span class="score y">$300–450</span></td><td><span class="score y">$330–500</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>The camera choices you asked about: how many, and inline vs staggered</h3>
+  <div class="grid g2">
+    <div class="card small">
+      <h4 style="margin-top:0">Number of cameras</h4>
+      <ul style="margin:0">
+        <li><b>1 camera + flashes</b> (SkyTrak, PiTrac): cheapest, but depth comes from apparent ball size (horizontal launch ±0.6°) and it is indoor-only.</li>
+        <li><b>2 cameras (stereo pair)</b> (EYE MINI, GC2): good 3D ball position and spin. Club pose is weak in some directions.</li>
+        <li><b>3 cameras</b> (GC3, Launch Pro, R50): two baselines give robust club edges (shaft, leading edge, top line) at every angle, plus redundancy against occlusion. <b>This is our pick: a vertical stereo pair plus one offset club camera.</b></li>
+        <li><b>4 cameras</b> (GCQuad, Square Omni): two stacked pairs. Mostly buys a bigger hitting zone and time diversity. Uneekor gets full marker-based club data from 2.</li>
+      </ul>
+    </div>
+    <div class="card small">
+      <h4 style="margin-top:0">Inline vs vertical vs staggered</h4>
+      <ul style="margin:0">
+        <li><b>Inline (horizontal baseline):</b> the ball travels along the matching lines between the two images, so several ball images on one line become ambiguous. The left and right edges it measures are also the ones motion blur smears.</li>
+        <li><b>Vertical (stacked) baseline:</b> matches run perpendicular to travel, so every ball image is unique and the top and bottom edges stay sharp. The unit stays narrow and tower-shaped. Square Omni and GCQuad stack vertically, and so do we, with a 60–100 mm baseline.</li>
+        <li><b>Staggered / triangular:</b> adding a horizontally offset third camera gives a second baseline for club pose. Cameras can also fire at different instants for more time samples.</li>
+        <li><b>Capture method:</b> high-fps video is a big data pipe. One long exposure with several flashes fails in sun. <b>Gated quad-shutter</b> (Sony IMX900: 4 separately timed sub-images per frame) gives multi-image spin in full sun on a mid-price sensor.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 7 -->
+<section id="product">
+  <div class="kicker">Section 7</div>
+  <h2>The product we build</h2>
+  <p class="section-intro">The working names are <b>Outer Bounds Pro</b> (portable, battery, screen, indoor and outdoor) and <b>Outer Bounds Indoor</b> (plug-in, same optical core and same data). The spec below is the reference design to prototype against. Every line is chosen to hit the accuracy targets at a parts cost of about $430–500 in volume.</p>
+
+  <div class="grid g2" style="align-items:start">
+    <div class="diagram">
+      <svg viewBox="0 0 520 360" width="100%" role="img" aria-label="Top-down placement diagram: golfer, ball, unit placed beside and slightly forward of the ball, camera field of view angled back toward the ball, radar beam toward target.">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted)"/></marker>
+        </defs>
+        <!-- target line -->
+        <line x1="60" y1="190" x2="500" y2="190" stroke="var(--grid)" stroke-width="2" stroke-dasharray="0"/>
+        <text x="420" y="182">target line →</text>
+        <!-- golfer -->
+        <circle cx="160" cy="262" r="26" fill="var(--surface-2)" stroke="var(--border)"/>
+        <text x="132" y="306">Golfer (RH)</text>
+        <!-- ball -->
+        <circle cx="160" cy="190" r="6" fill="var(--text-primary)"/>
+        <text x="96" y="214" class="lbl-primary">Ball</text>
+        <!-- FOV cone from unit back toward ball -->
+        <path d="M232 104 L95 175 L200 210 Z" fill="var(--series-1)" opacity="0.13"/>
+        <path d="M232 104 L95 175 M232 104 L200 210" stroke="var(--series-1)" stroke-width="1.5" fill="none"/>
+        <text x="205" y="236">Camera view:</text>
+        <text x="205" y="251">sees ball + club face</text>
+        <!-- radar beam toward target -->
+        <path d="M262 104 L500 150 L500 60 Z" fill="var(--series-2)" opacity="0.10"/>
+        <path d="M262 104 L500 150 M262 104 L500 60" stroke="var(--series-2)" stroke-width="1.5" fill="none"/>
+        <text x="380" y="98">24 GHz radar:</text>
+        <text x="380" y="113">trigger + flight</text>
+        <!-- unit -->
+        <g transform="rotate(-20 247 92)">
+          <rect x="222" y="78" width="50" height="28" rx="6" fill="var(--surface-1)" stroke="var(--text-primary)" stroke-width="2"/>
+        </g>
+        <text x="222" y="62" class="lbl-primary" font-weight="600">Outer Bounds unit</text>
+        <!-- dims -->
+        <line x1="160" y1="40" x2="247" y2="40" stroke="var(--text-muted)" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="166" y="34">~10–20 cm forward</text>
+        <line x1="120" y1="190" x2="120" y2="96" stroke="var(--text-muted)" marker-start="url(#arr)" marker-end="url(#arr)"/>
+        <text x="20" y="110">~45–60 cm</text>
+        <text x="20" y="125">to the side</text>
+        <text x="360" y="250">Yawed back 15–30° so the</text>
+        <text x="360" y="266">cameras see the face,</text>
+        <text x="360" y="282">not just the toe edge.</text>
+        <text x="360" y="306">Cameras stacked vertically</text>
+        <text x="360" y="322">(60–100 mm) + 1 offset</text>
+        <text x="360" y="338">club camera.</text>
+      </svg>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0">Reference specification</h4>
+      <table class="small">
+        <tbody>
+          <tr><td><b>Ball/club cameras</b></td><td>2× Sony IMX900 3.2 MP global-shutter mono, vertical stereo. Uses <i>quad-shutter</i> mode: 4 separately timed sub-images per frame, 4–8 ball images over ~3 ms. Fallback: 4× IMX296 in two time-staggered stereo pairs.</td></tr>
+          <tr><td><b>Club camera</b></td><td>3rd global-shutter camera offset horizontally for club pose and impact</td></tr>
+          <tr><td><b>Illumination</b></td><td>~24–32 high-power 940 nm IR LEDs, 3–5 µs pulses (~400 W peak), GaN driver + capacitor bank, hardware pulse-width watchdog. 30–50 nm bandpass filter. Designed for IEC 62471 Exempt / Risk Group 1.</td></tr>
+          <tr><td><b>Timing</b></td><td>Dedicated microcontroller as timing master (ns jitter). Linux is never in the timing loop. One constant capture mode with a rolling buffer, triggered when the ball leaves. The camera mode is never switched on address or takeaway (TrackMan US 12,586,211).</td></tr>
+          <tr><td><b>Radar</b></td><td>Optional in v1. 24 GHz CW/FSK Doppler (§15.245), carrier set per region in firmware (~24.16 GHz works for US, France and UK). Used only for wake/trigger and an independent ball and club speed readout. <b>Its data never feed the camera position or trajectory estimate</b> (patent design-around, §13). Outdoor radar flight tracking only after FTO sign-off.</td></tr>
+          <tr><td><b>Compute</b></td><td>Production: Rockchip RK3588 or Qualcomm QCS6490 module (~$110–220). Prototype on Jetson Orin Nano / Pi 5. Keep the vision code portable (ONNX).</td></tr>
+          <tr><td><b>Other sensors</b></td><td>IMU (auto-level ±0.1°), barometer + temperature (air density)</td></tr>
+          <tr><td><b>Power</b></td><td>~72 Wh Li-ion, <b>user-swappable pack</b> (EU rule from Feb 2027; also a selling point), under 100 Wh, 65 W USB-C PD, 5–6 h target. No mains adapter in the box.</td></tr>
+          <tr><td><b>Build</b></td><td>Aluminium optical bench inside a PC/ABS shell with IR window. IP54 target. Status display. Tripod thread. Camera-assisted target alignment.</td></tr>
+          <tr><td><b>Hitting zone</b></td><td>≥ 12×10 in for ball data, ≥ 8×8 in for full club data (Square: 5×5)</td></tr>
+          <tr><td><b>Handedness</b></td><td>Auto-detected. Unit moves to the other side, same as every side-of-ball product.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Metrics, how each is measured, and launch accuracy targets</h3>
+  <p class="small muted">"Radar" cross-checks are independent readouts and consistency flags. They never feed into the camera estimate unless the FTO clears it (see §13). Targets are measured against a GCQuad / TrackMan reference on a fixed test plan, as average error plus 95th percentile. They are set where reviewers have caught competitors out (R50 AoA bias, Uneekor club-speed outliers, SkyTrak/Mevo side carry, KIT indoor carry, Square impact no-reads).</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Metric</th><th>Primary source</th><th>Cross-check</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Ball speed</td><td>Stereo ball track</td><td>Radar Doppler</td><td>±0.5 mph</td></tr>
+      <tr><td>Launch angle (vertical) / direction (horizontal)</td><td>Stereo track + IMU level</td><td>Radar angle (outdoor)</td><td>±0.2° / ±0.3°</td></tr>
+      <tr><td>Backspin, sidespin, total spin</td><td>Dimple-texture rotation across 4–8 gated images</td><td>Physics consistency (D-plane)</td><td>±3–5% (±100 rpm driver)</td></tr>
+      <tr><td>Spin axis</td><td>Same</td><td>Radar trajectory curvature (outdoor)</td><td>±1.5–2°</td></tr>
+      <tr><td>Carry, total, apex, descent, offline, hang time</td><td>Our ball-flight model (drag/lift fit to 1,040 measured shots + bounce/roll)</td><td>Outdoor radar flight</td><td>Carry ±3 yd (7-iron)</td></tr>
+      <tr><td>Club speed, smash factor</td><td>Radar + pre-impact club images</td><td>—</td><td>±1 mph</td></tr>
+      <tr><td>Attack angle, club path, swing plane, low point</td><td>3D club-head track (cameras)</td><td>Radar club track</td><td>±0.5° / ±0.7°</td></tr>
+      <tr><td>Face angle, face-to-path</td><td>3-camera club-head pose at impact</td><td>Ball launch + spin axis (D-plane)</td><td>±1° (stretch ±0.7°)</td></tr>
+      <tr><td>Dynamic loft, spin loft, lie</td><td>Club-head pose in the side view</td><td>Launch angle + spin</td><td>±1°</td></tr>
+      <tr><td>Impact location (heel/toe, high/low)</td><td>Ball centre at separation projected onto the fitted face</td><td>Gear-effect residual, smash</td><td>±4 mm</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================================ 8 -->
+<section id="club">
+  <div class="kicker">Section 8</div>
+  <h2>Markerless club data: the hard problem, and our approach</h2>
+  <p class="section-intro">In October 2026 no camera launch monitor sold beside the ball <i>measures</i> face angle or impact location without stickers. Foresight still needs 4 dots even on its $17k Falcon. Uneekor's sticker-free EYE XR calculates face angle from the ball. TrackMan reports club data on "over 90%" of shots. This is why the opportunity exists, and it plays to a software-strong team.</p>
+  <div class="grid g2">
+    <div class="card small">
+      <h4 style="margin-top:0">How we get it</h4>
+      <ol style="margin:0">
+        <li><b>Geometry first.</b> The forward-oblique placement plus a vertical pair and an offset camera means the face is actually visible, rather than seen edge-on as from a straight side view.</li>
+        <li><b>Capture timing.</b> A rolling buffer at a constant capture mode (optionally woken by the radar) keeps 2–3 club images within ~0.5 ms of impact. A driver face closes at roughly 1,500–3,000°/s, so timing matters more than resolution.</li>
+        <li><b>Multi-view face-plane fit.</b> A network trained on synthetic renders of hundreds of club heads finds heel, toe, top line, leading edge and iron grooves. Grooves are free natural markers. We fit the <b>whole face surface across all three views</b> and take face, loft and lie from the face normal. We never take them from a single reference point or a shaft "fix line": that is TrackMan's patented single-camera approach (to ~2039). Published work suggests under 1° is achievable.</li>
+        <li><b>Physics prior.</b> Ball launch direction, spin axis and spin loft constrain face and loft (the D-plane). That catches gross errors and gives a confidence score.</li>
+        <li><b>Optional "show your club" scan.</b> A one-time 10-second scan of each club at address builds an exact model.</li>
+      </ol>
+    </div>
+    <div class="card small">
+      <h4 style="margin-top:0">How we keep it honest and on schedule</h4>
+      <ul style="margin:0">
+        <li><b>Data engine:</b> record every bay shot side by side with a GCQuad wearing its 4-dot stickers as the reference while our unit ignores them, plus marked-ball sessions and synthetic data. Targets: 50k labelled shots by the first engineering build (EVT) and 200k by design validation (DVT).</li>
+        <li><b>Measured vs derived, shown in the UI.</b> If a shot's face confidence is low, we show the physics-derived value labelled as derived, not a guess presented as a measurement. TrackMan's own &gt;90% pickup rate shows a fallback is needed.</li>
+        <li><b>Go/no-go gate G2:</b> path and face within 1° (95th percentile) on all clubs before tooling. If we miss it, launch with face and loft labelled "derived" and ship the measured version as a free firmware update. Never add stickers.</li>
+        <li><b>Validation that sells:</b> publish a white paper using the Leach et al. (2017) method (bias and limits of agreement per club against TrackMan/GCQuad). No independent test of markerless face data exists for <i>any</i> product today.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 9 -->
+<section id="software">
+  <div class="kicker">Section 9</div>
+  <h2>Software &amp; open ecosystem</h2>
+  <p class="section-intro">Software is where a software-strong team can lead, and where the category is weakest. Reviews describe the R10 app as "in desperate need of an overhaul", Uneekor Refine as "widely criticized" and Square's software as "bare bones".</p>
+  <div class="grid g3">
+    <div class="card small">
+      <h4 style="margin-top:0">Simulator connections</h4>
+      <ul style="margin:0">
+        <li><b>GSPro Open Connect, day one:</b> public, TCP 127.0.0.1:921, JSON with no framing, no auth. Users buy GSPro's "OpenAPI" licence ($250/yr). Test against libgspro's 115 cases (MIT).</li>
+        <li><b>Native GSPro listing:</b> business@gsprogolf.com. Small makers (OpenLaunch Nova, Bluetees) have been listed.</li>
+        <li><b>OpenGolfSim</b> (TCP 3111) and <b>Flight Relay Protocol</b> (an open, public-domain launch-monitor data standard). We could be the first hardware vendor to adopt FRP.</li>
+        <li><b>E6 / TruGolf</b> (TruSimAPI port 2483) needs a business deal, because its authentication appears to be under NDA. <b>Awesome Golf</b> is partner-only.</li>
+      </ul>
+    </div>
+    <div class="card small">
+      <h4 style="margin-top:0">Our own apps (free)</h4>
+      <ul style="margin:0">
+        <li>iPad / iPhone / Android / Windows practice app: driving range, dispersion, gapping, combines, session history, video replay of impact, exports.</li>
+        <li>Unlimited history, unlimited profiles, no cloud lock-in, CSV/JSON export. Everything Foresight charges $199–$599 for.</li>
+        <li>Documented local REST/WebSocket API, so coaches and hobbyists can build on it.</li>
+        <li>Over-the-air updates with staged rollout. Garmin's March 2026 R10 firmware broke GSPro for weeks, and we must not repeat that.</li>
+      </ul>
+    </div>
+    <div class="card small">
+      <h4 style="margin-top:0">Ball-flight model &amp; licence rules</h4>
+      <ul style="margin:0">
+        <li>Write our own: drag/lift curves from Ferguson et al. 2022 (fitted on 1,040 shots; ~2.9 yd carry error vs TrackMan in open tests), a correction for slow shots, spin decay, and the Penner bounce + roll model. Tune per surface against TrackMan totals.</li>
+        <li><b>Do not copy</b> PiTrac (GPL-2.0; its AI models are non-commercial) or OpenFlight (AGPL-3.0). Learn from them and implement clean-room. Equations and published coefficients are free to use.</li>
+        <li>Safe to use: libgspro (MIT), Flight Relay Protocol SDK (Apache/MIT), SpinDOE (Apache-2.0), ED_LIB ellipse fitting (MIT).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 10 -->
+<section id="pricing">
+  <div class="kicker">Section 10</div>
+  <h2>Pricing &amp; unit economics</h2>
+  <p class="section-intro">Two models with identical data, split by hardware and environment. They are not split by a data paywall, which is the thing owners hate. Bushnell already taught the market this split (Launch Pro $2,999 vs indoor-only LPi $1,999).</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Model</th><th class="num">Price</th><th>What's different</th><th>When</th><th>Why this price</th></tr></thead>
+    <tbody>
+      <tr class="ours"><td>Outer Bounds Pro, founder edition</td><td class="num">$2,499</td><td>First 500–1,000 units, refundable deposit</td><td>Pre-order at design validation (DVT, ~spring 2028)</td><td>Buys early reviews and owner data, and funds working capital</td></tr>
+      <tr class="ours"><td>Outer Bounds Pro</td><td class="num">$2,999</td><td>Battery, screen, sun-hardened, indoor + outdoor</td><td>Launch</td><td>Fits the "best under $3,000" lists and the accuracy-per-dollar cluster. Leaves room for retailer margin and holiday bundles.</td></tr>
+      <tr><td>Outer Bounds Indoor</td><td class="num">$1,999</td><td>Plug-in, no battery or screen, floor or ceiling mount. <b>Same data.</b></td><td>6–12 months after launch</td><td>Blocks Omni / GC2 / ST MAX. Only works through retail once unit cost is ≤ ~$700.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">3-year cost of ownership with full club data and a full simulator</div>
+    <div class="chart-sub">Hardware (and one-time unlocks) plus 3 years of required fees, including GSPro where the device uses it. Sorted by total. Excludes balls, PC and enclosure.</div>
+    <div class="legend">
+      <span><i class="sq" style="background:var(--series-1)"></i>Hardware + one-time unlocks</span>
+      <span><i class="sq" style="background:var(--series-2)"></i>3 years of fees</span>
+    </div>
+    <div id="tcoChart"></div>
+    <details class="table-view"><summary>Show as table</summary><div class="table-wrap"><table id="tcoTable"></table></div></details>
+    <p class="footer-note">Not charted (they stretch the axis): TrackMan iO + Home Complete ≈ $17,295 and GCQuad + Gold + GSPro ≈ $18,546. Our fees are GSPro only, which most buyers already pay.</p>
+  </div>
+
+  <h3>Unit economics</h3>
+  <div class="grid">
+    <div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>At retail price</th><th class="num">Landed cost</th><th class="num">Direct gross margin</th><th class="num">Retail gross margin (on wholesale, 30% off)</th></tr></thead>
+        <tbody>
+          <tr><td>$1,999</td><td class="num">$700</td><td class="num">60%</td><td class="num">49%</td></tr>
+          <tr><td>$1,999</td><td class="num">$1,000</td><td class="num">45%</td><td class="num">27%</td></tr>
+          <tr><td>$2,499</td><td class="num">$700</td><td class="num">67%</td><td class="num">59%</td></tr>
+          <tr><td>$2,499</td><td class="num">$1,000</td><td class="num">55%</td><td class="num">42%</td></tr>
+          <tr class="ours"><td>$2,999</td><td class="num">$700</td><td class="num">72%</td><td class="num">66%</td></tr>
+          <tr class="ours"><td>$2,999</td><td class="num">$1,000</td><td class="num">62%</td><td class="num">52%</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small muted">Benchmarks: TrackMan ~60% gross margin, Garmin Outdoor 66%, TruGolf ~62% adjusted. Direct figures are after card fees, shipping, a 3% warranty reserve and a 4% returns reserve, before marketing spend.</p>
+    </div>
+    <div>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Parts (BOM) / landed cost per unit</th><th class="num">1k units</th><th class="num">5k</th><th class="num">10k</th></tr></thead>
+        <tbody>
+          <tr><td>BOM, Jetson Orin Nano version</td><td class="num">$902</td><td class="num">$771</td><td class="num">$703</td></tr>
+          <tr class="ours"><td>BOM, RK3588 / QCS6490 version</td><td class="num">$625</td><td class="num">$490</td><td class="num">$430</td></tr>
+          <tr><td>Landed in US, Jetson, built in Vietnam</td><td class="num">$1,230</td><td class="num">$1,007</td><td class="num">$905</td></tr>
+          <tr class="ours"><td>Landed in US, RK3588, built in Vietnam / Taiwan</td><td class="num">—</td><td class="num">$634–652</td><td class="num">—</td></tr>
+          <tr><td>Landed in US, RK3588, built in China</td><td class="num">—</td><td class="num">$773</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small muted">NVIDIA raised Jetson module prices by up to 101% in July 2026 (Orin Nano 8GB is now $399 at 1,000 units), amid a DRAM shortage. On a Jetson build the compute module is about half the BOM. <b>Decide production compute at the end of Phase 1</b> using measured speed and power.</p>
+    </div>
+  </div>
+
+  <h3>Revenue without a subscription</h3>
+  <div class="pill-list">
+    <span>Hardware margin (core)</span><span>Studio bundles: enclosure + mat + projector (+$2.5–3.5k per sale, SkyTrak model)</span><span>Accessories: case, mats, mounts, ball packs</span><span>One-time Coach/Fitter licence (roster, fitting compare, reports)</span><span>Trade-in credit for R10 / MLM2PRO (resale value $250–350)</span><span>Certified pre-owned</span><span>B2B: range-bay kits, facility "lending library", venue licence (one-time per bay)</span><span>Optional premium course packs via partners</span>
+  </div>
+</section>
+
+<!-- ============================================================ 11 -->
+<section id="gtm">
+  <div class="kicker">Section 11</div>
+  <h2>Go-to-market</h2>
+  <p class="section-intro">Positioning: <b>"TrackMan-class data. No stickers. No subscription. Indoors and out."</b> Lead with the 3-year cost chart and the open API.</p>
+  <div class="grid g2">
+    <div class="card small">
+      <h4 style="margin-top:0">Launch sequence</h4>
+      <ol style="margin:0">
+        <li><b>Closed beta (DVT):</b> 50–100 GSPro/SGT community users, plus 10–15 independent testers running side by side with TrackMan and GCQuad: Breaking Eighty, PlayBetter, Carl's Place, MyGolfSpy, SimLab, Plugged In Golf, Golfible.</li>
+        <li><b>Founder pre-order at $2,499</b> on our own store with a $100–250 refundable deposit, capped at 500–1,000 units. Only promise dates we can hit: Square's public slips from April to fall 2026 became a monthly news story.</li>
+        <li><b>General availability at $2,999</b> with a minimum advertised price (MAP). Holiday promotions come as bundle value, not list-price cuts.</li>
+        <li><b>3–5 specialty simulator retailers</b> (PlayBetter, Rain or Shine, Shop Indoor Golf, Carl's Golfland, The Indoor Golf Shop) selling Studio bundles.</li>
+        <li><b>Indoor model at $1,999</b> 6–12 months later. Amazon only for the Indoor model and accessories.</li>
+      </ol>
+    </div>
+    <div class="card small">
+      <h4 style="margin-top:0">Trust levers (new brand, so this matters)</h4>
+      <ul style="margin:0">
+        <li>2-year warranty, the top of the category (most offer 1 year; SkyTrak offers 6 months).</li>
+        <li>30-day direct returns with no restocking fee (others charge 15–20%).</li>
+        <li>Public accuracy white paper, plus raw shot data for reviewers.</li>
+        <li>Responsive support with real humans. Square's 1.44/5 support score is a weakness to exploit.</li>
+        <li>Timing: launch at the PGA Show (late January) or ahead of the holidays. Never in summer.</li>
+      </ul>
+      <h4>B2B from day one</h4>
+      <ul style="margin:0">
+        <li>Over 20% of golf facilities already own portable launch monitors and 13% plan to add simulators. Sell a rugged, fee-free range-bay and lending kit.</li>
+        <li>Coaches and fitters who can't justify $15–26k TrackMan/GCQuad can buy a one-time Coach licence.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 12 -->
+<section id="mfg">
+  <div class="kicker">Section 12</div>
+  <h2>Manufacturing &amp; supply chain</h2>
+  <div class="grid g2">
+    <div>
+      <h4 style="margin-top:0">Where to build: US duty, October 2026</h4>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Final assembly</th><th class="num">Effective US duty</th><th class="num">Landed @5k (Jetson build)</th></tr></thead>
+        <tbody>
+          <tr><td>China</td><td class="num n">~39%</td><td class="num">$1,197</td></tr>
+          <tr><td>Vietnam / Thailand</td><td class="num">~14%</td><td class="num">$1,007–1,011</td></tr>
+          <tr><td>Malaysia / Mexico (non-USMCA)</td><td class="num">~12%</td><td class="num">$989–998</td></tr>
+          <tr class="ours"><td>Taiwan</td><td class="num">10% (capped)</td><td class="num">$978</td></tr>
+          <tr><td>Mexico (USMCA-qualifying)</td><td class="num y">0%</td><td class="num">$894</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small muted">China stacks the older Section 301 duty (25%) on top of the new 12.5% forced-labour Section 301 duty (from Jul 24, 2026). Circuit boards must also be assembled outside China, or US customs may treat the whole unit as Chinese. Get a binding customs classification ruling (9031.80 vs 9506.39) before DVT. Tariffs are volatile, so model ±15%.</p>
+    </div>
+    <div>
+      <h4 style="margin-top:0">One-time engineering &amp; setup costs (excl. salaries)</h4>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th class="num">Range</th></tr></thead>
+        <tbody>
+          <tr><td>Industrial + mechanical design</td><td class="num">$180–600k</td></tr>
+          <tr><td>Electronics design + 4 board revisions</td><td class="num">$120–340k</td></tr>
+          <tr><td>Optics, camera module setup</td><td class="num">$40–150k</td></tr>
+          <tr><td>Injection-mould tooling</td><td class="num">$90–220k</td></tr>
+          <tr><td>Certification (FCC, CE, eye safety, battery…)</td><td class="num">$60–180k</td></tr>
+          <tr><td>Test fixtures + calibration stations</td><td class="num">$100–300k</td></tr>
+          <tr><td>Reference gear (used GCQuad, TrackMan), test bay</td><td class="num">$60–180k</td></tr>
+          <tr><td>Legal: patent clearance, trademarks, customs</td><td class="num">$60–200k</td></tr>
+          <tr><td><b>Plan on</b></td><td class="num"><b>~$1.2–1.5M</b></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:6px">
+    <div class="card small">
+      <h4 style="margin-top:0">Factory calibration (we own this)</h4>
+      <p>Every unit needs per-camera lens calibration, stereo extrinsics, radar and alignment registration, and LED timing calibration. Each unit gets 1–3 minutes in a rigid, temperature-controlled station with IR targets, then a <b>live shot test</b> through laser light gates using a ball launcher. One station on one shift covers ~10k units/yr, at ~$25–80k per station. Calibration software and data are core IP.</p>
+    </div>
+    <div class="card small">
+      <h4 style="margin-top:0">Partners &amp; plan B</h4>
+      <p>Camera specialists (e-con Systems, Leopard Imaging, FRAMOS, D3 Embedded, RidgeRun) cover our riskiest hardware layer more cheaply than a general design firm. Use a mid-size Taiwanese contract manufacturer with lines in Vietnam or Taiwan, or a US/Mexico pilot line for the first 1–2k units. <b>Plan B:</b> license or white-label hardware from a Korean incumbent (Creatz/Uneekor is cash-rich, IPO-bound and has earmarked money for software and analytics deals) and put our software and brand on it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 13 -->
+<section id="ip">
+  <div class="kicker">Section 13</div>
+  <h2>Patents, litigation, certification &amp; the name</h2>
+  <p class="section-intro">The core techniques are now free to use. The risk is in a set of newer, narrower patents, mostly from TrackMan and Rapsodo, that cover the exact features that set us apart. <b>This is groundwork, not legal advice.</b> A freedom-to-operate (FTO) opinion from a patent attorney (~$40–120k for a focused one) is required before tooling.</p>
+
+  <div class="grid g3">
+    <div class="card small"><h4 style="margin-top:0">Good news: the base is free</h4>
+      <p style="margin:0">The original markerless camera-spin patents from Wintriss Engineering, later owned by Foresight, <b>expired in 2025</b>: US 7,292,711 in April and US 7,324,663 in August. They cover an unmarked ball and spin found by rotating and correlating its dimples, scuffs and logo. The camera triggers itself, and an accelerometer handles levelling. Acushnet's 1990s stereo and flash patents and the 1990s radar Doppler-speed patents have also expired. Our core spin method can rest on this free prior art.</p></div>
+    <div class="card small"><h4 style="margin-top:0">Main risk: markerless club data</h4>
+      <p style="margin:0"><b>TrackMan US 10,953,303 / 11,439,886 / 11,612,801 / 12,263,393 (run to ~2038–39)</b> cover markerless <i>single-camera</i> impact location, club direction from rate-of-distance change, and dynamic loft or lie from a shaft "fix line" angle. Our design-around is <b>multi-view stereo fitting of the whole face plane</b>, with loft and lie taken from the face normal, never from the shaft. Counsel must chart this.</p></div>
+    <div class="card small"><h4 style="margin-top:0">Radar is the most crowded layer</h4>
+      <p style="margin:0">TrackMan holds patents on radar spin (to 2029), spin axis from 3 or more receivers (to ~2039), combining radar with camera tracks (to 2037) and calibrating radar against cameras (to 2041). Rapsodo holds a patent on radar tracking that triggers a camera and combines the data (to 2039). Full Swing covers mixing two radar modes (CW and FMCW, to 2039). <b>So radar stays a separate wake and speed sensor whose data never feeds into the camera's position estimate.</b> Shipping v1 with no radar at all is the lowest-risk option.</p></div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:16px; max-height:560px">
+  <table>
+    <thead><tr><th>Patent / family</th><th>Owner</th><th>Covers</th><th>Expires (est.)</th><th>Risk</th><th>Our design-around</th></tr></thead>
+    <tbody>
+      <tr><td>US 7,324,663 · 7,292,711</td><td>Wintriss → Foresight</td><td>Markerless spin by 3D rotation and correlation; self-triggering camera</td><td class="y">Expired 2025</td><td class="y">Free</td><td>Our spin method is built on this</td></tr>
+      <tr><td>US 10,953,303 · 11,439,886 · 11,612,801 · 12,263,393</td><td>TrackMan</td><td>Single-camera markerless impact location, club direction, shaft "fix line" for loft and lie</td><td>2038–2039</td><td class="n">High</td><td>Multi-view face-plane fit; loft and lie from the face normal; impact checked against gear-effect physics</td></tr>
+      <tr><td>US 12,586,211 · pending US 2024/0420346</td><td>TrackMan</td><td>Changing camera frame rate or crop when address or takeaway is detected; spin by dense optical flow</td><td>~2044</td><td class="n">High</td><td>One constant capture mode with a rolling buffer, triggered when the ball leaves; sphere rotation search, not optical flow</td></tr>
+      <tr><td>US 9,171,211</td><td>Rapsodo</td><td>Spin from natural features using a polar-coordinate unwrap and fit</td><td>2034</td><td class="p">Med–High</td><td>3D sphere rotation search, no polar unwrap</td></tr>
+      <tr><td>US 12,582,870</td><td>Rapsodo</td><td>Deep-learning spin using a 2D ellipse model of a feature's path</td><td>2044</td><td class="p">Med–High</td><td>If ML is used, it predicts the 3D rotation directly with no ellipse step</td></tr>
+      <tr><td>US 10,754,025 · 11,747,461</td><td>Rapsodo</td><td>Radar detects the ball, triggers the camera and the data are combined; pool of Doppler tracks</td><td>~2039</td><td class="n">High (if fused)</td><td>Radar is wake and speed only, never fed into camera tracks; v1 may ship without radar</td></tr>
+      <tr><td>US 8,845,442 · 10,850,179 · 11,446,546</td><td>TrackMan</td><td>Radar spin from Doppler harmonics; spin axis from 3+ receivers</td><td>2029 / ~2039</td><td class="n">High (if radar spin)</td><td>Spin comes from cameras only</td></tr>
+      <tr><td>US 10,989,791 · 11,828,867 · 11,619,708</td><td>TrackMan</td><td>Radar range + camera angles fused; radar–camera cross-calibration</td><td>2037 / 2041</td><td class="n">High (if fused)</td><td>No fusion and no cross-calibration</td></tr>
+      <tr><td>US 9,868,044 · 10,151,831</td><td>FlightScope / EDH</td><td>Radar spin rate; spin axis from timing between receiver pairs</td><td>2034–35</td><td class="p">Med</td><td>No radar spin</td></tr>
+      <tr><td>US 11,311,789</td><td>Full Swing</td><td>CW + FMCW radar time-division</td><td>2039</td><td class="p">Med</td><td>Single CW/FSK mode</td></tr>
+      <tr><td>US 10,217,228 · 11,191,998</td><td>Creatz (Square)</td><td>Mark-based spin with line-of-sight correction; model spin used to correct measured spin</td><td>~2037 / ~2039</td><td class="p">Med</td><td>No correction step; if spin is unavailable, show it as "estimated", kept separate</td></tr>
+      <tr><td>US 12,605,593</td><td>Golfzon</td><td>Search area from a physically reachable 3D volume projected into the image</td><td>~2043</td><td class="p">Med</td><td>Predict the search area in 2D (Kalman filter or optical flow on positions)</td></tr>
+      <tr><td>US 8,951,138 · 11,946,734 · 12,599,828</td><td>Foresight · Creatz · Golfzon</td><td>Club or ball marker layouts</td><td>2033–2043</td><td class="y">Low</td><td>We use no markers</td></tr>
+      <tr><td>US 9,737,757</td><td>Foresight</td><td>Two-camera alignment-stick plane intersection</td><td>~2037</td><td class="p">Med</td><td>Align from one camera view, or tap the target with a motion-sensor heading</td></tr>
+      <tr><td>US 7,837,572 · 8,475,289</td><td>Acushnet</td><td>Remote app tells the unit to cut battery power; teeing aid measures trigger-to-ball distance</td><td>2027-10 / ~2032</td><td class="p">Med</td><td>The device manages its own power; don't measure trigger-to-ball distance</td></tr>
+      <tr><td>US 2024/0123314 (pending)</td><td>Open Launch</td><td>Radar triggers camera 1, then camera 2, then data are combined</td><td>Pending</td><td class="p">Watch</td><td>Same as the Rapsodo design-around</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small muted">Still to pull before the FTO: Uneekor, SkyTrak/SkyHawke, Garmin R50, ProTee and Toptracer filings, plus Korean litigation. TrackMan's own patent-marking page lists 47 US patents and is a useful checklist.</p>
+
+  <div class="grid g2">
+    <div class="card small"><h4 style="margin-top:0">Litigation: who actually sues</h4>
+      <ul style="margin:0">
+        <li><b>Patent trolls (NPEs) come first.</b> Wyoming IP Holdings sued TrackMan over a generic "sensor + coaching" patent and lost with prejudice in 2024: the court ruled the patent was an abstract idea and invalid under §101. It then sued Bushnell over the Launch Pro, and Bushnell settled within about 4 months. <b>Expect a demand letter once we have revenue.</b> Budget ~$50–150k.</li>
+        <li><b>TrackMan v. GSPro</b> (S.D.N.Y., still in discovery): copyright and false-advertising claims over simulator courses and code. <b>Integrate only through documented APIs and never touch course assets.</b></li>
+        <li>No patent suits between the major brands were found in US federal records. The established makers hold large portfolios but haven't fought each other in court. A visible newcomer copying club-data or fusion features is the most likely trigger.</li>
+        <li><b>Our move:</b> file provisional patents before any public demo (~$3–8k each), keep dated design-around records, and track TrackMan and Rapsodo continuations.</li>
+      </ul></div>
+    <div class="card small"><h4 style="margin-top:0">The name "Outer Bounds"</h4>
+      <ul style="margin:0">
+        <li>No <i>live</i> US registration for "OUTER BOUNDS" (four dead ones in classes 18, 24, 25 and 28).</li>
+        <li><b>Conflict: OUTERBOUNDS (Reg. 6,997,555, live)</b> in classes 9, 35, 41 and 42, owned by the data-science/ML company Outerbounds (Metaflow, joining Anaconda). It also owns <code>outerbounds.com</code> and will dominate search results. Risk is moderate for app/software classes and low for hardware (class 28 / class 9 hardware).</li>
+        <li>Also live: <b>OUTTA BOUNDS GOLF</b> (driving range, class 41).</li>
+        <li><b>Recommendation:</b> attorney clearance search (~$1.5–5k). File intent-to-use in classes 9 (hardware) and 28 now, or switch to a compound or coined name such as "Outer Bounds Golf", and clear back-up names in parallel.</li>
+      </ul></div>
+  </div>
+
+  <h3>Certification (US first)</h3>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Item</th><th>What's needed</th><th class="num">Cost (est.)</th></tr></thead>
+    <tbody>
+      <tr><td>US + Canada</td><td>FCC Part 15B self-declaration + ICES-003, using a <b>pre-certified Wi-Fi/BLE module</b> (only an integration check needed). Radar needs its own certification: 24 GHz under §15.245 allows ~+32.7 dBm EIRP. The 60 GHz rules (§15.255) impose off-time limits at higher power.</td><td class="num">$7–17k (+$13–26k with radar)</td></tr>
+      <tr><td>Product safety</td><td>IEC/UL 62368-1 CB report (retailers ask for it)</td><td class="num">$10–25k</td></tr>
+      <tr><td>IR eye safety</td><td>IEC 62471 at the closest eye distance. <b>Use LEDs, not VCSELs</b> (lasers bring IEC 60825-1 plus an FDA report). Design for Exempt / Risk Group 1. Diffusers, duty limits, and fire only on trigger.</td><td class="num">$3–8k</td></tr>
+      <tr><td>Battery</td><td>UN 38.3 + IEC 62133-2. Since Jan 1, 2026, batteries packed with equipment must ship at ≤30% charge, so ship installed at 30%.</td><td class="num">$12–30k</td></tr>
+      <tr><td>EU / UK</td><td>CE under the radio directive (EN 300 328, 301 489, 62368-1, 300 440 for radar) plus <b>EN 18031 cybersecurity (since Aug 2025)</b>. Cyber Resilience Act reporting since Sep 2026, full from Dec 2027. EU Data Act: users must be able to export their data. <b>EU Battery Regulation: user-replaceable battery from Feb 18, 2027.</b> The UK still accepts CE, and PSTI bans default passwords.</td><td class="num">$12–30k (+$5–15k cyber, +$6–12k radar)</td></tr>
+      <tr><td>Australia/NZ, Japan, Korea</td><td>RCM, Giteki/VCCI (ship USB-C only, no adapter, to avoid PSE), KC</td><td class="num">$11–29k</td></tr>
+      <tr><td><b>Total</b></td><td>US + Canada + safety, eye and battery reports: <b>$35–80k camera-only / $50–110k with radar</b>. All markets: <b>$70–170k</b>. About 10–16 weeks from DVT samples to US and EU marks.</td><td class="num"><b>$70–170k</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================================ 14 -->
+<section id="team">
+  <div class="kicker">Section 14</div>
+  <h2>Team &amp; funding</h2>
+  <div class="grid g2">
+    <div>
+      <h4 style="margin-top:0">Core hires (software-strong team, new to hardware)</h4>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Role</th><th>Full-time / contract</th><th>When</th></tr></thead>
+        <tbody>
+          <tr><td>Computer-vision / ML lead (spin, club pose, stereo)</td><td>Full-time, founder level</td><td>Day 0</td></tr>
+          <tr><td>Embedded Linux / camera-driver engineer</td><td>Full-time (+ RidgeRun/D3 contracts)</td><td>Month 0–2</td></tr>
+          <tr><td>Electrical engineer (compute carrier board, LED driver, EMC)</td><td>Contract, then full-time</td><td>Month 2–4</td></tr>
+          <tr><td>Optical engineer (lens, filter, IR window, eye safety)</td><td>Contract</td><td>Phase 0–1</td></tr>
+          <tr><td>Mechanical engineer (optical bench, thermal, tooling) + design firm</td><td>Full-time by EVT</td><td>Month 4–6</td></tr>
+          <tr><td>Radar / signal-processing engineer</td><td>Contract</td><td>Phase 1</td></tr>
+          <tr><td>Operations / supply-chain lead</td><td>Full-time (most underrated hire)</td><td>Month 8–10</td></tr>
+          <tr><td>Manufacturing test engineer (calibration stations)</td><td>Full-time</td><td>EVT</td></tr>
+          <tr><td>App (2), backend (1), QA</td><td>Full-time</td><td>Phase 1 → DVT</td></tr>
+          <tr><td>Golf pro / club fitter</td><td>Part-time retainer</td><td>Day 0</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small muted">Headcount: ~6 in Q4 2026, 10–12 by EVT, 14–16 by launch.</p>
+    </div>
+    <div>
+      <h4 style="margin-top:0">Capital plan</h4>
+      <div class="table-wrap">
+      <table>
+        <thead><tr><th>Round</th><th class="num">Size</th><th>Timing</th><th>Pays for</th></tr></thead>
+        <tbody>
+          <tr><td>Seed</td><td class="num">$4–6M</td><td>Q4 2026 – Q1 2027</td><td>Feasibility → EVT, accuracy gates G0–G2, patent filings</td></tr>
+          <tr><td>Series A</td><td class="num">$10–15M</td><td>~Q2 2028 (at DVT, with beta data + pre-orders)</td><td>PVT, first 3k-unit inventory, launch marketing</td></tr>
+          <tr><td>Non-dilutive</td><td class="num">$1–4M</td><td>DVT onward</td><td>Deposits, inventory/PO financing, CM payment terms</td></tr>
+          <tr><td><b>Total to launch</b></td><td class="num"><b>~$12–17M</b></td><td colspan="2">incl. 20% contingency; $2–3M of it is inventory</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small">Investors already active in the category: Stadia Ventures and Phoenix Venture Partners (Rapsodo), Bruin Capital and North Castle (Full Swing), Otium and UTC Investment (Creatz), plus athlete angels. Strategic investors include Versant, golf OEMs (Acushnet, TaylorMade, Callaway) and Creatz, which has ₩7.7bn earmarked for software and analytics deals.</p>
+      <div class="callout warn small"><strong>A leaner path (our estimate, not sourced)</strong>Use a camera-specialist design partner instead of a large in-house hardware team, a 1,500-unit first build, and deposit-funded inventory. That could bring launch capital toward ~$7–9M, at the cost of more schedule and supplier risk.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 15 -->
+<section id="roadmap">
+  <div class="kicker">Section 15</div>
+  <h2>Roadmap &amp; accuracy gates</h2>
+  <p class="section-intro">Solid bars are the plan. Hatched bars are the typical slip for a first-time hardware team (Instrumental: up to ~40% of EVT units fail, and a DVT that isn't ready should be called EVT2). The red line is today.</p>
+  <div class="card">
+    <div class="gantt" id="gantt"></div>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+  <table>
+    <thead><tr><th>Gate</th><th>When</th><th>Pass criteria (vs GCQuad, mean and 95th percentile)</th><th>If it fails</th></tr></thead>
+    <tbody>
+      <tr><td><b>G0: feasibility</b></td><td>Jan 2027</td><td>Indoors, 2–3 clubs: ball speed ±1 mph, launch angles ±0.5°, spin captured on ≥90% of shots. Outdoor sunlight math confirmed on the bench.</td><td>Re-architect optics (sensor / wavelength) before raising more money</td></tr>
+      <tr><td><b>G1: integrated prototype</b></td><td>Jul 2027</td><td>Spin ±250 rpm irons / ±300 driver, spin axis ±2°, carry ±3 yd (7-iron), ≥85% capture in direct sun</td><td>Add stereo pair or flash power; slip EVT</td></tr>
+      <tr><td><b>G2: EVT</b></td><td>Nov 2027</td><td>All clubs, 98% capture. Path and face within 1°. Passes after heat-soak at 40 °C and on battery.</td><td>Ship face/loft as "derived" and keep developing. No stickers.</td></tr>
+      <tr><td><b>G3: DVT / beta</b></td><td>Apr 2028</td><td>Units from production moulds; unit-to-unit consistency; 100–200 beta users; independent reviewer tests</td><td>Hold launch; extend beta</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================================ 16 -->
+<section id="risks">
+  <div class="kicker">Section 16</div>
+  <h2>Top risks, ranked</h2>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Risk</th><th>What failure looks like</th><th>Mitigation</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>Markerless face / loft / impact accuracy</b></td><td>Face off by 2°+, reviewers call club data unreliable, the headline promise breaks</td><td>Forward-oblique geometry, radar timing, 3-camera pose, GCQuad-labelled data engine, measured/derived labelling, gate G2</td></tr>
+      <tr><td>2</td><td><b>Spin on low-spin drivers / bright sun</b></td><td>Driver spin off 600+ rpm, carry off 10+ yd outdoors</td><td>Gated 940 nm microsecond flashes, 4–8 images over ≥3 ms, radar trajectory cross-check, outdoor tests from Phase 1</td></tr>
+      <tr><td>3</td><td><b>Patents</b> (TrackMan single-camera club data and imager triggering; Rapsodo spin and radar fusion; NPE trolls)</td><td>Demand letter or suit after launch</td><td>FTO opinion before tooling, multi-view face fit, constant-mode capture, no radar fusion, provisional filings, $50–150k defence reserve</td></tr>
+      <tr><td>4</td><td><b>Key sensor mode unconfirmed</b> (IMX900 externally triggered quad-shutter)</td><td>Architecture B not possible</td><td>NDA datasheet via FRAMOS/e-con in month 1. Fallback is Architecture A (4× IMX296), already budgeted.</td></tr>
+      <tr><td>5</td><td><b>Heat and eye safety</b></td><td>Thermal throttling in sun; IR array certified Risk Group 2</td><td>RK3588/QCS6490 (8–12 W), thermal design in Phase 1, IEC 62471 design from Phase 1</td></tr>
+      <tr><td>6</td><td><b>Fast-moving competitors</b> (Square sticker-free Omni 2, Uneekor "MINI 2", TruGolf LaunchBox, NeoPace)</td><td>Our gap closes before launch</td><td>Open API + software quality + published accuracy + B2B are harder to copy than a sensor. Move quickly to beta.</td></tr>
+      <tr><td>7</td><td><b>Compute / DRAM price shocks</b></td><td>BOM +$50–100 overnight</td><td>Portable code, two qualified compute modules, buffer stock at DVT</td></tr>
+      <tr><td>8</td><td><b>Tariffs / origin rules</b></td><td>New Section 301 action hits Vietnam or Mexico</td><td>Second-country option, boards assembled in the same country, binding customs ruling</td></tr>
+      <tr><td>9</td><td><b>Schedule slip</b></td><td>Miss holiday 2028</td><td>Plan on PGA Show Jan 2029 / spring 2029; pre-orders only at DVT; small "Founders Edition" run</td></tr>
+      <tr><td>10</td><td><b>Cash gap DVT → production</b></td><td>30% deposit on 3k units ≈ $0.9M+ before revenue</td><td>Series A at DVT, deposits, inventory financing, CM terms</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================================================ 17 -->
+<section id="next">
+  <div class="kicker">Section 17</div>
+  <h2>First 90 days</h2>
+  <div class="grid g3">
+    <div class="card small"><h4 style="margin-top:0">Weeks 0–4</h4><ul style="margin:0">
+      <li>Order dev kits: 2–3 Jetson Orin Nano / Pi 5, IMX296 + IMX900 cameras, 940 nm LED and GaN driver evaluation boards, 24 GHz radar and TI IWR6843AOP evaluation kits.</li>
+      <li>Buy a <b>used GCQuad</b> (~$8.5–12.5k) as the reference. Set up a hitting bay.</li>
+      <li>Request the IMX900 quad-shutter datasheet under NDA (FRAMOS / e-con).</li>
+      <li>Engage a patent attorney for freedom-to-operate scoping. Commission a trademark clearance: "OUTERBOUNDS" is live in software classes, so pick the final name before any public demo. File provisional patents before showing anything.</li>
+    </ul></div>
+    <div class="card small"><h4 style="margin-top:0">Weeks 4–8</h4><ul style="margin:0">
+      <li>Software with no hardware risk: GSPro Open Connect client (tested with libgspro), OpenGolfSim, Flight Relay Protocol server, ball-flight model with a TrackMan-CSV regression suite (≤3 yd carry error).</li>
+      <li>Build our own gated-flash board. Validate the sunlight math outdoors.</li>
+      <li>Start the synthetic dimple and club-head rendering pipeline.</li>
+    </ul></div>
+    <div class="card small"><h4 style="margin-top:0">Weeks 8–13</h4><ul style="margin:0">
+      <li>Ball speed, launch and spin v0 on the rig, side by side with the GCQuad (gate G0).</li>
+      <li>Benchmark Jetson against RK3588 on the real pipeline.</li>
+      <li>Hire the electrical engineer plus a part-time operations advisor.</li>
+      <li>Email GSPro (business@), TruGolf and Awesome Golf. Book the PGA Show (Jan 2027).</li>
+      <li>Raise the seed round on the G0 result.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ============================================================ 18 -->
+<section id="appendix">
+  <div class="kicker">Section 18</div>
+  <h2>Sources &amp; caveats</h2>
+  <p>Every number here comes from the nine research reports in <code>research/</code>, each with a URL next to each figure. The reports:</p>
+  <ul class="small">
+    <li><a href="research/01-competitors-budget.md">01: Budget competitors (&lt; $1.5k)</a></li>
+    <li><a href="research/02-competitors-mid.md">02: Mid-tier competitors ($1.5k–$7k)</a></li>
+    <li><a href="research/03-competitors-premium.md">03: Premium competitors and how they get club data</a></li>
+    <li><a href="research/04-tech-camera.md">04: Camera / photometric engineering (physics math, sensors, architectures)</a></li>
+    <li><a href="research/05-tech-radar.md">05: Radar engineering (chips, bands, rules, verdict)</a></li>
+    <li><a href="research/06-open-source-academic.md">06: Open-source, academic and simulator ecosystem</a></li>
+    <li><a href="research/07-ip-regulatory.md">07: Patents, litigation and certification</a></li>
+    <li><a href="research/08-market-pricing.md">08: Market size, pricing, channels and unit economics</a></li>
+    <li><a href="research/09-manufacturing-team-roadmap.md">09: Manufacturing, BOM, team, timeline and funding</a></li>
+    <li><b><a href="bom/outer-bounds-bom.html">Complete bill of materials: Pro &amp; Indoor (orderable)</a></b></li>
+  </ul>
+  <div class="callout warn small">
+    <strong>What's not verified yet</strong>
+    The research hit the session's web-search cap partway through, and some sites (MyGolfSpy, GolfWRX, Reddit, fccid.io) blocked automated access. These items are estimates or open questions and need checking:
+    <ul style="margin:6px 0 0">
+      <li>Component prices below the compute-module level (bare sensors, LEDs, radar MMICs at volume), salaries and design-firm fees.</li>
+      <li>Market unit volumes by tier, dealer margins and MAP terms, reviewer reach and affiliate rates.</li>
+      <li>Whether the IMX900 quad-shutter can be externally triggered per phase. This is critical to the recommended design.</li>
+      <li>Exact radar chips inside competitors (FCC internal photos), MyGolfSpy lab data, ProTee VX independent accuracy, TruGolf LaunchBox specs.</li>
+      <li>All patent risk calls, which need a formal freedom-to-operate opinion from counsel.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+</div>
+<div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const SVGNS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, parent) => { const n = document.createElementNS(SVGNS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+  const fmt$ = (v) => '$' + Math.round(v).toLocaleString('en-US');
+  const tip = document.getElementById('tooltip');
+  function showTip(evt, value, lines) {
+    tip.replaceChildren();
+    const v = document.createElement('div'); v.className = 'tv'; v.textContent = value; tip.appendChild(v);
+    lines.forEach(t => { const d = document.createElement('div'); d.className = 'tl'; d.textContent = t; tip.appendChild(d); });
+    const x = evt.clientX ?? (evt.target.getBoundingClientRect().left + 10);
+    const y = evt.clientY ?? (evt.target.getBoundingClientRect().top);
+    tip.style.left = Math.min(x + 14, window.innerWidth - 320) + 'px';
+    tip.style.top = (y + 14) + 'px';
+    tip.style.opacity = 1;
+  }
+  const hideTip = () => { tip.style.opacity = 0; };
+
+  /* ---------------- Price ladder ---------------- */
+  const products = [
+    ['Shot Scope LM1', 200, 'radar', 'Behind', 'Club speed only', 'None'],
+    ['PRGR HS-130A', 200, 'radar', 'Behind', 'Club speed only', 'None'],
+    ['Garmin R10', 500, 'radar', 'Behind', 'Path/face/AoA calculated', '$99.99/yr optional'],
+    ['Swing Caddie SC4 Pro', 550, 'radar', 'Behind', 'Speed only', 'None'],
+    ['Rapsodo MLM2PRO', 600, 'hybrid', 'Behind', 'Path, AoA; spin needs RPT balls', '$199.99/yr'],
+    ['Blue Tees Rainmaker', 599, 'radar', 'Behind', 'Path, AoA calculated', '$79/yr after yr 1'],
+    ['Square Golf Home', 699, 'camera', 'Side', 'Needs marked balls', 'None'],
+    ['Rapsodo MLM2XPRO', 900, 'hybrid', 'Behind', 'Path, AoA; RPT balls', '$199.99–399.99/yr'],
+    ['FlightScope Mevo Gen2', 1299, 'hybrid', 'Behind, 16 ft+', 'Face/path/loft via $699–1,000 unlock', 'None'],
+    ['Square Golf Omni', 1599, 'camera', 'Side', 'Stickers; face & loft estimated', 'None'],
+    ['SkyTrak ST MAX (promo)', 1695, 'hybrid', 'Side', 'Path, face (calculated), no AoA', '$99.99–599.99/yr'],
+    ['Foresight GC2', 1699, 'camera', 'Side', 'Ball data only', 'Foresight+'],
+    ['Uneekor EYE MINI LITE', 1999, 'camera', 'Side', '4 metrics, sticker', '$199/yr for 3rd-party'],
+    ['Bushnell Launch Pro', 2999, 'camera', 'Side', '4 metrics, sticker, no face', '$199–599/yr'],
+    ['Uneekor EYE MINI', 2999, 'camera', 'Side', '4 metrics, sticker', '$199/yr for 3rd-party'],
+    ['TruGolf LaunchBox', 2999, 'camera', 'Unpublished', 'Claims sticker-free (unverified)', 'None; E6 only'],
+    ['Full Swing KIT', 4999, 'radar', 'Behind, 16–20 ft', 'Path, face; no loft/impact', '$99.99/yr optional'],
+    ['Garmin R50', 4999, 'camera', 'Side', 'Face sticker; no loft/impact', '$99.99/yr optional'],
+    ['Uneekor EYE XR', 5999, 'camera', 'Overhead', 'Face derived, no stickers', 'Tiers'],
+    ['ProTee VX', 6500, 'camera', 'Overhead', 'Full markerless (indoor only)', 'None'],
+    ['Foresight GC3', 6999, 'camera', 'Side', '4 metrics, sticker', 'Foresight+'],
+    ['Uneekor EYE XO2', 10999, 'camera', 'Overhead', '9 metrics, stickers', 'Tiers'],
+    ['TrackMan iO', 13995, 'hybrid', 'Overhead', 'Full markerless at ~$21–24k tier', '$700–1,100/yr'],
+    ['FlightScope X3C', 13495, 'hybrid', 'Behind', 'Full; ball stickers indoors', 'E6 add-ons'],
+    ['Foresight GCQuad', 15999, 'camera', 'Side', 'Full, 4-dot stickers', 'Foresight+'],
+    ['Foresight Falcon', 16999, 'camera', 'Overhead', 'Full, 4-dot stickers', 'Foresight+'],
+    ['Foresight QuadMAX', 19999, 'camera', 'Side', 'Full, 4-dot stickers', 'Foresight+'],
+    ['TrackMan 4', 23995, 'hybrid', 'Behind', 'Full markerless (>90% pickup)', '~$1,100/yr'],
+  ].sort((a, b) => a[1] - b[1]);
+  const ours = ['Outer Bounds Pro (target)', 2999, 'ours', 'Side, forward-oblique', 'Full markerless, measured', 'None'];
+  const techLabel = { camera: 'Camera', radar: 'Radar', hybrid: 'Radar + camera', ours: 'Camera-first + radar' };
+  const techVar = { camera: '--series-1', radar: '--series-2', hybrid: '--series-3' };
+
+  function drawPrice() {
+    const host = document.getElementById('priceChart');
+    host.replaceChildren();
+    const rows = [...products];
+    const insertAt = rows.findIndex(r => r[1] > 2999);
+    rows.splice(insertAt, 0, ours);
+    const W = Math.max(host.clientWidth, 560), rowH = 21, top = 26, left = 190, right = 30;
+    const H = top + rows.length * rowH + 30;
+    const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Dot plot of launch monitor street prices on a log scale' }, host);
+    const lo = Math.log10(150), hi = Math.log10(30000);
+    const x = (v) => left + (Math.log10(v) - lo) / (hi - lo) * (W - left - right);
+    // gap band
+    el('rect', { x: x(2000), y: top - 6, width: x(3500) - x(2000), height: rows.length * rowH + 6, fill: css('--gap-band') }, svg);
+    const gl = el('text', { x: x(2000) + 4, y: top - 10, 'font-size': 11.5 }, svg); gl.textContent = 'The gap: $2k–3.5k';
+    // ticks
+    [200, 500, 1000, 2000, 5000, 10000, 20000].forEach(t => {
+      el('line', { x1: x(t), x2: x(t), y1: top - 4, y2: top + rows.length * rowH, class: 'tick-line' }, svg);
+      const tx = el('text', { x: x(t), y: H - 8, 'text-anchor': 'middle' }, svg); tx.textContent = t >= 1000 ? '$' + (t / 1000) + 'k' : '$' + t;
+    });
+    rows.forEach((r, i) => {
+      const cy = top + i * rowH + rowH / 2;
+      const isOurs = r[2] === 'ours';
+      const lab = el('text', { x: left - 10, y: cy + 4, 'text-anchor': 'end', class: isOurs ? 'lbl-primary' : '' }, svg);
+      lab.textContent = r[0]; if (isOurs) lab.setAttribute('font-weight', '700');
+      el('line', { x1: left, x2: x(r[1]), y1: cy, y2: cy, stroke: css('--grid'), 'stroke-width': 1 }, svg);
+      const g = el('g', { tabindex: 0, role: 'img', 'aria-label': `${r[0]}: ${fmt$(r[1])}` }, svg);
+      if (isOurs) {
+        el('circle', { cx: x(r[1]), cy, r: 6, fill: css('--surface-1'), stroke: css('--text-primary'), 'stroke-width': 2.5 }, g);
+      } else {
+        el('circle', { cx: x(r[1]), cy, r: 5, fill: css(techVar[r[2]]), stroke: css('--surface-1'), 'stroke-width': 2 }, g);
+      }
+      el('circle', { cx: x(r[1]), cy, r: 12, fill: 'transparent' }, g);
+      const lines = [r[0], techLabel[r[2]] + ' · ' + r[3], 'Club data: ' + r[4], 'Recurring: ' + r[5]];
+      g.addEventListener('pointermove', e => showTip(e, fmt$(r[1]), lines));
+      g.addEventListener('pointerleave', hideTip);
+      g.addEventListener('focus', e => { const b = e.target.getBoundingClientRect(); showTip({ clientX: b.right, clientY: b.top }, fmt$(r[1]), lines); });
+      g.addEventListener('blur', hideTip);
+    });
+    // table view
+    const tbl = document.getElementById('priceTable'); tbl.replaceChildren();
+    const thead = tbl.createTHead().insertRow();
+    ['Product', 'Street', 'Sensing', 'Placement', 'Club data', 'Recurring'].forEach(h => { const th = document.createElement('th'); th.textContent = h; thead.appendChild(th); });
+    const tb = tbl.createTBody();
+    rows.forEach(r => { const tr = tb.insertRow(); [r[0], fmt$(r[1]), techLabel[r[2]], r[3], r[4], r[5]].forEach((c, j) => { const td = tr.insertCell(); td.textContent = c; if (j === 1) td.className = 'num'; }); });
+  }
+
+  /* ---------------- TCO stacked bars ---------------- */
+  const tco = [
+    ['Garmin R10 + Garmin Golf', 500, 300],
+    ['Rapsodo MLM2PRO + Premium + GSPro', 600, 1350],
+    ['Square Golf Omni + GSPro', 1599, 750],
+    ['SkyTrak ST MAX + Core', 1695, 1050],
+    ['Outer Bounds Indoor + GSPro', 1999, 750, true],
+    ['Mevo Gen2 + Pro Package + GSPro', 2299, 750],
+    ['Uneekor EYE MINI LITE + Pro + GSPro', 1999, 1347],
+    ['Outer Bounds Pro + GSPro', 2999, 750, true],
+    ['Uneekor EYE MINI + Pro + GSPro', 2999, 1347],
+    ['Full Swing KIT ($3,999) + GSPro', 3999, 750],
+    ['Bushnell Launch Pro + Gold + GSPro', 3000, 2547],
+    ['Garmin R50 + GSPro', 5000, 750],
+    ['Foresight GC3 + Gold + GSPro', 6999, 2547],
+  ].sort((a, b) => (a[1] + a[2]) - (b[1] + b[2]));
+
+  function drawTco() {
+    const host = document.getElementById('tcoChart'); host.replaceChildren();
+    const W = Math.max(host.clientWidth, 560), rowH = 30, barH = 18, top = 8, left = 260, right = 70;
+    const H = top + tco.length * rowH + 28;
+    const svg = el('svg', { width: W, height: H, viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'Stacked bar chart of 3-year total cost of ownership' }, host);
+    const max = 10000;
+    const x = (v) => left + v / max * (W - left - right);
+    [0, 2000, 4000, 6000, 8000, 10000].forEach(t => {
+      el('line', { x1: x(t), x2: x(t), y1: top, y2: top + tco.length * rowH, class: 'tick-line' }, svg);
+      const tx = el('text', { x: x(t), y: H - 8, 'text-anchor': 'middle' }, svg); tx.textContent = t === 0 ? '$0' : '$' + (t / 1000) + 'k';
+    });
+    tco.forEach((r, i) => {
+      const y = top + i * rowH + (rowH - barH) / 2;
+      const lab = el('text', { x: left - 10, y: y + barH / 2 + 4, 'text-anchor': 'end', class: r[3] ? 'lbl-primary' : '' }, svg);
+      lab.textContent = r[0]; if (r[3]) lab.setAttribute('font-weight', '700');
+      const g = el('g', { tabindex: 0, role: 'img', 'aria-label': `${r[0]}: ${fmt$(r[1] + r[2])} over 3 years` }, svg);
+      const hwW = x(r[1]) - x(0), feeW = x(r[1] + r[2]) - x(r[1]);
+      // hardware segment: square at baseline
+      el('rect', { x: x(0), y, width: Math.max(hwW - 1, 0), height: barH, fill: css('--series-1') }, g);
+      // fee segment with rounded data end + 2px surface gap
+      const fx = x(r[1]) + 1, fw = Math.max(feeW - 1, 0);
+      const rr = Math.min(4, fw / 2);
+      el('path', { d: `M${fx},${y} H${fx + fw - rr} Q${fx + fw},${y} ${fx + fw},${y + rr} V${y + barH - rr} Q${fx + fw},${y + barH} ${fx + fw - rr},${y + barH} H${fx} Z`, fill: css('--series-2') }, g);
+      el('rect', { x: x(0), y: y - 6, width: x(r[1] + r[2]) - x(0) + 4, height: barH + 12, fill: 'transparent' }, g);
+      const vt = el('text', { x: x(r[1] + r[2]) + 6, y: y + barH / 2 + 4, class: 'lbl-primary' }, svg);
+      vt.textContent = fmt$(r[1] + r[2]); if (r[3]) vt.setAttribute('font-weight', '700');
+      const lines = [r[0], 'Hardware + unlocks: ' + fmt$(r[1]), '3 years of fees: ' + fmt$(r[2]), 'Fees = ' + Math.round(r[2] / (r[1] + r[2]) * 100) + '% of total'];
+      g.addEventListener('pointermove', e => showTip(e, fmt$(r[1] + r[2]) + ' over 3 years', lines));
+      g.addEventListener('pointerleave', hideTip);
+      g.addEventListener('focus', e => { const b = e.target.getBoundingClientRect(); showTip({ clientX: b.right, clientY: b.top }, fmt$(r[1] + r[2]) + ' over 3 years', lines); });
+      g.addEventListener('blur', hideTip);
+    });
+    const tbl = document.getElementById('tcoTable'); tbl.replaceChildren();
+    const thead = tbl.createTHead().insertRow();
+    ['Configuration', 'Hardware + unlocks', '3-yr fees', '3-yr total'].forEach((h, j) => { const th = document.createElement('th'); th.textContent = h; if (j) th.className = 'num'; thead.appendChild(th); });
+    const tb = tbl.createTBody();
+    tco.forEach(r => { const tr = tb.insertRow(); if (r[3]) tr.className = 'ours'; [r[0], fmt$(r[1]), fmt$(r[2]), fmt$(r[1] + r[2])].forEach((c, j) => { const td = tr.insertCell(); td.textContent = c; if (j) td.className = 'num'; }); });
+  }
+
+  /* ---------------- Gantt ---------------- */
+  const start = new Date(2026, 9, 1), end = new Date(2029, 5, 30), today = new Date(2026, 9, 7);
+  const span = end - start;
+  const pct = (d) => ((d - start) / span * 100);
+  const D = (y, m) => new Date(y, m - 1, 1);
+  const phases = [
+    ['Phase 0: Feasibility rig', 'dev kits, GCQuad reference, G0', D(2026, 10), D(2027, 2)],
+    ['Phase 1: Integrated prototype', 'industrial design freeze, compute choice, G1', D(2027, 2), D(2027, 8)],
+    ['EVT', '50–150 units, compliance scans, G2', D(2027, 8), D(2027, 12), D(2028, 2)],
+    ['DVT + beta', 'production moulds, certification, G3', D(2027, 12), D(2028, 5), D(2028, 8)],
+    ['Founder pre-orders', '$2,499 deposits', D(2028, 3), D(2028, 6)],
+    ['PVT', '1–2k sellable units', D(2028, 5), D(2028, 8), D(2028, 10)],
+    ['Mass production', 'ocean freight for holiday', D(2028, 8), D(2028, 12)],
+    ['Launch: holiday 2028 (stretch)', '', D(2028, 11), null, null, true],
+    ['Launch: PGA Show + spring 2029 (realistic)', '', D(2029, 1), D(2029, 5)],
+    ['Outer Bounds Indoor ($1,999)', '6–12 months after launch', D(2029, 4), D(2029, 7)],
+    ['Seed round', '$4–6M', D(2026, 11), D(2027, 4)],
+    ['Series A', '$10–15M at DVT', D(2028, 2), D(2028, 6)],
+  ];
+  function drawGantt() {
+    const host = document.getElementById('gantt'); host.replaceChildren();
+    const axis = document.createElement('div'); axis.className = 'gantt-axis';
+    axis.appendChild(document.createElement('div'));
+    const ticks = document.createElement('div'); ticks.className = 'ticks';
+    [D(2026, 10), D(2027, 1), D(2027, 4), D(2027, 7), D(2027, 10), D(2028, 1), D(2028, 4), D(2028, 7), D(2028, 10), D(2029, 1), D(2029, 4)].forEach(d => {
+      const s = document.createElement('span'); s.style.left = pct(d) + '%';
+      s.textContent = d.toLocaleString('en-US', { month: 'short' }) + ' ’' + String(d.getFullYear()).slice(2);
+      ticks.appendChild(s);
+    });
+    axis.appendChild(ticks); host.appendChild(axis);
+    phases.forEach(p => {
+      const row = document.createElement('div'); row.className = 'gantt-row';
+      const name = document.createElement('div'); name.className = 'name'; name.textContent = p[0];
+      if (p[1]) { const sm = document.createElement('small'); sm.textContent = p[1]; name.appendChild(sm); }
+      const track = document.createElement('div'); track.className = 'gantt-track';
+      const t = document.createElement('div'); t.className = 'gantt-today'; t.style.left = pct(today) + '%'; track.appendChild(t);
+      if (p[5]) {
+        const m = document.createElement('div'); m.className = 'gantt-bar milestone'; m.style.left = 'calc(' + pct(p[2]) + '% - 6px)'; track.appendChild(m);
+      } else {
+        const b = document.createElement('div'); b.className = 'gantt-bar'; b.style.left = pct(p[2]) + '%'; b.style.width = (pct(p[3]) - pct(p[2])) + '%'; track.appendChild(b);
+        if (p[4]) { const s = document.createElement('div'); s.className = 'gantt-bar slip'; s.style.left = pct(p[3]) + '%'; s.style.width = (pct(p[4]) - pct(p[3])) + '%'; track.appendChild(s); }
+      }
+      row.appendChild(name); row.appendChild(track); host.appendChild(row);
+    });
+  }
+
+  function drawAll() { drawPrice(); drawTco(); drawGantt(); }
+  drawAll();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawAll, 120); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawAll);
+
+  /* theme toggle */
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const r = document.documentElement;
+    const isDark = r.dataset.theme ? r.dataset.theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    r.dataset.theme = isDark ? 'light' : 'dark';
+    drawAll();
+  });
+
+  /* active TOC */
+  const links = [...document.querySelectorAll('nav.toc a')];
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id)); } });
+  }, { rootMargin: '-30% 0px -65% 0px' });
+  document.querySelectorAll('main section').forEach(s => obs.observe(s));
+})();
+</script>
+</body>
+</html>
